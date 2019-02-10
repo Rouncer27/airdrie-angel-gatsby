@@ -8,19 +8,19 @@ import SEO from "../components/seo";
 class Home extends Component {
   render() {
     // console.log(this.props);
-    const acf = this.props.data.wordpressPage.acf
-      ? this.props.data.wordpressPage.acf
-      : {};
+    // const acf = this.props.data.wordpressPage.acf
+    //   ? this.props.data.wordpressPage.acf
+    //   : {};
 
-    const introTitle = acf._aap_intro_main_title
-      ? acf._aap_intro_main_title
-      : false;
-    const introSubTitle = acf._aap_intro_sub_title
-      ? acf._aap_intro_sub_title
-      : false;
-    const introInfoSections = acf._aap_intro_info_secs
-      ? acf._aap_intro_info_secs
-      : [];
+    // const introTitle = acf._aap_intro_main_title
+    //   ? acf._aap_intro_main_title
+    //   : false;
+    // const introSubTitle = acf._aap_intro_sub_title
+    //   ? acf._aap_intro_sub_title
+    //   : false;
+    // const introInfoSections = acf._aap_intro_info_secs
+    //   ? acf._aap_intro_info_secs
+    //   : [];
 
     return (
       <Layout>
@@ -29,38 +29,38 @@ class Home extends Component {
           description="A gift from the heart, a lift to the spirit. Airdrie Angel is a grassroots organization that is completely community based."
           keywords={[`gatsby`, `application`, `react`]}
         />
-        <h1>{this.props.data.wordpressPage.title}</h1>
+        <h1>Hello</h1>
         <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
           <Image />
         </div>
         <div>
-          <h2>{introTitle}</h2>
-          <p>{introSubTitle}</p>
+          <h2>Hello</h2>
+          <p>Hello</p>
         </div>
       </Layout>
     );
   }
 }
 
-export const homeQuery = graphql`
-  query HomePageTemplateQuery($id: Int) {
-    wordpressPage(wordpress_id: { eq: $id }) {
-      title
-      wordpress_id
-      acf {
-        _aap_intro_main_title
-        _aap_intro_sub_title
-        _aap_intro_info_secs {
-          title
-          content
-          link_required
-          external
-          link_text
-          wordpress_internal
-        }
-      }
-    }
-  }
-`;
+// export const homeQuery = graphql`
+//   query HomePageTemplateQuery($id: Int) {
+//     wordpressPage(wordpress_id: { eq: $id }) {
+//       title
+//       wordpress_id
+//       acf {
+//         _aap_intro_main_title
+//         _aap_intro_sub_title
+//         _aap_intro_info_secs {
+//           title
+//           content
+//           link_required
+//           external
+//           link_text
+//           wordpress_internal
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export default Home;

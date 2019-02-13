@@ -11,6 +11,10 @@ import Hills from "./SceneParts/Hills";
 import Mountains from "./SceneParts/Mountains";
 import Stars from "./SceneParts/Stars";
 import Tress from "./SceneParts/Trees";
+import House from "./SceneParts/House";
+import Sign from "./SceneParts/Sign";
+import WaterTower from "./SceneParts/WaterTower";
+import Bike from "./SceneParts/Bike";
 
 const Stage = styled.div`
   position: relative;
@@ -76,6 +80,18 @@ class OpeningScene extends Component {
         </div>
         <div>
           <Mountains />
+        </div>
+        <div>
+          <House time={this.state.currentPosition} />
+        </div>
+        <div>
+          <Sign />
+        </div>
+        <div>
+          <Bike />
+        </div>
+        <div>
+          <WaterTower time={this.state.currentPosition} />
         </div>
       </Stage>
     );

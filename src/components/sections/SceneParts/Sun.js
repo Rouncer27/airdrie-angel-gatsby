@@ -47,7 +47,7 @@ const SunShine = styled.div`
 
   &.dusk.daytime.sunset {
     right: 80%;
-    bottom: 10rem;
+    bottom: 15rem;
     #sun {
       fill: #fe5b35;
     }

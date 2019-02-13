@@ -26,13 +26,9 @@ exports.createPages = ({ graphql, actions }) => {
       }
       result.data.allWordpressPage.edges.forEach(edge => {
         if (edge.node.slug === "home") {
-          console.log("HOME PAGE! because the slug matches!!");
           createPage({
             path: `/`,
-            component: path.resolve(`./src/pages/home.js`),
-            context: {
-              id: edge.node.wordpress_id
-            }
+            component: path.resolve(`./src/pages/index.js`)
           });
         } else if (edge.node.template === "tpl-page-contact.php") {
           createPage({
@@ -75,10 +71,9 @@ exports.createPages = ({ graphql, actions }) => {
             }
           });
         } else if (edge.node.template === "tpl-page-home.php") {
-          console.log("using the home page template!!!");
           createPage({
             path: `/${edge.node.slug}`,
-            component: path.resolve(`./src/templates/stories.js`),
+            component: path.resolve(`./src/templates/hometpl.js`),
             context: {
               id: edge.node.wordpress_id
             }

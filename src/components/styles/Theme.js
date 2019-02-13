@@ -15,8 +15,8 @@ const theme = {
   bpDeskmd: "1200px",
   bpDesklg: "1600px",
   bpMax: "1900px",
-  fontPrim: "Montserrat",
-  fontSec: "Merriweather",
+  fontPrim: "lato",
+  fontSec: "roboto",
   fontAwesome: "FontAwesome"
 };
 

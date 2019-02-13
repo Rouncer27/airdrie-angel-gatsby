@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
 import { ThemeProvider } from "styled-components";
 
-import Header from "./header";
+import Header from "./Header/header";
+import Footer from "./Footer/Footer";
 
 import theme from "./styles/Theme";
 import GlobalStyle from "./styles/Golbal";
@@ -26,20 +27,12 @@ const Layout = ({ children }) => (
             <GlobalStyle />
             <Header siteTitle={data.site.siteMetadata.title} />
             <main>{children}</main>
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
+            <Footer />
           </React.Fragment>
         </ThemeProvider>
       </>
     )}
   />
 );
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
 export default Layout;

@@ -48,7 +48,7 @@ const PrimaryFonts = `
 @font-face {
   font-family: "lato";
   font-style: normal;
-  font-weight: 8700;
+  font-weight: 700;
   src:
     local("lato ExtraBold"),
     local("lato-ExtraBold"),
@@ -59,7 +59,7 @@ const PrimaryFonts = `
 @font-face {
   font-family: "lato";
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
   src:
     local("lato ExtraBold"),
     local("lato-ExtraBold"),

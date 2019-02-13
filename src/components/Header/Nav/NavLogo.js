@@ -34,7 +34,6 @@ class NavLogo extends Component {
           }
         `}
         render={data => {
-          console.log(data);
           return (
             <LogoContainer>
               <Link to="/">

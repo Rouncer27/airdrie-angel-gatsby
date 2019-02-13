@@ -79,13 +79,20 @@ const TreesStyled = styled.div`
 
 class Trees extends Component {
   render() {
+    const treesLocationClass =
+      this.props.location !== "" ? this.props.location : false;
     const treesActiveClass =
       (this.props.time === 0 && "dusk") ||
       (this.props.time === 1 && "dusk daytime") ||
       (this.props.time === 2 && "dusk daytime sunset") ||
       (this.props.time === 3 && "dusk daytime sunset night");
+
     return (
-      <TreesStyled className={treesActiveClass}>
+      <TreesStyled
+        className={`${treesActiveClass ? treesActiveClass : ""} ${
+          treesLocationClass ? treesLocationClass : ""
+        }`}
+      >
         <svg width="100%" viewBox="0 0 85.04 41.1">
           <rect
             className="trunks"

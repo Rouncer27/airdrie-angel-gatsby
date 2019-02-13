@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
 
-import Img from "gatsby-image";
-import styled from "styled-components";
-
 import What from "../components/sections/OurMission/What";
 import Carre from "../components/sections/OurMission/Carre";
 import Helped from "../components/sections/OurMission/Helped";
+import Team from "../components/sections/OurMission/Team";
 
 class OurMission extends Component {
   render() {
@@ -21,16 +19,16 @@ class OurMission extends Component {
       .localFile.childImageSharp.fluid;
     const carreStory = this.props.data.wordpressPage.acf._aap_the_carre_story;
     const carreQuote = this.props.data.wordpressPage.acf._aap_the_carre_quote;
-
     const helpedIntro = this.props.data.wordpressPage.acf._aap_helped_intro;
     const helpedPeople = this.props.data.wordpressPage.acf._aap_who_was_helped;
-
+    const supportTeam = this.props.data.wordpressPage.acf._aap_support_team;
     return (
       <Layout>
-        <SEO />
+        <SEO title="Airdrie Angel - Our Mission & The Angel Support Team" />
         <What data={{ whatTitle, whatContent, whatImage }} />
         <Carre data={{ carreLogo, carreImage, carreStory, carreQuote }} />
         <Helped data={{ helpedIntro, helpedPeople }} />
+        <Team data={supportTeam} />
       </Layout>
     );
   }
@@ -52,7 +50,6 @@ export const query = graphql`
             }
           }
         }
-
         _aap_the_carre_story
         _aap_the_carre_quote
         _aap_the_carre_image {
@@ -75,11 +72,25 @@ export const query = graphql`
             }
           }
         }
-
         _aap_helped_intro
         _aap_who_was_helped {
           big_quote
           small_quote
+        }
+        _aap_support_team {
+          name
+          title
+          bio
+          image {
+            alt_text
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 700) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
         }
       }
     }

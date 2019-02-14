@@ -25,7 +25,7 @@ const TreesStyled = styled.div`
       fill: #d2691e;
     }
     .trees {
-      fill: #ff9a00;
+      fill: #97b042;
     }
 
     .tree-shadow {
@@ -53,7 +53,7 @@ const TreesStyled = styled.div`
       fill: #9c0f5f;
     }
     .trees {
-      fill: #c91b26;
+      fill: #d2ac5e;
     }
 
     .tree-shadow {
@@ -67,7 +67,7 @@ const TreesStyled = styled.div`
       fill: #053752;
     }
     .trees {
-      fill: #001a26;
+      fill: #1e4a11;
     }
 
     .tree-shadow {

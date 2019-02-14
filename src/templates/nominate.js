@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import Question from "../components/sections/Nominate/Question";
 import Steps from "../components/sections/Nominate/Steps";
 import Criteria from "../components/sections/Nominate/Criteria";
+import NominationForm from "../components/sections/Nominate/NominationForm";
 
 class Nominate extends Component {
   render() {
@@ -29,6 +30,7 @@ class Nominate extends Component {
         />
         <Steps data={setpsToNominate} />
         <Criteria data={criteriaContent} />
+        <NominationForm />
       </Layout>
     );
   }

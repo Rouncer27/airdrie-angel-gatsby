@@ -134,7 +134,6 @@ const IntroSec = styled.div`
 
 class IntroSection extends Component {
   render() {
-    console.log(this.props);
     return (
       <StyledIntroSection>
         <StandardWrapper>

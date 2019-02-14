@@ -16,6 +16,10 @@ const TreesStyled = styled.div`
     transition: all 1.75s ease;
   }
 
+  .trunks {
+    transition: all 1.75s ease;
+  }
+
   &.dusk {
     .trunks {
       fill: #d2691e;

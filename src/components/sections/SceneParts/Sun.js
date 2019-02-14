@@ -73,9 +73,6 @@ class Sun extends Component {
       (this.props.time === 1 && "dusk daytime") ||
       (this.props.time === 2 && "dusk daytime sunset") ||
       (this.props.time === 3 && "dusk daytime sunset night");
-
-    console.log(classNameSun);
-
     return (
       <SunShine className={classNameSun}>
         <svg width="150" viewBox="0 0 90.71 90.71">

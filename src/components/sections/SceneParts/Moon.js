@@ -23,7 +23,6 @@ const StyledMoon = styled.div`
 
 class Moon extends Component {
   render() {
-    console.log(this.props);
     const moonActiveClass = this.props.time === 3 ? "night" : "";
     return (
       <StyledMoon className={moonActiveClass}>

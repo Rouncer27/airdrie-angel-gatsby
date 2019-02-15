@@ -12,11 +12,30 @@ import {
 
 const ContactFormSection = styled.section`
   width: 100%;
-  padding: 10rem 2rem;
+  padding: 5rem 2rem 10rem;
 `;
 
 const ContactTitle = styled.div`
   width: 100%;
+  margin-bottom: 5rem;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    color: ${props => props.theme.teal};
+  }
+
+  p {
+    font-size: 1.8rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 1.8rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 2rem;
+    }
+  }
 `;
 
 const FormStyled = styled(FormMain)`

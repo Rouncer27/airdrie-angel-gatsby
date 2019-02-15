@@ -15,7 +15,18 @@ const EmailUsSec = styled.div`
   }
 
   h2 {
+    margin: 0;
     color: ${props => props.theme.white};
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 300;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 2.8rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 3.4rem;
+    }
   }
 
   p {
@@ -30,7 +41,18 @@ const SponsorshipSec = styled.div`
   }
 
   h2 {
+    margin: 0;
     color: ${props => props.theme.white};
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 300;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 2.8rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 3.4rem;
+    }
   }
 
   p {

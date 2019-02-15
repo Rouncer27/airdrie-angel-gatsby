@@ -19,6 +19,7 @@ import WaterTower from "./SceneParts/WaterTower";
 import Bike from "./SceneParts/Bike";
 import SignNominate from "./SceneParts/SignNominate";
 import SignStories from "./SceneParts/SignStories";
+import Plane from "./SceneParts/Plane";
 
 const Stage = styled.div`
   position: relative;
@@ -135,6 +136,10 @@ class OpeningScene extends Component {
               </div>
               <div>
                 <WaterTower time={this.state.currentPosition} />
+              </div>
+              <div>
+                <Plane direction="forwards" />
+                <Plane direction="reverse" />
               </div>
             </Stage>
           );

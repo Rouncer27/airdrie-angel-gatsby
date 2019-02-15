@@ -23,24 +23,71 @@ const StoryCard = styled.div`
 `;
 
 class Stories extends Component {
+  constructor(props) {
+    super(props);
+
+    this.loadMoreStoresOnPage = this.loadMoreStoresOnPage.bind(this);
+
+    this.state = {
+      posts: [],
+      currentOnPage: 10
+    };
+  }
+
+  componentDidMount() {
+    const firstTen = this.props.data.allWordpressWpStory.edges.slice(
+      0,
+      this.state.currentOnPage
+    );
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        posts: firstTen
+      };
+    });
+  }
+
+  loadMoreStoresOnPage() {
+    const nextTen = this.props.data.allWordpressWpStory.edges.slice(
+      this.state.currentOnPage,
+      this.state.currentOnPage + 10
+    );
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        posts: prevState.posts.concat(nextTen),
+        currentOnPage: prevState.currentOnPage + 10
+      };
+    });
+  }
+
   render() {
-    const allStories = this.props.data.allWordpressWpStory.edges;
+    const noMorePosts =
+      this.props.data.allWordpressWpStory.edges.length <=
+      this.state.currentOnPage;
     return (
       <Layout>
-        <SEO />
+        <SEO title="Recent Stories" />
         <StandardWrapper>
           <h1>Recent Stories</h1>
           <StoriesContainer>
-            {allStories.map(story => {
+            {this.state.posts.map((story, index) => {
               return (
                 <StoryCard key={story.node.wordpress_id}>
-                  <Link to={`stories/${story.node.slug}`}>
+                  <Link to={`/stories/${story.node.slug}`}>
                     {story.node.title}
                   </Link>
                 </StoryCard>
               );
             })}
           </StoriesContainer>
+          <div>
+            <button disabled={noMorePosts} onClick={this.loadMoreStoresOnPage}>
+              Load More Stories
+            </button>
+          </div>
         </StandardWrapper>
       </Layout>
     );

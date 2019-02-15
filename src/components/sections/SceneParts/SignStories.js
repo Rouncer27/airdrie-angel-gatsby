@@ -12,8 +12,12 @@ const StoriesSignStyled = styled.div`
 
 class SignStories extends Component {
   render() {
+    const singExtraClass =
+      this.props.location === "nominate-page-stories"
+        ? this.props.location
+        : "";
     return (
-      <StoriesSignStyled>
+      <StoriesSignStyled className={singExtraClass}>
         <Link to="/stories">
           <svg
             id="Layer_1"

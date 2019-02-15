@@ -12,8 +12,10 @@ const NominateSignStyled = styled.div`
 
 class SignNominate extends Component {
   render() {
+    const singExtraClass =
+      this.props.location === "nominate-page" ? this.props.location : "";
     return (
-      <NominateSignStyled>
+      <NominateSignStyled className={singExtraClass}>
         <Link to="/nominate">
           <svg
             id="Layer_1"

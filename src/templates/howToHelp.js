@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
+import ShareJoy from "../components/sections/HowToHelp/Sharejoy";
+import Sponsorship from "../components/sections/HowToHelp/Sponsorship";
 
 class HowToHelp extends Component {
   render() {
     return (
       <Layout>
         <SEO />
-        <h1>How To Help</h1>
+        <ShareJoy />
+        <Sponsorship />
       </Layout>
     );
   }

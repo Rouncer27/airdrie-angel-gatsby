@@ -68,13 +68,19 @@ const SunShine = styled.div`
 
 class Sun extends Component {
   render() {
+    const sunLocationClass =
+      this.props.location !== "" ? this.props.location : false;
     const classNameSun =
       (this.props.time === 0 && "dusk") ||
       (this.props.time === 1 && "dusk daytime") ||
       (this.props.time === 2 && "dusk daytime sunset") ||
       (this.props.time === 3 && "dusk daytime sunset night");
     return (
-      <SunShine className={classNameSun}>
+      <SunShine
+        className={`${classNameSun ? classNameSun : ""} ${
+          sunLocationClass ? sunLocationClass : ""
+        }`}
+      >
         <svg width="150" viewBox="0 0 90.71 90.71">
           <circle
             id="sun-ring-out"

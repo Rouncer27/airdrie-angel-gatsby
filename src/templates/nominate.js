@@ -22,6 +22,9 @@ class Nominate extends Component {
 
     const criteriaContent = this.props.data.wordpressPage.acf
       ._app_criteria_content;
+
+    const criteriaImage = this.props.data.wordpressPage.acf
+      ._aap_criteria_bg_img;
     return (
       <Layout>
         <SEO />
@@ -29,7 +32,7 @@ class Nominate extends Component {
           data={{ questionTitleTop, questionTitleBot, questionTitleContent }}
         />
         <Steps data={setpsToNominate} />
-        <Criteria data={criteriaContent} />
+        <Criteria data={{ criteriaContent, criteriaImage }} />
         <NominationForm />
       </Layout>
     );
@@ -48,6 +51,15 @@ export const query = graphql`
           content
         }
         _app_criteria_content
+        _aap_criteria_bg_img {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 2000) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -24,7 +24,7 @@ class NavLogo extends Component {
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 500) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_tracedSVG
                       }
                     }
                   }

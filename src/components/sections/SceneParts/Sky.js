@@ -81,7 +81,14 @@ const SceneSky = styled.div`
 const ChangeTheSky = styled.button`
   position: relative;
   z-index: 5000;
-  color: #000;
+  color: #fff;
+  border: 0;
+  padding: 1rem 2rem;
+  background: #7b6e66;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 class Sky extends Component {
@@ -94,7 +101,7 @@ class Sky extends Component {
     return (
       <div>
         <ChangeTheSky onClick={this.props.changeTheTime}>
-          Change The Sky!
+          Change The Time of Day
         </ChangeTheSky>
         <SceneSky className={classNameSky} />
       </div>

@@ -25,7 +25,7 @@ export default class Bike extends Component {
     const bikeSleepClass = this.props.time === 3 ? "night" : "";
     return (
       <WaterTowerStyled className={bikeSleepClass}>
-        <a href="">
+        <a target="_blank" href="https://switchbackcreative.ca/">
           <svg
             id="bike"
             xmlns="http://www.w3.org/2000/svg"

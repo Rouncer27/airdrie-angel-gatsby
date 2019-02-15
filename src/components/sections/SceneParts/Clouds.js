@@ -43,7 +43,7 @@ const CloudsStyled = styled.div`
 
   &.dusk.daytime.sunset {
     bottom: 30.5rem;
-    right: 55%;
+    right: 25%;
 
     path.first-cloud {
       fill: #aec8e3;
@@ -56,7 +56,7 @@ const CloudsStyled = styled.div`
   }
   &.dusk.daytime.sunset.night {
     bottom: 30.5rem;
-    right: 25%;
+    right: 15%;
 
     path.first-cloud {
       fill: #a1a8b0;

@@ -14,7 +14,7 @@ const CloudStyled = styled.div`
 
   &.dusk {
     bottom: 27rem;
-    left: 35%;
+    left: 40%;
 
     path {
       fill: #e5c9d7;
@@ -40,7 +40,7 @@ const CloudStyled = styled.div`
   }
   &.dusk.daytime.sunset.night {
     bottom: 35rem;
-    left: 35%;
+    left: 15%;
 
     path {
       fill: #a1a8b0;

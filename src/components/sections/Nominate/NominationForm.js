@@ -1,16 +1,54 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
+import {
+  FormInput,
+  FormButton,
+  FormTextarea,
+  FormMain
+} from "../../styles/Commons/FormFields";
+
+const NominationFormSection = styled.section`
+  width: 100%;
+  padding: 10rem 2rem;
+`;
+
+const FormStyled = styled(FormMain)``;
+
+const InputStyled = styled(FormInput)`
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    width: calc(50% - 4rem);
+    margin: 2rem;
+  }
+`;
+
+const StyledTextarea = styled(FormTextarea)`
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2rem;
+  }
+`;
+
+const StyledFormButton = styled(FormButton)`
+  width: 100%;
+  text-align: center;
+`;
 
 class NominationForm extends Component {
   render() {
     return (
-      <div>
+      <NominationFormSection>
         <StandardWrapper>
           <h2>Nomination Form</h2>
-          <form>
+          <FormStyled>
             <div>
-              <div>
+              <InputStyled>
                 <label htmlFor="firstname">First Name &#42;</label>
                 <input
                   type="text"
@@ -21,8 +59,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="lastname">Last Name &#42;</label>
                 <input
                   type="text"
@@ -33,8 +71,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="phone">Phone Number &#42;</label>
                 <input
                   type="text"
@@ -45,8 +83,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="email">email &#42;</label>
                 <input
                   type="email"
@@ -57,9 +95,9 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
+              </InputStyled>
 
-              <div>
+              <InputStyled>
                 <label htmlFor="city">What City do you live in? &#42;</label>
                 <input
                   type="text"
@@ -70,9 +108,9 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
+              </InputStyled>
 
-              <div>
+              <InputStyled>
                 <label>
                   How did you hear about the Airdrie Angel program? &#42;
                 </label>
@@ -105,9 +143,9 @@ class NominationForm extends Component {
                     Other
                   </option>
                 </select>
-              </div>
+              </InputStyled>
 
-              <div>
+              <StyledTextarea>
                 <label htmlFor="relationship">
                   What is you relationship to Nominee? &#42;
                 </label>
@@ -120,7 +158,7 @@ class NominationForm extends Component {
                   value=""
                   required
                 />
-              </div>
+              </StyledTextarea>
 
               <div>
                 <h3>Nominee Infromation</h3>
@@ -130,7 +168,7 @@ class NominationForm extends Component {
                 </p>
               </div>
 
-              <div>
+              <InputStyled>
                 <label htmlFor="nomfirstname">Nominee's First Name &#42;</label>
                 <input
                   type="text"
@@ -141,8 +179,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="nomlastname">Nominee's Last Name &#42;</label>
                 <input
                   type="text"
@@ -153,8 +191,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="nomphone">Nominee's Phone Number &#42;</label>
                 <input
                   type="text"
@@ -165,8 +203,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="nomemail">Nominee's email &#42;</label>
                 <input
                   type="email"
@@ -177,8 +215,8 @@ class NominationForm extends Component {
                   onChange=""
                   required
                 />
-              </div>
-              <div>
+              </InputStyled>
+              <InputStyled>
                 <label htmlFor="addressinput">
                   Do you have or can you give the Nominee's Address? &#42;
                 </label>
@@ -187,11 +225,14 @@ class NominationForm extends Component {
                 <input type="radio" name="addressinput" value="no" /> No, I'd
                 prefer not to give their address
                 <br />
-              </div>
+              </InputStyled>
             </div>
-          </form>
+            <StyledFormButton>
+              <button>Submit</button>
+            </StyledFormButton>
+          </FormStyled>
         </StandardWrapper>
-      </div>
+      </NominationFormSection>
     );
   }
 }

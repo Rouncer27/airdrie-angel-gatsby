@@ -7,6 +7,7 @@ const BigTealButton = styled.a`
   border: 0.1rem solid ${props => props.theme.white};
   border-radius: 0.15rem;
   background: ${props => props.theme.teal};
+  color: ${props => props.theme.white};
 
   &:hover {
     background: ${props => props.theme.deepYellow};
@@ -20,6 +21,7 @@ const BigTealLink = styled(Link)`
   border: 0.1rem solid ${props => props.theme.white};
   border-radius: 0.15rem;
   background: ${props => props.theme.teal};
+  color: ${props => props.theme.white};
 
   &:hover {
     background: ${props => props.theme.deepYellow};

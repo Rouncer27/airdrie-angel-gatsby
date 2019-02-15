@@ -19,8 +19,10 @@ const HillStyled = styled.div`
 
 class Hill extends Component {
   render() {
+    const activeHillClass =
+      this.props.location !== "" ? this.props.location : false;
     return (
-      <HillStyled>
+      <HillStyled className={activeHillClass}>
         <svg viewBox="0 0 1374 233.63">
           <path
             id="hill1"

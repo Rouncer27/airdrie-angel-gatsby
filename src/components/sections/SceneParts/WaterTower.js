@@ -45,8 +45,10 @@ const WaterTowerStyled = styled.div`
 class WaterTower extends Component {
   render() {
     const towerActiveClass = this.props.time === 3 ? "night" : "";
+    const activeHillClass =
+      this.props.location !== "" ? this.props.location : false;
     return (
-      <WaterTowerStyled className={towerActiveClass}>
+      <WaterTowerStyled className={`${towerActiveClass} ${activeHillClass}`}>
         <svg
           id="Layer_1"
           data-name="Layer 1"

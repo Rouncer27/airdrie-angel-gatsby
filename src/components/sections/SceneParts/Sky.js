@@ -26,14 +26,14 @@ const SceneSky = styled.div`
   }
 
   &.dusk {
-    background: linear-gradient(90deg, #5f5275 0%, #fff4bc 60%);
+    background: linear-gradient(110deg, #e5c9d7 0%, #fff4bc 50%);
 
     &::after {
       opacity: 0;
     }
 
     &::before {
-      background: linear-gradient(90deg, #5f5275 0%, #fff4bc 60%);
+      background: linear-gradient(110deg, #e5c9d7 0%, #fff4bc 50%);
       opacity: 1;
     }
   }

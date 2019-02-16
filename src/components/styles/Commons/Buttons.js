@@ -15,6 +15,21 @@ const BigTealButton = styled.a`
   }
 `;
 
+const BigTealButton2 = styled.button`
+  padding: 2rem 4rem;
+  display: inline-block;
+  border: 0.1rem solid ${props => props.theme.white};
+  border-radius: 0.15rem;
+  background: ${props => props.theme.teal};
+  color: ${props => props.theme.white};
+
+  &:hover {
+    background: ${props => props.theme.deepYellow};
+    color: ${props => props.theme.grey};
+    cursor: pointer;
+  }
+`;
+
 const BigTealLink = styled(Link)`
   padding: 2rem 4rem;
   display: inline-block;
@@ -29,4 +44,4 @@ const BigTealLink = styled(Link)`
   }
 `;
 
-export { BigTealButton, BigTealLink };
+export { BigTealButton, BigTealLink, BigTealButton2 };

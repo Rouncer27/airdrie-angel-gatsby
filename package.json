@@ -18,6 +18,7 @@
     "gatsby-source-wordpress": "^3.0.33",
     "gatsby-transformer-sharp": "^2.1.13",
     "gsap": "^2.0.2",
+    "moment": "^2.24.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.0",
     "react-countup": "^4.0.0",

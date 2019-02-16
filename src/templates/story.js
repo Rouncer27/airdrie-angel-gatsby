@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
 import styled from "styled-components";
+import moment from "moment";
 
 import { StandardWrapper } from "../components/styles/Commons/Wrappers";
 import { StandardParagraph } from "../components/styles/Commons/Paragraphs";
@@ -19,6 +20,39 @@ import Bike from "../components/sections/SceneParts/Bike";
 const StoryTitle = styled.div`
   width: 100%;
   text-align: center;
+
+  h1 {
+    position: relative;
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 700;
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      font-size: 4rem;
+    }
+
+    &::before {
+      position: absolute;
+      bottom: -1.1rem;
+      right: 0;
+      left: 0;
+      width: 7.5rem;
+      height: 0.25rem;
+      margin: 0 auto;
+      transition: all 0.5s linear;
+      background: ${props => props.theme.black};
+      border-radius: 0.5rem;
+      content: "";
+    }
+  }
+
+  p {
+    font-weight: 700;
+    font-family: ${props => props.theme.fontSec};
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      font-size: 4rem;
+    }
+  }
 `;
 
 const StoryContent = styled(StandardParagraph)`
@@ -171,6 +205,7 @@ const LogosWrapper = styled.div`
 class Story extends Component {
   render() {
     const storyTitle = this.props.data.wordpressWpStory.title;
+    const storyDate = this.props.data.wordpressWpStory.date;
     const storyContent = this.props.data.wordpressWpStory.acf._aap_story;
     const storyVideo = this.props.data.wordpressWpStory.acf._app_video_link;
     const cloudNineSponsorIds = this.props.data.wordpressWpStory.acf
@@ -191,6 +226,7 @@ class Story extends Component {
           <StandardWrapper>
             <StoryTitle>
               <h1 dangerouslySetInnerHTML={{ __html: storyTitle }} />
+              <p>{moment(storyDate).format("MMMM D YYYY")}</p>
             </StoryTitle>
             <StoryContent dangerouslySetInnerHTML={{ __html: storyContent }} />
           </StandardWrapper>
@@ -272,6 +308,7 @@ export const query = graphql`
   query Story($slug: String!) {
     wordpressWpStory(slug: { eq: $slug }) {
       title
+      date
       acf {
         _aap_story
         _app_video_link
@@ -282,39 +319,21 @@ export const query = graphql`
         }
         _aap_soaring_spirits {
           logo {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            source_url
           }
           link
         }
 
         _aap_earn_your_wings {
           logo {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            source_url
           }
           link
         }
 
         _aap_angels_among_us {
           logo {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            source_url
           }
         }
       }

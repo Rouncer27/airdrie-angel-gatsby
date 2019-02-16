@@ -20,11 +20,11 @@ const EarnYourWingsLogo = styled.a`
 
 class EarnYourWings extends Component {
   render() {
-    const logo = this.props.data.logo.localFile.childImageSharp.fluid;
+    const logo = this.props.data.logo.source_url;
     const link = this.props.data.link;
     return (
       <EarnYourWingsLogo target="_blank" rel="noopener noreferrer" href={link}>
-        <Img fluid={logo} alt="Earn Your Wings" />
+        <img src={logo} alt="Earn Your Wings" />
       </EarnYourWingsLogo>
     );
   }

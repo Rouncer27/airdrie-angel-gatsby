@@ -20,11 +20,11 @@ const SoaringSpiritsLogo = styled.a`
 
 class SoaringSpirit extends Component {
   render() {
-    const logo = this.props.data.logo.localFile.childImageSharp.fluid;
+    const logo = this.props.data.logo.source_url;
     const link = this.props.data.link;
     return (
       <SoaringSpiritsLogo target="_blank" rel="noopener noreferrer" href={link}>
-        <Img fluid={logo} alt="Soaring spirit sponsor" />
+        <img src={logo} alt="Earn Your Wings" />
       </SoaringSpiritsLogo>
     );
   }

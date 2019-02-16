@@ -20,10 +20,10 @@ const AngelsAmongUsLogo = styled.div`
 
 class AngelsAmongUs extends Component {
   render() {
-    const logo = this.props.data.logo.localFile.childImageSharp.fluid;
+    const logo = this.props.data.logo.source_url;
     return (
       <AngelsAmongUsLogo>
-        <Img fluid={logo} alt="Earn Your Wings" />
+        <img src={logo} alt="Earn Your Wings" />
       </AngelsAmongUsLogo>
     );
   }

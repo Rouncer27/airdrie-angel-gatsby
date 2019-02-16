@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import moment from "moment";
 
 import { StandardWrapper } from "../components/styles/Commons/Wrappers";
 import { StandardParagraph } from "../components/styles/Commons/Paragraphs";
+import { BigTealLink } from "../components/styles/Commons/Buttons";
 import CloudNineStory from "../components/sections/Story/CloudNineStory";
 import SoaringSpirit from "../components/sections/Story/SoaringSpirit";
 import EarnYourWings from "../components/sections/Story/EarnYourWings";
@@ -204,6 +205,22 @@ const LogosWrapper = styled.div`
 
 class Story extends Component {
   render() {
+    const totalStories = this.props.data.allWordpressWpStory.edges.length - 1;
+    const currentPost = this.props.data.allWordpressWpStory.edges.findIndex(
+      post => {
+        return post.node.slug === this.props.data.wordpressWpStory.slug;
+      }
+    );
+    const nextPost = currentPost > 0 ? currentPost - 1 : false;
+    const prevPost = currentPost < totalStories ? currentPost + 1 : false;
+    const nextPostSlug =
+      nextPost || nextPost === 0
+        ? this.props.data.allWordpressWpStory.edges[nextPost].node.slug
+        : false;
+    const prevPostSlug = prevPost
+      ? this.props.data.allWordpressWpStory.edges[prevPost].node.slug
+      : false;
+
     const storyTitle = this.props.data.wordpressWpStory.title;
     const storyDate = this.props.data.wordpressWpStory.date;
     const storyContent = this.props.data.wordpressWpStory.acf._aap_story;
@@ -297,6 +314,18 @@ class Story extends Component {
                   })}
               </LogosWrapper>
             </LogosSections>
+            <div>
+              {nextPostSlug && (
+                <BigTealLink to={`/stories/${nextPostSlug}`}>
+                  Next Story
+                </BigTealLink>
+              )}
+              {prevPostSlug && (
+                <BigTealLink to={`/stories/${prevPostSlug}`}>
+                  Previous Story
+                </BigTealLink>
+              )}
+            </div>
           </StandardWrapper>
         </div>
       </Layout>
@@ -309,6 +338,7 @@ export const query = graphql`
     wordpressWpStory(slug: { eq: $slug }) {
       title
       date
+      slug
       acf {
         _aap_story
         _app_video_link
@@ -335,6 +365,13 @@ export const query = graphql`
           logo {
             source_url
           }
+        }
+      }
+    }
+    allWordpressWpStory {
+      edges {
+        node {
+          slug
         }
       }
     }

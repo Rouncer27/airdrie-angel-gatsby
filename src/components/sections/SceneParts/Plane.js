@@ -52,8 +52,14 @@ const StyledPlane = styled.div`
 
 class Plane extends Component {
   render() {
+    const planeLocationClass =
+      this.props.location !== "" ? this.props.location : false;
     return (
-      <StyledPlane className={this.props.direction}>
+      <StyledPlane
+        className={`${
+          this.props.direction ? this.props.direction : ""
+        } ${planeLocationClass}`}
+      >
         <svg
           id="planeall"
           xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { graphql } from "gatsby";
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import moment from "moment";
 import { Link } from "gatsby";
 import { StandardWrapper } from "../components/styles/Commons/Wrappers";
 import { BigTealButton2 } from "../components/styles/Commons/Buttons";
+import Plane from "../components/sections/SceneParts/Plane";
 
 const StoriesContainer = styled.div`
   display: flex;
@@ -127,13 +129,20 @@ const CardExcerpt = styled.div`
 `;
 
 const StoriesMainTitle = styled.div`
-  margin: 2rem auto;
+  position: relative;
+  margin: 2rem auto 10rem;
   text-align: center;
 
   h1 {
+    margin-bottom: 2.5rem;
     color: ${props => props.theme.teal};
     font-weight: 700;
     font-family: ${props => props.theme.fontSec};
+  }
+
+  .stoires-plane {
+    top: auto;
+    bottom: -9rem;
   }
 `;
 
@@ -194,6 +203,7 @@ class Stories extends Component {
         <StandardWrapper>
           <StoriesMainTitle>
             <h1>Recent Stories</h1>
+            <Plane location="stoires-plane" />
           </StoriesMainTitle>
 
           <StoriesContainer>

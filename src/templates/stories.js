@@ -207,7 +207,7 @@ class Stories extends Component {
           </StoriesMainTitle>
 
           <StoriesContainer>
-            {this.state.posts.map((story, index) => {
+            {this.state.posts.map(story => {
               return (
                 <StoryCard
                   key={story.node.wordpress_id}

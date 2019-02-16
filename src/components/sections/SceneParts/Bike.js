@@ -23,8 +23,10 @@ const WaterTowerStyled = styled.div`
 export default class Bike extends Component {
   render() {
     const bikeSleepClass = this.props.time === 3 ? "night" : "";
+    const bikeLocationClass =
+      this.props.location !== "" ? this.props.location : "";
     return (
-      <WaterTowerStyled className={bikeSleepClass}>
+      <WaterTowerStyled className={`${bikeSleepClass} ${bikeLocationClass}`}>
         <a target="_blank" href="https://switchbackcreative.ca/">
           <svg
             id="bike"

@@ -39,16 +39,9 @@ class Index extends Component {
           description="A gift from the heart, a lift to the spirit. Airdrie Angel is a grassroots organization that is completely community based."
           keywords={[`gatsby`, `application`, `react`]}
         />
-
+        <OpeningScene />
         <IntroSection data={{ introTitle, introSubTitle, introInfoSections }} />
-        <Family
-          data={{
-            famHelpedTotal,
-            famHelpedContent,
-            famHelpedMoney,
-            famHelpedMoneyContent
-          }}
-        />
+
         <CloudNine />
         <Succulent
           data={{

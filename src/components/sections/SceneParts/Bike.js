@@ -3,12 +3,20 @@ import styled from "styled-components";
 
 const WaterTowerStyled = styled.div`
   position: absolute;
-  bottom: 2rem;
-  right: 22.5%;
-  width: 15rem;
+  bottom: 0rem;
+  right: 2rem;
+  width: 12rem;
   transition: all 1.75s ease;
-  transform: rotate(-10deg);
+  transform: rotate(0deg);
   z-index: 6000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    bottom: 2rem;
+    right: 22.5%;
+    width: 15rem;
+    transform: rotate(-10deg);
+  }
+
   svg {
     transition: all 1.75s ease;
     #swb-person {

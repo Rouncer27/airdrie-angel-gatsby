@@ -3,10 +3,16 @@ import styled from "styled-components";
 
 const WaterTowerStyled = styled.div`
   position: absolute;
-  bottom: 5rem;
-  left: 30%;
-  width: 10rem;
+  bottom: 2rem;
+  left: 5rem;
+  width: 7rem;
   z-index: 3000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    width: 10rem;
+    bottom: 5rem;
+    left: 30%;
+  }
 
   #tower-full {
     .cls-1 {

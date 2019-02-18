@@ -6,13 +6,23 @@ const flyPlaneForwards = keyframes`
     transform: translate(0, 0);
   }
   25% {
-    transform: translate(-60vw, 7.5rem);
+    transform: translate(-60vw, 2.5rem);
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: translate(-60vw, 7.5rem);
+    }
   }
   50% {
-    transform: translate(-120vw, 0);
+    transform: translate(-150vw, 0);
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: translate(-120vw, 0);
+    }
   }
   100% {
-    transform: translate(-120vw, 0);
+    transform: translate(-150vw, 0);
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: translate(-120vw, 0);
+    }
   }
 `;
 
@@ -21,22 +31,39 @@ const flyPlaneBackwards = keyframes`
     transform: rotateY(180deg) translate(0, 0);
   }
   25% {
-    transform: rotateY(180deg) translate(-60vw, 7.5rem);
+    transform: rotateY(180deg) translate(-60vw, 2.5rem);
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: rotateY(180deg) translate(-60vw, 7.5rem);
+    }
+    
   }
   50% {
-    transform: rotateY(180deg) translate(-120vw, 0);
+    transform: rotateY(180deg) translate(-150vw, 0);
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: rotateY(180deg) translate(-120vw, 0);
+    }
   }
   100% {
-    transform: rotateY(180deg) translate(-120vw, 0);
+    transform: rotateY(180deg) translate(-150vw, 0);
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      transform: rotateY(180deg) translate(-120vw, 0);
+    }
   }
 `;
 
 const StyledPlane = styled.div`
   position: absolute;
-  top: 10rem;
+  top: 2.5rem;
   right: 10rem;
-  width: 15rem;
+  width: 10rem;
   z-index: 6500;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    top: 10rem;
+    width: 15rem;
+  }
 
   &.forwards {
     right: -15rem;

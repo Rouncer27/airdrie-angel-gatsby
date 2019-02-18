@@ -4,10 +4,15 @@ import { Link } from "gatsby";
 
 const NominateSignStyled = styled.div`
   position: absolute;
-  bottom: 2.5rem;
-  left: 40%;
+  bottom: 0rem;
+  left: 45%;
   width: 7rem;
   z-index: 6000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    bottom: 2.5rem;
+    left: 40%;
+  }
 `;
 
 class SignNominate extends Component {

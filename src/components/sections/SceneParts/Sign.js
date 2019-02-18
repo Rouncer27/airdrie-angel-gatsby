@@ -3,10 +3,16 @@ import styled from "styled-components";
 
 const HouseStyled = styled.div`
   position: absolute;
-  bottom: 5rem;
-  left: 22%;
+  bottom: 0;
+  left: 2rem;
   width: 10rem;
   z-index: 6000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    bottom: 5rem;
+    left: 22%;
+    width: 10rem;
+  }
 `;
 
 class Sign extends Component {

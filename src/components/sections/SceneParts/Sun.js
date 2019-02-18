@@ -17,8 +17,12 @@ const SunShine = styled.div`
   }
 
   &.dusk {
-    bottom: 20rem;
-    right: 5rem;
+    bottom: 7rem;
+    right: -5rem;
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      bottom: 20rem;
+      right: 5rem;
+    }
     #sun {
       fill: #ffbc57;
     }
@@ -31,8 +35,13 @@ const SunShine = styled.div`
   }
 
   &.dusk.daytime {
-    bottom: 50rem;
-    right: 50%;
+    bottom: 30rem;
+    right: 30%;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      bottom: 50rem;
+      right: 50%;
+    }
 
     #sun {
       fill: #f9ffa0;

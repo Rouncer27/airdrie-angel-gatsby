@@ -3,11 +3,16 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 const StoriesSignStyled = styled.div`
+  display: none;
   position: absolute;
   bottom: 7rem;
   right: 40%;
   width: 5.5rem;
   z-index: 6000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    display: block;
+  }
 `;
 
 class SignStories extends Component {

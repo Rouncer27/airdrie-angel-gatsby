@@ -24,18 +24,27 @@ import Plane from "./SceneParts/Plane";
 const Stage = styled.div`
   position: relative;
   width: 100%;
-  height: 70rem;
+  height: 60rem;
   overflow: hidden;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    height: 70rem;
+  }
 `;
 
 const StageStyledSign = styled.div`
   position: absolute;
-  top: 20rem;
+  top: 7rem;
   left: 0;
   right: 0;
-  width: 35rem;
+  width: 27.5rem;
   margin: auto;
   z-index: 7500;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    top: 20rem;
+    width: 35rem;
+  }
 
   img {
     width: 100%;
@@ -54,6 +63,49 @@ class OpeningScene extends Component {
     };
   }
 
+  componentDidMount() {
+    var date = new Date();
+    var currentHour = date.getHours();
+    //currentHour = 20;
+
+    if (currentHour <= 6) {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          currentPosition: 3
+        };
+      });
+    } else if (currentHour <= 10) {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          currentPosition: 0
+        };
+      });
+    } else if (currentHour <= 16) {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          currentPosition: 1
+        };
+      });
+    } else if (currentHour <= 21) {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          currentPosition: 2
+        };
+      });
+    } else if (currentHour > 21) {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          currentPosition: 3
+        };
+      });
+    }
+  }
+
   changeTheSky() {
     this.setState(prevState => {
       return {
@@ -63,6 +115,8 @@ class OpeningScene extends Component {
       };
     });
   }
+
+  changeTheTimeOfDay() {}
 
   render() {
     return (

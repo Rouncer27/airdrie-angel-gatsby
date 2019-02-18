@@ -3,12 +3,24 @@ import styled from "styled-components";
 
 const TreesStyled = styled.div`
   position: absolute;
-  bottom: 2.5rem;
-  right: 15rem;
-  width: 50rem;
+  bottom: -2rem;
+  right: -2rem;
+  width: 30rem;
   transition: all 1.75s ease;
   z-index: 6000;
   opacity: 1;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    right: 5rem;
+    bottom: -1rem;
+    width: 50rem;
+  }
+
+  @media (min-width: ${props => props.theme.bpDesksm}) {
+    right: 15rem;
+    bottom: 0;
+    width: 50rem;
+  }
 
   svg,
   path,

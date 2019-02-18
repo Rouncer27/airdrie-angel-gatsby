@@ -6,7 +6,12 @@ const HouseStyled = styled.div`
   bottom: 10rem;
   left: 8%;
   width: 20rem;
+  opacity: 0;
   z-index: 3000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    opacity: 1;
+  }
 
   #house {
     #side {

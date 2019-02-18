@@ -6,7 +6,7 @@ const CloudNineLogoStyled = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: calc(50% - 1rem);
   max-width: 30rem;
   margin: 3rem auto;
   transition: all 0.5s ease-in-out;
@@ -36,8 +36,12 @@ const CloudNineLogoStyled = styled.a`
   .cloud-nine-img-wrapper {
     position: relative;
     width: 100%;
-    padding: 2.5rem;
+    padding: 0.5rem;
     transition: all 0.5s ease-in-out;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      padding: 2.5rem;
+    }
   }
 
   img {

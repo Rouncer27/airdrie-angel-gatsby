@@ -64,9 +64,8 @@ class OpeningScene extends Component {
   }
 
   componentDidMount() {
-    var date = new Date();
-    var currentHour = date.getHours();
-    //currentHour = 20;
+    const date = new Date();
+    const currentHour = date.getHours();
 
     if (currentHour <= 6) {
       this.setState(prevState => {

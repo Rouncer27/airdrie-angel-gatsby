@@ -12,13 +12,19 @@ const StyledHelped = styled.div`
   position: relative;
 
   .helped-trees {
-    bottom: 90%;
+    top: -5rem;
+    bottom: auto;
     right: auto;
     left: -20rem;
-    opacity: 0;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
-      opacity: 1;
+      top: -12.5rem;
+      left: -30rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      top: -12.5rem;
+      left: -17.5%;
     }
   }
 `;
@@ -32,6 +38,7 @@ const HelpedIntro = styled.div`
     max-width: 70rem;
     margin: 2rem auto;
     color: ${props => props.theme.greyLight};
+    font-size: 1.8rem;
     text-align: center;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
@@ -46,55 +53,80 @@ const QouteSection = styled.div`
   padding: 5rem 2rem;
 
   .helped-plant-one {
-    bottom: 3rem;
-    left: auto;
-    right: 2rem;
-    opacity: 0;
+    top: -5rem;
+    bottom: auto;
+    right: 0;
+    left: 0;
+    margin: auto;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
-      opacity: 1;
+      top: auto;
+      bottom: 3rem;
+      left: auto;
+      right: 2rem;
     }
   }
 
   .helped-plant-two {
-    bottom: 3rem;
-    right: auto;
-    left: 3rem;
-    opacity: 0;
+    top: -5rem;
+    bottom: auto;
+    right: 0;
+    left: 0;
+    margin: auto;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
-      opacity: 1;
+      top: auto;
+      bottom: 3rem;
+      right: auto;
+      left: 3rem;
     }
   }
 
   .helped-plant-three {
-    bottom: 3rem;
-    right: auto;
-    left: 3rem;
-    opacity: 0;
+    top: -5rem;
+    bottom: auto;
+    right: 0;
+    left: 0;
+    margin: auto;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
-      opacity: 1;
+      top: auto;
+      bottom: 3rem;
+      right: auto;
+      left: 3rem;
     }
   }
 
   .quoteItem {
     position: relative;
     margin-bottom: 2rem;
-    padding: 4rem 12rem;
+    padding: 8rem 0;
     text-align: center;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      padding: 4rem 12rem;
+    }
 
     &__top {
       p {
         margin: 0;
-        font-size: 3rem;
+        font-size: 2.8rem;
         font-family: ${props => props.theme.fontSec};
+
+        @media (min-width: ${props => props.theme.bpTablet}) {
+          font-size: 3rem;
+        }
       }
     }
 
     &__bot {
       p {
         margin: 0;
+        font-size: 1.8rem;
+
+        @media (min-width: ${props => props.theme.bpTablet}) {
+          font-size: 2rem;
+        }
       }
     }
   }

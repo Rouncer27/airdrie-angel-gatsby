@@ -16,11 +16,12 @@ const WhatStyled = styled.div`
   );
 
   .our-mission-trees {
-    opacity: 0;
-    bottom: 22.5rem;
+    opacity: 1;
+    bottom: 0;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       opacity: 1;
+      bottom: 22.5rem;
     }
   }
 `;
@@ -28,18 +29,36 @@ const WhatStyled = styled.div`
 const WhatTitle = styled.div`
   width: 100%;
   max-width: 40rem;
-  margin: 0 5rem;
+  margin: 0 3rem;
   text-align: center;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 0 5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    line-height: 1.25;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 4rem;
+    }
+  }
 `;
 
 const WhatContent = styled.div`
   width: 100%;
   max-width: 50rem;
-  margin: 0 5rem;
+  margin: 0 2rem;
   text-align: center;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 0 5rem;
+  }
 
   p {
     font-weight: 300;
+    font-size: 1.8rem;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       font-size: 2.4rem;

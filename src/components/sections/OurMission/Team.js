@@ -15,9 +15,10 @@ const SupportTeamTitle = styled.div`
   background: ${props => props.theme.lightBrown};
 
   h2 {
-    color: ${props => props.theme.navyBlue};
+    color: ${props => props.theme.white};
     font-family: ${props => props.theme.fontSec};
     font-weight: 300;
+    font-size: 3.6rem;
     text-align: center;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
@@ -46,6 +47,7 @@ const TeamItem = styled.div`
 const TeamItemImage = styled.div`
   width: 100%;
   max-width: 30rem;
+  margin-bottom: 5rem;
   border-radius: 50%;
   border: 0.2rem solid ${props => props.theme.deepYellow};
   overflow: hidden;

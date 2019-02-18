@@ -27,6 +27,7 @@
     "react-gsap": "^1.2.0",
     "react-helmet": "^5.2.0",
     "react-scrollmagic": "^2.1.0",
+    "react-spinners": "^0.5.1",
     "scrollmagic": "^2.0.6",
     "styled-components": "^4.1.3",
     "styled-normalize": "^8.0.6"

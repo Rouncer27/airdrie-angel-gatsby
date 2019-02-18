@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { CircleLoader } from "react-spinners";
 
 import styled from "styled-components";
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
@@ -97,6 +98,7 @@ const SuccessMessage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 999999999;
 
   .success-model {
     position: absolute;
@@ -125,6 +127,42 @@ const SuccessMessage = styled.div`
       ${props => props.theme.teal} 100%
     );
     z-index: 1;
+  }
+`;
+
+const StyledSummitMessage = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999999;
+  background: linear-gradient(
+    to right,
+    ${props => props.theme.lightBrown} 0%,
+    ${props => props.theme.white} 50%,
+    ${props => props.theme.lightBrown} 100%
+  );
+
+  .submit-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 55rem;
+    margin: auto;
+    padding: 2.5rem;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+
+    div {
+      margin: auto;
+    }
+
+    p {
+      margin-top: 5rem;
+      text-align: center;
+    }
   }
 `;
 
@@ -180,9 +218,13 @@ class ContactForm extends Component {
       )
       .then(res => {
         if (res.data.status === "mail_sent") {
-          this.emailWasSent(res.data.message);
+          setTimeout(() => {
+            this.emailWasSent(res.data.message);
+          }, 1000);
         } else if (res.data.status === "validation_failed") {
-          this.formHaveErrors(res.data.message, res.data.invalidFields);
+          setTimeout(() => {
+            this.formHaveErrors(res.data.message, res.data.invalidFields);
+          }, 1000);
         }
       })
       .catch(err => {
@@ -199,6 +241,7 @@ class ContactForm extends Component {
     this.setState(prevState => {
       return {
         ...prevState,
+        submitting: false,
         errors: errors
       };
     });
@@ -208,6 +251,7 @@ class ContactForm extends Component {
     this.setState(prevState => {
       return {
         ...prevState,
+        submitting: false,
         succsess: true
       };
     });
@@ -241,6 +285,22 @@ class ContactForm extends Component {
         </div>
         <div className="success-background" />
       </SuccessMessage>
+    ) : (
+      false
+    );
+
+    const submittingForm = this.state.submitting ? (
+      <StyledSummitMessage>
+        <div class="submit-container">
+          <CircleLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#ffdb00"}
+            loading={this.state.submitting}
+          />
+          <p>Submitting your form, please wait.</p>
+        </div>
+      </StyledSummitMessage>
     ) : (
       false
     );
@@ -365,11 +425,12 @@ class ContactForm extends Component {
             </StyledTextarea>
 
             <StyledFormButton>
-              <button>Submit</button>
+              <button disabled={this.state.submitting}>Submit</button>
             </StyledFormButton>
           </FormStyled>
         </StandardWrapper>
         {successMessage}
+        {submittingForm}
       </ContactFormSection>
     );
   }

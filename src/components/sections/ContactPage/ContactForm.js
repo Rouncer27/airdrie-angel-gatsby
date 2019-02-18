@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import styled from "styled-components";
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
@@ -67,6 +68,66 @@ const StyledFormButton = styled(FormButton)`
 `;
 
 class ContactForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.submitTheForm = this.submitTheForm.bind(this);
+    this.onChange = this.onChange.bind(this);
+
+    this.state = {
+      submitting: false,
+      firstname: "",
+      lastname: "",
+      email: "",
+      title: "",
+      message: ""
+    };
+  }
+
+  submitTheForm(e) {
+    e.preventDefault();
+    if (this.state.submitting) return;
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: !prevState.submitting
+      };
+    });
+
+    const bodyFormData = new FormData();
+    bodyFormData.append("first-name", this.state.firstname);
+    bodyFormData.append("last-name", this.state.lastname);
+    bodyFormData.append("phone", this.state.phone);
+    bodyFormData.append("email", this.state.email);
+    bodyFormData.append("message", this.state.message);
+
+    //const baseURL = "http://localhost/gatsby-airdrieangel";
+    const baseURL = "https://database.airdrieangel.ca";
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    axios
+      .post(
+        `${baseURL}/wp-json/contact-form-7/v1/contact-forms/232/feedback`,
+        bodyFormData,
+        config
+      )
+      .then(res => {
+        if (res.data.status === "mail_sent") {
+          console.log(res.data.message);
+        } else if (res.data.status === "validation_failed") {
+          console.log(res.data.message, res.data.invalidFields);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     return (
       <ContactFormSection>
@@ -75,7 +136,7 @@ class ContactForm extends Component {
             <h2>Contact Us</h2>
             <p>send us a note about any thoughts you have</p>
           </ContactTitle>
-          <FormStyled>
+          <FormStyled onSubmit={this.submitTheForm}>
             <InputStyled>
               <label htmlFor="firstname">First Name &#42;</label>
               <input
@@ -83,8 +144,8 @@ class ContactForm extends Component {
                 name="firstname"
                 id="firstname"
                 placeholder="First Name"
-                value=""
-                onChange=""
+                value={this.state.firstname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -95,8 +156,8 @@ class ContactForm extends Component {
                 name="lastname"
                 id="lastname"
                 placeholder="Last Name"
-                value=""
-                onChange=""
+                value={this.state.lastname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -107,8 +168,8 @@ class ContactForm extends Component {
                 name="email"
                 id="email"
                 placeholder="email"
-                value=""
-                onChange=""
+                value={this.state.email}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -117,10 +178,10 @@ class ContactForm extends Component {
               <input
                 type="text"
                 name="title"
-                id="cititlety"
+                id="title"
                 placeholder="Title"
-                value=""
-                onChange=""
+                value={this.state.title}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -131,8 +192,8 @@ class ContactForm extends Component {
                 rows="8"
                 name="message"
                 id="message"
-                onChange=""
-                value=""
+                onChange={this.onChange}
+                value={this.state.message}
                 required
               />
             </StyledTextarea>

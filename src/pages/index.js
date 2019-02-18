@@ -41,7 +41,14 @@ class Index extends Component {
         />
         <OpeningScene />
         <IntroSection data={{ introTitle, introSubTitle, introInfoSections }} />
-
+        <Family
+          data={{
+            famHelpedTotal,
+            famHelpedContent,
+            famHelpedMoney,
+            famHelpedMoneyContent
+          }}
+        />
         <CloudNine />
         <Succulent
           data={{

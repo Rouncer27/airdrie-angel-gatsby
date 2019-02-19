@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { CircleLoader } from "react-spinners";
 
 import styled from "styled-components";
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
@@ -11,8 +10,13 @@ import {
   FormTextarea,
   FormMain
 } from "../../styles/Commons/FormFields";
+import SuccessMessage from "../FormItems/SuccessMessage";
+import SubmitMessage from "../FormItems/SubmitMessage";
+import ErrorWarning from "../FormItems/ErrorWarning";
+import MailBox from "../SceneParts/MailBox";
 
 const ContactFormSection = styled.section`
+  position: relative;
   width: 100%;
   padding: 5rem 2rem 10rem;
 `;
@@ -59,7 +63,7 @@ const InputStyled = styled(FormInput)`
     position: absolute;
     top: 0;
     left: 0;
-    color: ${props => props.theme.teal};
+    color: ${props => props.theme.strongred};
     font-size: 1.4rem;
     font-family: ${props => props.theme.fontSec};
     font-weight: 700;
@@ -80,7 +84,7 @@ const StyledTextarea = styled(FormTextarea)`
     position: absolute;
     top: 0;
     left: 0;
-    color: ${props => props.theme.teal};
+    color: ${props => props.theme.strongred};
     font-size: 1.4rem;
     font-family: ${props => props.theme.fontSec};
     font-weight: 700;
@@ -92,80 +96,6 @@ const StyledFormButton = styled(FormButton)`
   text-align: center;
 `;
 
-const SuccessMessage = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999999;
-
-  .success-model {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    max-width: 55rem;
-    margin: auto;
-    padding: 2.5rem;
-    transform: translate(-50%, -50%);
-    border: 0.1rem solid ${props => props.theme.black};
-    background: ${props => props.theme.white};
-    text-align: center;
-    z-index: 5;
-  }
-
-  .success-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      ${props => props.theme.teal} 0%,
-      ${props => props.theme.white} 50%,
-      ${props => props.theme.teal} 100%
-    );
-    z-index: 1;
-  }
-`;
-
-const StyledSummitMessage = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999999;
-  background: linear-gradient(
-    to right,
-    ${props => props.theme.lightBrown} 0%,
-    ${props => props.theme.white} 50%,
-    ${props => props.theme.lightBrown} 100%
-  );
-
-  .submit-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    max-width: 55rem;
-    margin: auto;
-    padding: 2.5rem;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 5;
-
-    div {
-      margin: auto;
-    }
-
-    p {
-      margin-top: 5rem;
-      text-align: center;
-    }
-  }
-`;
-
 class ContactForm extends Component {
   constructor(props) {
     super(props);
@@ -175,10 +105,12 @@ class ContactForm extends Component {
     this.emailWasSent = this.emailWasSent.bind(this);
     this.clearTheForm = this.clearTheForm.bind(this);
     this.formHaveErrors = this.formHaveErrors.bind(this);
+    this.removeTheWarn = this.removeTheWarn.bind(this);
 
     this.state = {
       submitting: false,
       succsess: false,
+      errorsWarn: false,
       errors: [],
       firstname: "",
       lastname: "",
@@ -190,8 +122,6 @@ class ContactForm extends Component {
 
   submitTheForm(e) {
     e.preventDefault();
-    // if (this.state.submitting) return;
-
     this.setState(prevState => {
       return {
         ...prevState,
@@ -237,11 +167,11 @@ class ContactForm extends Component {
   }
 
   formHaveErrors(mess, errors) {
-    console.log(errors);
     this.setState(prevState => {
       return {
         ...prevState,
         submitting: false,
+        errorsWarn: true,
         errors: errors
       };
     });
@@ -257,12 +187,24 @@ class ContactForm extends Component {
     });
   }
 
+  removeTheWarn() {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        succsess: false,
+        errorsWarn: false
+      };
+    });
+  }
+
   clearTheForm() {
     this.setState(prevState => {
       return {
         ...prevState,
         submitting: false,
         succsess: false,
+        errorsWarn: false,
         errors: [],
         firstname: "",
         lastname: "",
@@ -275,32 +217,22 @@ class ContactForm extends Component {
 
   render() {
     const successMessage = this.state.succsess ? (
-      <SuccessMessage onClick={this.clearTheForm}>
-        <div className="success-model">
-          <p>Thank You!</p>
-          <p>You message has been sent to our Angel team</p>
-          <StyledFormButton>
-            <button onClick={this.clearTheForm}>Close</button>
-          </StyledFormButton>
-        </div>
-        <div className="success-background" />
-      </SuccessMessage>
+      <SuccessMessage
+        onClick={this.clearTheForm}
+        clearTheForm={this.clearTheForm}
+      />
     ) : (
       false
     );
 
     const submittingForm = this.state.submitting ? (
-      <StyledSummitMessage>
-        <div class="submit-container">
-          <CircleLoader
-            sizeUnit={"px"}
-            size={150}
-            color={"#ffdb00"}
-            loading={this.state.submitting}
-          />
-          <p>Submitting your form, please wait.</p>
-        </div>
-      </StyledSummitMessage>
+      <SubmitMessage submitting={this.state.submitting} />
+    ) : (
+      false
+    );
+
+    const errorsWarningScreen = this.state.errorsWarn ? (
+      <ErrorWarning removeTheWarn={this.removeTheWarn} />
     ) : (
       false
     );
@@ -346,7 +278,7 @@ class ContactForm extends Component {
     });
 
     const messageError = this.state.errors.map(error => {
-      if (error.idref === "title") {
+      if (error.idref === "message") {
         return (
           <p className="field-error-message" key={error.idref}>
             {error.message}
@@ -431,6 +363,8 @@ class ContactForm extends Component {
         </StandardWrapper>
         {successMessage}
         {submittingForm}
+        {errorsWarningScreen}
+        <MailBox />
       </ContactFormSection>
     );
   }

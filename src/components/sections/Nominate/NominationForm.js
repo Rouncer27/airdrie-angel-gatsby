@@ -66,6 +66,42 @@ const StyledFormButton = styled(FormButton)`
 `;
 
 class NominationForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+
+    this.state = {
+      submitting: false,
+      succsess: false,
+      errorsWarn: false,
+      errors: [],
+      firstname: "",
+      lastname: "",
+      phone: "",
+      email: "",
+      city: "",
+      hear: "",
+      relationship: "",
+      nomfirstname: "",
+      nomlastname: "",
+      nomphone: "",
+      nomemail: "",
+      addressinput: "",
+      familydetails: "",
+      issues: "",
+      story: "",
+      benefit: "",
+      community: "",
+      anonymous: "",
+      agreement: ""
+    };
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     return (
       <NominationFormSection>
@@ -83,8 +119,8 @@ class NominationForm extends Component {
                 name="firstname"
                 id="firstname"
                 placeholder="First Name"
-                value=""
-                onChange=""
+                value={this.state.firstname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -95,8 +131,8 @@ class NominationForm extends Component {
                 name="lastname"
                 id="lastname"
                 placeholder="Last Name"
-                value=""
-                onChange=""
+                value={this.state.lastname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -107,8 +143,8 @@ class NominationForm extends Component {
                 name="phone"
                 id="phone"
                 placeholder="Phone Number"
-                value=""
-                onChange=""
+                value={this.state.phone}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -119,8 +155,8 @@ class NominationForm extends Component {
                 name="email"
                 id="email"
                 placeholder="email"
-                value=""
-                onChange=""
+                value={this.state.email}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -132,8 +168,8 @@ class NominationForm extends Component {
                 name="city"
                 id="city"
                 placeholder="Name of City"
-                value=""
-                onChange=""
+                value={this.state.city}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -142,7 +178,7 @@ class NominationForm extends Component {
               <label>
                 How did you hear about the Airdrie Angel program? &#42;
               </label>
-              <select name="">
+              <select name="hear" onChange={this.onChange}>
                 <option title="Facebook" value="facebook">
                   Facebook
                 </option>
@@ -182,8 +218,8 @@ class NominationForm extends Component {
                 rows="8"
                 name="relationship"
                 id="relationship"
-                onChange=""
-                value=""
+                onChange={this.onChange}
+                value={this.state.relationship}
                 required
               />
             </StyledTextarea>
@@ -203,8 +239,8 @@ class NominationForm extends Component {
                 name="nomfirstname"
                 id="nomfirstname"
                 placeholder="Nominee's First Name"
-                value=""
-                onChange=""
+                value={this.state.nomfirstname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -215,8 +251,8 @@ class NominationForm extends Component {
                 name="nomlastname"
                 id="nomlastname"
                 placeholder="Nominee's Last Name"
-                value=""
-                onChange=""
+                value={this.state.nomlastname}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -227,8 +263,8 @@ class NominationForm extends Component {
                 name="nomphone"
                 id="nomphone"
                 placeholder="Nominee's Phone Number"
-                value=""
-                onChange=""
+                value={this.state.nomphone}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -239,8 +275,8 @@ class NominationForm extends Component {
                 name="nomemail"
                 id="nomemail"
                 placeholder="Nominee's email"
-                value=""
-                onChange=""
+                value={this.state.nomemail}
+                onChange={this.onChange}
                 required
               />
             </InputStyled>
@@ -248,10 +284,146 @@ class NominationForm extends Component {
               <label htmlFor="addressinput">
                 Do you have or can you give the Nominee's Address? &#42;
               </label>
-              <input type="radio" name="addressinput" value="yes" /> Yes
+              <input
+                type="radio"
+                name="addressinput"
+                value="yes"
+                onChange={this.onChange}
+              />{" "}
+              Yes
               <br />
-              <input type="radio" name="addressinput" value="no" /> No, I'd
-              prefer not to give their address
+              <input
+                type="radio"
+                name="addressinput"
+                value="no"
+                onChange={this.onChange}
+              />{" "}
+              No, I'd prefer not to give their address
+              <br />
+            </InputStyled>
+            <StyledTextarea>
+              <label htmlFor="familydetails">
+                Family Details for Nominee &#42;
+              </label>
+              <p>
+                Family Details for Nominee (include details such as names, ages,
+                sex). Name are not required if there are privacy issues.
+              </p>
+              <textarea
+                cols="40"
+                rows="8"
+                name="familydetails"
+                id="familydetails"
+                onChange={this.onChange}
+                value={this.state.familydetails}
+                required
+              />
+            </StyledTextarea>
+            <InputStyled>
+              <label htmlFor="issues">
+                Are there any safety or privacy concerns regarding the Nominee?
+                Yes or No *This will not affect if they are chosen or not. &#42;
+              </label>
+              <input
+                type="radio"
+                name="issues"
+                value="yes"
+                onChange={this.onChange}
+              />{" "}
+              Yes
+              <br />
+              <input
+                type="radio"
+                name="issues"
+                value="no"
+                onChange={this.onChange}
+              />{" "}
+              No
+              <br />
+            </InputStyled>
+            <StyledTextarea>
+              <label htmlFor="story">
+                Please share the Nominee’s story with us &#42;
+              </label>
+              <textarea
+                cols="40"
+                rows="8"
+                name="story"
+                id="story"
+                onChange={this.onChange}
+                value={this.state.story}
+                required
+              />
+            </StyledTextarea>
+            <StyledTextarea>
+              <label htmlFor="benefit">
+                Why or how do you think they would benefit as a recipient of the
+                program? &#42;
+              </label>
+              <textarea
+                cols="40"
+                rows="8"
+                name="benefit"
+                id="benefit"
+                onChange={this.onChange}
+                value={this.state.benefit}
+                required
+              />
+            </StyledTextarea>
+            <InputStyled>
+              <label htmlFor="community">
+                Has the Nominee helped out their community, if yes, how? &#42;
+              </label>
+              <input
+                type="radio"
+                name="community"
+                value="yes"
+                onChange={this.onChange}
+              />{" "}
+              Yes
+              <br />
+              <input
+                type="radio"
+                name="community"
+                value="no"
+                onChange={this.onChange}
+              />{" "}
+              No
+              <br />
+            </InputStyled>
+            <InputStyled>
+              <label htmlFor="anonymous">
+                Do you (Nominator) wish to be anonymous? &#42;
+              </label>
+              <input
+                type="radio"
+                name="anonymous"
+                value="yes"
+                onChange={this.onChange}
+              />{" "}
+              Yes
+              <br />
+              <input
+                type="radio"
+                name="anonymous"
+                value="no"
+                onChange={this.onChange}
+              />{" "}
+              No
+              <br />
+            </InputStyled>
+            <InputStyled>
+              <label htmlFor="agreement">
+                I consent to having this website store my submitted information
+                so they can respond to my inquiry. &#42;
+              </label>
+              <input
+                type="radio"
+                name="agreement"
+                value="yes"
+                onChange={this.onChange}
+              />{" "}
+              Yes
               <br />
             </InputStyled>
             <StyledFormButton>

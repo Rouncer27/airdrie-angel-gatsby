@@ -1,3 +1,19 @@
+console.log("NODE_ENV: ", process.env.NODE_ENV);
+
+let BASE_URL = "";
+let PORTOCOL = "";
+
+if (process.env.NODE_ENV === "development") {
+  BASE_URL = "localhost/gatsby-airdrieangel";
+  PORTOCOL = "http";
+} else {
+  BASE_URL = "database.airdrieangel.ca";
+  PORTOCOL = "https";
+}
+
+console.log("The base URL is: ", BASE_URL);
+console.log("The protocol is: ", PORTOCOL);
+
 module.exports = {
   siteMetadata: {
     title: `Airdrie Angel`,
@@ -32,8 +48,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         // your wordpress source
-        baseUrl: `database.airdrieangel.ca`,
-        protocol: `https`,
+        baseUrl: `${BASE_URL}`,
+        protocol: `${PORTOCOL}`,
         // is it hosted on wordpress.com, or self-hosted?
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?

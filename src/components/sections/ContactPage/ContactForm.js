@@ -136,7 +136,7 @@ class ContactForm extends Component {
     bodyFormData.append("title", this.state.title);
     bodyFormData.append("message", this.state.message);
 
-    // const baseURL = "http://localhost/gatsby-airdrieangel";
+    //const baseURL = "http://localhost/gatsby-airdrieangel";
     const baseURL = "https://database.airdrieangel.ca";
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 

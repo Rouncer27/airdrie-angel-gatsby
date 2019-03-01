@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
 import {
   FormInput,
+  RadioInput,
+  CheckboxInput,
   FormButton,
   FormTextarea,
   FormMain
 } from "../../styles/Commons/FormFields";
+import SuccessMessage from "../FormItems/SuccessMessage";
+import SubmitMessage from "../FormItems/SubmitMessage";
+import ErrorWarning from "../FormItems/ErrorWarning";
 
 const NominationFormSection = styled.section`
   width: 100%;
@@ -69,7 +75,11 @@ class NominationForm extends Component {
   constructor(props) {
     super(props);
 
+    this.submitTheForm = this.submitTheForm.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.emailWasSent = this.emailWasSent.bind(this);
+    this.removeTheWarn = this.removeTheWarn.bind(this);
+    this.clearTheForm = this.clearTheForm.bind(this);
 
     this.state = {
       submitting: false,
@@ -87,22 +97,135 @@ class NominationForm extends Component {
       nomlastname: "",
       nomphone: "",
       nomemail: "",
-      addressinput: "",
-      familydetails: "",
-      issues: "",
-      story: "",
-      benefit: "",
-      community: "",
-      anonymous: "",
-      agreement: ""
+      nomaddress: "",
+      nomfam: "",
+      nomsafe: "",
+      nomstory: "",
+      nombenefit: "",
+      nomhelped: "",
+      nomanonymous: "",
+      consent: ""
     };
+  }
+
+  submitTheForm(e) {
+    e.preventDefault();
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: !prevState.submitting
+      };
+    });
+
+    const bodyFormData = new FormData();
+    bodyFormData.append("firstname", this.state.firstname);
+    bodyFormData.append("lastname", this.state.lastname);
+    bodyFormData.append("email", this.state.email);
+    bodyFormData.append("phone", this.state.phone);
+    bodyFormData.append("city", this.state.city);
+    bodyFormData.append("hear", this.state.hear);
+    bodyFormData.append("relationship", this.state.relationship);
+    bodyFormData.append("nomfirstname", this.state.nomfirstname);
+    bodyFormData.append("nomlastname", this.state.nomlastname);
+    bodyFormData.append("nomphone", this.state.nomphone);
+    bodyFormData.append("nomemail", this.state.nomemail);
+    bodyFormData.append("nomaddress", this.state.nomaddress);
+    bodyFormData.append("nomfam", this.state.nomfam);
+    bodyFormData.append("nomsafe", this.state.nomsafe);
+    bodyFormData.append("nomstory", this.state.nomstory);
+    bodyFormData.append("nombenefit", this.state.nombenefit);
+    bodyFormData.append("nomhelped", this.state.nomhelped);
+    bodyFormData.append("nomanonymous", this.state.nomanonymous);
+    bodyFormData.append("consent", this.state.consent);
+
+    //const baseURL = "http://localhost/gatsby-airdrieangel";
+    const baseURL = "https://database.airdrieangel.ca";
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    axios
+      .post(
+        `${baseURL}/wp-json/contact-form-7/v1/contact-forms/233/feedback`,
+        bodyFormData,
+        config
+      )
+      .then(res => {
+        if (res.data.status === "mail_sent") {
+          setTimeout(() => {
+            this.emailWasSent(res.data.message);
+            console.log(res.data.message);
+          }, 1000);
+        } else if (res.data.status === "validation_failed") {
+          setTimeout(() => {
+            console.log(res.data.message);
+            console.log(res.data.invalidFields);
+            //this.formHaveErrors(res.data.message, res.data.invalidFields);
+          }, 1000);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  emailWasSent(mess) {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        succsess: true
+      };
+    });
+  }
+
+  removeTheWarn() {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        succsess: false,
+        errorsWarn: false
+      };
+    });
+  }
+
+  clearTheForm() {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        succsess: false,
+        errorsWarn: false,
+        errors: []
+      };
+    });
+  }
+
   render() {
+    const successMessage = this.state.succsess ? (
+      <SuccessMessage
+        onClick={this.clearTheForm}
+        clearTheForm={this.clearTheForm}
+      />
+    ) : (
+      false
+    );
+
+    const submittingForm = this.state.submitting ? (
+      <SubmitMessage submitting={this.state.submitting} />
+    ) : (
+      false
+    );
+
+    const errorsWarningScreen = this.state.errorsWarn ? (
+      <ErrorWarning removeTheWarn={this.removeTheWarn} />
+    ) : (
+      false
+    );
+
     return (
       <NominationFormSection>
         <StandardWrapper>
@@ -111,7 +234,7 @@ class NominationForm extends Component {
             <p>be an angel</p>
           </NominationFormTitle>
 
-          <FormStyled>
+          <FormStyled onSubmit={this.submitTheForm}>
             <InputStyled>
               <label htmlFor="firstname">First Name &#42;</label>
               <input
@@ -280,31 +403,35 @@ class NominationForm extends Component {
                 required
               />
             </InputStyled>
-            <InputStyled>
-              <label htmlFor="addressinput">
+            <RadioInput>
+              <label htmlFor="nomaddress">
                 Do you have or can you give the Nominee's Address? &#42;
               </label>
               <input
+                id="nomaddress-1"
                 type="radio"
-                name="addressinput"
+                name="nomaddress"
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              Yes
+              <label className="radio-label" for="nomaddress-1">
+                <span className="radio">Yes</span>
+              </label>
               <br />
               <input
+                id="nomaddress-2"
                 type="radio"
-                name="addressinput"
+                name="nomaddress"
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              No, I'd prefer not to give their address
-              <br />
-            </InputStyled>
-            <StyledTextarea>
-              <label htmlFor="familydetails">
-                Family Details for Nominee &#42;
+              <label className="radio-label" for="nomaddress-2">
+                <span className="radio">No</span>
               </label>
+              <br />
+            </RadioInput>
+            <StyledTextarea>
+              <label htmlFor="nomfam">Family Details for Nominee &#42;</label>
               <p>
                 Family Details for Nominee (include details such as names, ages,
                 sex). Name are not required if there are privacy issues.
@@ -312,125 +439,150 @@ class NominationForm extends Component {
               <textarea
                 cols="40"
                 rows="8"
-                name="familydetails"
-                id="familydetails"
+                name="nomfam"
+                id="nomfam"
                 onChange={this.onChange}
-                value={this.state.familydetails}
+                value={this.state.nomfam}
                 required
               />
             </StyledTextarea>
-            <InputStyled>
-              <label htmlFor="issues">
+            <RadioInput>
+              <label htmlFor="nomsafe">
                 Are there any safety or privacy concerns regarding the Nominee?
                 Yes or No *This will not affect if they are chosen or not. &#42;
               </label>
               <input
+                id="nomsafe-1"
                 type="radio"
-                name="issues"
+                name="nomsafe"
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              Yes
+              <label className="radio-label" for="nomsafe-1">
+                <span className="radio">Yes</span>
+              </label>
               <br />
               <input
+                id="nomsafe-2"
                 type="radio"
-                name="issues"
+                name="nomsafe"
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              No
+              <label className="radio-label" for="nomsafe-2">
+                <span className="radio">No</span>
+              </label>
               <br />
-            </InputStyled>
+            </RadioInput>
             <StyledTextarea>
-              <label htmlFor="story">
+              <label htmlFor="nomstory">
                 Please share the Nominee’s story with us &#42;
               </label>
               <textarea
                 cols="40"
                 rows="8"
-                name="story"
-                id="story"
+                name="nomstory"
+                id="nomstory"
                 onChange={this.onChange}
-                value={this.state.story}
+                value={this.state.nomstory}
                 required
               />
             </StyledTextarea>
             <StyledTextarea>
-              <label htmlFor="benefit">
+              <label htmlFor="nombenefit">
                 Why or how do you think they would benefit as a recipient of the
                 program? &#42;
               </label>
               <textarea
                 cols="40"
                 rows="8"
-                name="benefit"
-                id="benefit"
+                name="nombenefit"
+                id="nombenefit"
                 onChange={this.onChange}
-                value={this.state.benefit}
+                value={this.state.nombenefit}
                 required
               />
             </StyledTextarea>
-            <InputStyled>
-              <label htmlFor="community">
+            <RadioInput>
+              <label htmlFor="nomhelped">
                 Has the Nominee helped out their community, if yes, how? &#42;
               </label>
               <input
+                id="nomhelped-1"
                 type="radio"
-                name="community"
+                name="nomhelped"
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              Yes
+              <label className="radio-label" for="nomhelped-1">
+                <span className="radio">Yes</span>
+              </label>
               <br />
               <input
+                id="nomhelped-2"
                 type="radio"
-                name="community"
+                name="nomhelped"
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              No
+              <label className="radio-label" for="nomhelped-2">
+                <span className="radio">No</span>
+              </label>
               <br />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="anonymous">
+            </RadioInput>
+            <RadioInput>
+              <label htmlFor="nomanonymous">
                 Do you (Nominator) wish to be anonymous? &#42;
               </label>
               <input
+                id="nomanonymous-1"
                 type="radio"
-                name="anonymous"
+                name="nomanonymous"
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              Yes
+              <label className="radio-label" for="nomanonymous-1">
+                <span className="radio">Yes</span>
+              </label>
               <br />
               <input
+                id="nomanonymous-2"
                 type="radio"
-                name="anonymous"
+                name="nomanonymous"
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              No
+              <label className="radio-label" for="nomanonymous-2">
+                <span className="radio">No</span>
+              </label>
               <br />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="agreement">
+            </RadioInput>
+            <CheckboxInput>
+              <label htmlFor="consent">
                 I consent to having this website store my submitted information
                 so they can respond to my inquiry. &#42;
               </label>
-              <input
-                type="radio"
-                name="agreement"
-                value="yes"
-                onChange={this.onChange}
-              />{" "}
-              Yes
-              <br />
-            </InputStyled>
+              <div className="container">
+                <input
+                  id="consent-1"
+                  type="checkbox"
+                  name="consent"
+                  value="yes"
+                  onChange={this.onChange}
+                />
+                <label for="consent-1">
+                  <span className="checkbox">Yes</span>
+                </label>
+              </div>
+            </CheckboxInput>
             <StyledFormButton>
               <button>Submit</button>
             </StyledFormButton>
           </FormStyled>
         </StandardWrapper>
+        {successMessage}
+        {submittingForm}
+        {errorsWarningScreen}
       </NominationFormSection>
     );
   }

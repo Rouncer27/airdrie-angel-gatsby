@@ -113,7 +113,7 @@ class NominationForm extends Component {
       phone: "",
       email: "",
       city: "",
-      hear: "",
+      hear: "default",
       relationship: "",
       nomfirstname: "",
       nomlastname: "",
@@ -320,8 +320,13 @@ class NominationForm extends Component {
                 How did you hear about the Airdrie Angel program? &#42;
               </label>
               <div className="select-container">
-                <select name="hear" onChange={this.onChange}>
-                  <option hidden disabled defaultValue value>
+                <select
+                  name="hear"
+                  onChange={this.onChange}
+                  value={this.state.hear}
+                  required
+                >
+                  <option disabled value="default">
                     {" "}
                     -- select an option --{" "}
                   </option>

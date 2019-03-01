@@ -6,6 +6,7 @@ import { StandardWrapper } from "../../styles/Commons/Wrappers";
 import {
   FormInput,
   RadioInput,
+  SelectDropdown,
   CheckboxInput,
   FormButton,
   FormTextarea,
@@ -48,16 +49,7 @@ const NominationFormTitle = styled.div`
 
 const FormStyled = styled(FormMain)`
   width: 100%;
-`;
-
-const InputStyled = styled(FormInput)`
-  width: 100%;
-  margin: 2rem 0;
-
-  @media (min-width: ${props => props.theme.bpTablet}) {
-    width: calc(50% - 4rem);
-    margin: 2rem;
-  }
+  padding-top: 0;
 `;
 
 const StyledTextarea = styled(FormTextarea)`
@@ -72,6 +64,33 @@ const StyledTextarea = styled(FormTextarea)`
 const StyledFormButton = styled(FormButton)`
   width: 100%;
   text-align: center;
+`;
+
+const NomineeInfromation = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+  text-align: center;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2rem;
+  }
+
+  h3 {
+    color: ${props => props.theme.navyBlue};
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: ${props => props.theme.navyBlue};
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 700;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 2rem;
+    }
+  }
 `;
 
 class NominationForm extends Component {
@@ -242,8 +261,16 @@ class NominationForm extends Component {
           </NominationFormTitle>
 
           <FormStyled onSubmit={this.submitTheForm}>
+            <NomineeInfromation>
+              <h3>Airdrie Angel Program</h3>
+              <p>
+                While we would love to help out people from across the country
+                (and around the world), at this time recipients of the Airdrie
+                Angel program must be from the Airdrie, Alberta area.
+              </p>
+            </NomineeInfromation>
             <FormInputField
-              label="First Name &#42;"
+              label="What is your First Name &#42;"
               type="text"
               id="firstname"
               placeholder="First Name"
@@ -252,7 +279,7 @@ class NominationForm extends Component {
               required={true}
             />
             <FormInputField
-              label="Last Name &#42;"
+              label="What is your Last Name &#42;"
               type="text"
               id="lastname"
               placeholder="Last Name"
@@ -261,7 +288,7 @@ class NominationForm extends Component {
               required={true}
             />
             <FormInputField
-              label="Phone Number &#42;"
+              label="What is your Phone Number &#42;"
               type="text"
               id="phone"
               placeholder="Phone Number"
@@ -270,7 +297,7 @@ class NominationForm extends Component {
               required={true}
             />
             <FormInputField
-              label="email &#42;"
+              label="What is your email &#42;"
               type="email"
               id="email"
               placeholder="email"
@@ -288,40 +315,46 @@ class NominationForm extends Component {
               required={true}
             />
 
-            <InputStyled>
+            <SelectDropdown>
               <label>
                 How did you hear about the Airdrie Angel program? &#42;
               </label>
-              <select name="hear" onChange={this.onChange}>
-                <option title="Facebook" value="facebook">
-                  Facebook
-                </option>
-                <option title="youtube" value="youtube">
-                  Youtube
-                </option>
-                <option title="google" value="google">
-                  Google
-                </option>
-                <option title="friend" value="friend">
-                  Friend
-                </option>
-                <option title="radio" value="radio">
-                  Radio / TV
-                </option>
-                <option title="sponsors" value="sponsors">
-                  Sponsors
-                </option>
-                <option title="past recipient" value="past recipient">
-                  Past Recipient
-                </option>
-                <option title="other sm" value="other sm">
-                  Other Social Media
-                </option>
-                <option title="other" value="other">
-                  Other
-                </option>
-              </select>
-            </InputStyled>
+              <div className="select-container">
+                <select name="hear" onChange={this.onChange}>
+                  <option hidden disabled defaultValue value>
+                    {" "}
+                    -- select an option --{" "}
+                  </option>
+                  <option title="Facebook" value="facebook">
+                    Facebook
+                  </option>
+                  <option title="youtube" value="youtube">
+                    Youtube
+                  </option>
+                  <option title="google" value="google">
+                    Google
+                  </option>
+                  <option title="friend" value="friend">
+                    Friend
+                  </option>
+                  <option title="radio" value="radio">
+                    Radio / TV
+                  </option>
+                  <option title="sponsors" value="sponsors">
+                    Sponsors
+                  </option>
+                  <option title="past recipient" value="past recipient">
+                    Past Recipient
+                  </option>
+                  <option title="other sm" value="other sm">
+                    Other Social Media
+                  </option>
+                  <option title="other" value="other">
+                    Other
+                  </option>
+                </select>
+              </div>
+            </SelectDropdown>
 
             <StyledTextarea>
               <label htmlFor="relationship">
@@ -338,13 +371,13 @@ class NominationForm extends Component {
               />
             </StyledTextarea>
 
-            <div>
+            <NomineeInfromation>
               <h3>Nominee Infromation</h3>
               <p>
                 This is where you will enter the information of the person you
                 wish to nominate for the Airdrie Angel Program.
               </p>
-            </div>
+            </NomineeInfromation>
 
             <FormInputField
               label="Nominee's First Name &#42;"
@@ -393,7 +426,7 @@ class NominationForm extends Component {
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomaddress-1">
+              <label className="radio-label" htmlFor="nomaddress-1">
                 <span className="radio">Yes</span>
               </label>
               <br />
@@ -404,7 +437,7 @@ class NominationForm extends Component {
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomaddress-2">
+              <label className="radio-label" htmlFor="nomaddress-2">
                 <span className="radio">No</span>
               </label>
               <br />
@@ -453,7 +486,7 @@ class NominationForm extends Component {
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomsafe-1">
+              <label className="radio-label" htmlFor="nomsafe-1">
                 <span className="radio">Yes</span>
               </label>
               <br />
@@ -464,7 +497,7 @@ class NominationForm extends Component {
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomsafe-2">
+              <label className="radio-label" htmlFor="nomsafe-2">
                 <span className="radio">No</span>
               </label>
               <br />
@@ -509,7 +542,7 @@ class NominationForm extends Component {
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomhelped-1">
+              <label className="radio-label" htmlFor="nomhelped-1">
                 <span className="radio">Yes</span>
               </label>
               <br />
@@ -520,7 +553,7 @@ class NominationForm extends Component {
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomhelped-2">
+              <label className="radio-label" htmlFor="nomhelped-2">
                 <span className="radio">No</span>
               </label>
               <br />
@@ -554,7 +587,7 @@ class NominationForm extends Component {
                 value="yes"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomanonymous-1">
+              <label className="radio-label" htmlFor="nomanonymous-1">
                 <span className="radio">Yes</span>
               </label>
               <br />
@@ -565,7 +598,7 @@ class NominationForm extends Component {
                 value="no"
                 onChange={this.onChange}
               />{" "}
-              <label className="radio-label" for="nomanonymous-2">
+              <label className="radio-label" htmlFor="nomanonymous-2">
                 <span className="radio">No</span>
               </label>
               <br />
@@ -583,7 +616,7 @@ class NominationForm extends Component {
                   value="yes"
                   onChange={this.onChange}
                 />
-                <label for="consent-1">
+                <label htmlFor="consent-1">
                   <span className="checkbox">Yes</span>
                 </label>
               </div>

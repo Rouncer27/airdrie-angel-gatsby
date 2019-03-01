@@ -28,6 +28,45 @@ const FormButton = styled.div`
   }
 `;
 
+const SelectDropdown = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2rem;
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    color: ${props => props.theme.navyBlue};
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .select-container {
+    position: relative;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
+    border-radius: 0;
+    background-color: ${props => props.theme.navyBlue};
+  }
+
+  select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px;
+    width: 268px;
+    color: #fff;
+  }
+`;
+
 const CheckboxInput = styled.div`
   width: 100%;
   margin: 2rem 0;
@@ -46,6 +85,8 @@ const CheckboxInput = styled.div`
   }
 
   span {
+    display: inline-block;
+    margin-top: 1rem;
     position: relative;
   }
 
@@ -64,6 +105,13 @@ const CheckboxInput = styled.div`
   span:hover::before {
     border: 3px solid ${props => props.theme.deepYellow};
   }
+
+  span:hover,
+  span:hover::before,
+  span:hover::after {
+    cursor: pointer;
+  }
+
   span::after {
     position: absolute;
     content: "\f00c";
@@ -210,5 +258,6 @@ export {
   FormTextarea,
   FormMain,
   RadioInput,
-  CheckboxInput
+  CheckboxInput,
+  SelectDropdown
 };

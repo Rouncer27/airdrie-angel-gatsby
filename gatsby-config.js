@@ -1,5 +1,3 @@
-console.log("NODE_ENV: ", process.env.NODE_ENV);
-
 let BASE_URL = "";
 let PORTOCOL = "";
 
@@ -10,9 +8,6 @@ if (process.env.NODE_ENV === "development") {
   BASE_URL = "database.airdrieangel.ca";
   PORTOCOL = "https";
 }
-
-console.log("The base URL is: ", BASE_URL);
-console.log("The protocol is: ", PORTOCOL);
 
 module.exports = {
   siteMetadata: {

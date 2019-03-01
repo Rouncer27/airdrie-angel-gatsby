@@ -11,6 +11,9 @@ import {
   FormTextarea,
   FormMain
 } from "../../styles/Commons/FormFields";
+
+import FormInputField from "../FormParts/FormInputField";
+
 import SuccessMessage from "../FormItems/SuccessMessage";
 import SubmitMessage from "../FormItems/SubmitMessage";
 import ErrorWarning from "../FormItems/ErrorWarning";
@@ -98,11 +101,13 @@ class NominationForm extends Component {
       nomphone: "",
       nomemail: "",
       nomaddress: "",
+      nomaddressfeilds: "",
       nomfam: "",
       nomsafe: "",
       nomstory: "",
       nombenefit: "",
       nomhelped: "",
+      nomhelpedhow: "",
       nomanonymous: "",
       consent: ""
     };
@@ -130,11 +135,13 @@ class NominationForm extends Component {
     bodyFormData.append("nomphone", this.state.nomphone);
     bodyFormData.append("nomemail", this.state.nomemail);
     bodyFormData.append("nomaddress", this.state.nomaddress);
+    bodyFormData.append("nomaddressfeilds", this.state.nomaddressfeilds);
     bodyFormData.append("nomfam", this.state.nomfam);
     bodyFormData.append("nomsafe", this.state.nomsafe);
     bodyFormData.append("nomstory", this.state.nomstory);
     bodyFormData.append("nombenefit", this.state.nombenefit);
     bodyFormData.append("nomhelped", this.state.nomhelped);
+    bodyFormData.append("nomhelpedhow", this.state.nomhelpedhow);
     bodyFormData.append("nomanonymous", this.state.nomanonymous);
     bodyFormData.append("consent", this.state.consent);
 
@@ -235,67 +242,51 @@ class NominationForm extends Component {
           </NominationFormTitle>
 
           <FormStyled onSubmit={this.submitTheForm}>
-            <InputStyled>
-              <label htmlFor="firstname">First Name &#42;</label>
-              <input
-                type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="First Name"
-                value={this.state.firstname}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="lastname">Last Name &#42;</label>
-              <input
-                type="text"
-                name="lastname"
-                id="lastname"
-                placeholder="Last Name"
-                value={this.state.lastname}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="phone">Phone Number &#42;</label>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                placeholder="Phone Number"
-                value={this.state.phone}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="email">email &#42;</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="email"
-                value={this.state.email}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-
-            <InputStyled>
-              <label htmlFor="city">What City do you live in? &#42;</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Name of City"
-                value={this.state.city}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
+            <FormInputField
+              label="First Name &#42;"
+              type="text"
+              id="firstname"
+              placeholder="First Name"
+              value={this.state.firstname}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="Last Name &#42;"
+              type="text"
+              id="lastname"
+              placeholder="Last Name"
+              value={this.state.lastname}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="Phone Number &#42;"
+              type="text"
+              id="phone"
+              placeholder="Phone Number"
+              value={this.state.phone}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="email &#42;"
+              type="email"
+              id="email"
+              placeholder="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="What City do you live in? &#42;"
+              type="text"
+              id="city"
+              placeholder="Name of City"
+              value={this.state.city}
+              onChange={this.onChange}
+              required={true}
+            />
 
             <InputStyled>
               <label>
@@ -355,54 +346,42 @@ class NominationForm extends Component {
               </p>
             </div>
 
-            <InputStyled>
-              <label htmlFor="nomfirstname">Nominee's First Name &#42;</label>
-              <input
-                type="text"
-                name="nomfirstname"
-                id="nomfirstname"
-                placeholder="Nominee's First Name"
-                value={this.state.nomfirstname}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="nomlastname">Nominee's Last Name &#42;</label>
-              <input
-                type="text"
-                name="nomlastname"
-                id="nomlastname"
-                placeholder="Nominee's Last Name"
-                value={this.state.nomlastname}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="nomphone">Nominee's Phone Number &#42;</label>
-              <input
-                type="text"
-                name="nomphone"
-                id="nomphone"
-                placeholder="Nominee's Phone Number"
-                value={this.state.nomphone}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="nomemail">Nominee's email &#42;</label>
-              <input
-                type="email"
-                name="nomemail"
-                id="nomemail"
-                placeholder="Nominee's email"
-                value={this.state.nomemail}
-                onChange={this.onChange}
-                required
-              />
-            </InputStyled>
+            <FormInputField
+              label="Nominee's First Name &#42;"
+              type="text"
+              id="nomfirstname"
+              placeholder="Nominee's First Name"
+              value={this.state.nomfirstname}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="Nominee's Last Name &#42;"
+              type="text"
+              id="nomlastname"
+              placeholder="Nominee's Last Name"
+              value={this.state.nomlastname}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="Nominee's Phone Number &#42;"
+              type="text"
+              id="nomphone"
+              placeholder="Nominee's Phone Number"
+              value={this.state.nomphone}
+              onChange={this.onChange}
+              required={true}
+            />
+            <FormInputField
+              label="Nominee's email &#42;"
+              type="email"
+              id="nomemail"
+              placeholder="Nominee's email"
+              value={this.state.nomemail}
+              onChange={this.onChange}
+              required={true}
+            />
             <RadioInput>
               <label htmlFor="nomaddress">
                 Do you have or can you give the Nominee's Address? &#42;
@@ -430,6 +409,22 @@ class NominationForm extends Component {
               </label>
               <br />
             </RadioInput>
+
+            {this.state.nomaddress === "yes" && (
+              <StyledTextarea>
+                <label htmlFor="nomaddressfeilds">Nominee Address &#42;</label>
+                <textarea
+                  cols="40"
+                  rows="8"
+                  name="nomaddressfeilds"
+                  id="nomaddressfeilds"
+                  onChange={this.onChange}
+                  value={this.state.nomaddressfeilds}
+                  required
+                />
+              </StyledTextarea>
+            )}
+
             <StyledTextarea>
               <label htmlFor="nomfam">Family Details for Nominee &#42;</label>
               <p>
@@ -530,6 +525,24 @@ class NominationForm extends Component {
               </label>
               <br />
             </RadioInput>
+
+            {this.state.nomhelped === "yes" && (
+              <StyledTextarea>
+                <label htmlFor="nomhelpedhow">
+                  How has the Nominee helped out their community? &#42;
+                </label>
+                <textarea
+                  cols="40"
+                  rows="8"
+                  name="nomhelpedhow"
+                  id="nomhelpedhow"
+                  onChange={this.onChange}
+                  value={this.state.nomhelpedhow}
+                  required
+                />
+              </StyledTextarea>
+            )}
+
             <RadioInput>
               <label htmlFor="nomanonymous">
                 Do you (Nominator) wish to be anonymous? &#42;

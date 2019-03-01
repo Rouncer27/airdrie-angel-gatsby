@@ -29,6 +29,13 @@ const FormButton = styled.div`
 `;
 
 const CheckboxInput = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2rem;
+  }
+
   input[type="checkbox"] {
     display: none;
   }
@@ -77,6 +84,13 @@ const CheckboxInput = styled.div`
 `;
 
 const RadioInput = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2rem;
+  }
+
   label {
     display: block;
     position: relative;

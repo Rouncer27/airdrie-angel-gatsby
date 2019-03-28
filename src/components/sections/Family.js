@@ -7,9 +7,10 @@ import { Controller, Scene } from "react-scrollmagic";
 import { StandardWrapper } from "../styles/Commons/Wrappers";
 import Coin from "../styles/Commons/Coin";
 import Pig from "../styles/Commons/Pig";
+import House from "../styles/Commons/House";
 
 const FamilyStyles = styled.section`
-  padding: 10rem 0;
+  padding: 5rem 0;
   background: rgba(255, 219, 0, 0.5);
 `;
 
@@ -26,7 +27,7 @@ const FamilySection = styled.div`
   @media (min-width: ${props => props.theme.bpTablet}) {
     width: calc(50% - 4rem);
     margin: 0 2rem;
-    padding: 10rem 5rem;
+    padding: 7.5rem 5rem;
   }
 
   .family-counter {
@@ -34,6 +35,7 @@ const FamilySection = styled.div`
     margin-bottom: 2rem;
     font-size: 3rem;
     font-weight: 300;
+    text-align: center;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       font-size: 4rem;
@@ -259,6 +261,7 @@ class Family extends Component {
         <StandardWrapper>
           <FamilySection>
             <div>
+              <House />
               <Controller>
                 <Scene
                   indicators={false}

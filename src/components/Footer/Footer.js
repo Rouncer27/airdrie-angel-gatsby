@@ -169,7 +169,6 @@ class Footer extends Component {
           }
         `}
         render={data => {
-          console.log(data.wordpressAcfOptions.options);
           const logoImg =
             data.wordpressAcfOptions.options.aap_main_site_logo.localFile
               .childImageSharp.fluid;
@@ -202,16 +201,6 @@ class Footer extends Component {
                           href={data.wordpressAcfOptions.options.aap_instagram}
                         >
                           Instagram
-                        </a>
-                      </li>
-                      <li className="intro-social__list--item intro-social__list--tw">
-                        <a
-                          rel="noopener noreferrer"
-                          title="Follow us on Twitter"
-                          target="_blank"
-                          href={data.wordpressAcfOptions.options.aap_twitter}
-                        >
-                          Twitter
                         </a>
                       </li>
                       <li className="intro-social__list--item intro-social__list--yt">

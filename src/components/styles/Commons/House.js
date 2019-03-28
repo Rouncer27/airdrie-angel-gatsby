@@ -45,7 +45,7 @@ const StyledHouse = styled.div`
   }
 
   .heart-3 {
-    animation: ${floatHearts} 1.8s linear infinite 0.5s;
+    animation: ${floatHearts} 1.8s linear infinite;
   }
 
   .heart-4 {

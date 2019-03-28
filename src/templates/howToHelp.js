@@ -10,7 +10,8 @@ import AngelSign from "../components/sections/HowToHelp/AngelSign";
 
 class HowToHelp extends Component {
   render() {
-    // console.log(this.props.data.wordpressPage.acf);
+    const socialMedia = this.props.data.allWordpressAcfOptions.edges[0].node
+      .options;
     const sponsorhipTitleTop = this.props.data.wordpressPage.acf
       ._aap_spon_title_top;
     const sponsorhipTitleBottom = this.props.data.wordpressPage.acf
@@ -31,7 +32,7 @@ class HowToHelp extends Component {
     return (
       <Layout>
         <SEO />
-        <ShareJoy />
+        <ShareJoy socialMedia={socialMedia} />
         <Sponsorship
           data={{
             sponsorhipTitleTop,
@@ -85,6 +86,19 @@ export const query = graphql`
                 ...GatsbyImageSharpFluid
               }
             }
+          }
+        }
+      }
+    }
+
+    allWordpressAcfOptions {
+      edges {
+        node {
+          options {
+            aap_facebook
+            aap_instagram
+            aap_twitter
+            aap_youtube
           }
         }
       }

@@ -33,6 +33,77 @@ const ShareJoyStyled = styled.div`
     left: 25rem;
     width: 7.5rem;
   }
+
+  .intro-social {
+    position: relative;
+    width: 100%;
+    margin: 1rem auto 0;
+    z-index: 500;
+
+    &__list {
+      display: flex;
+      justify-content: center;
+
+      &--item {
+        display: inline-block;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        overflow: hidden;
+        font-size: 0;
+
+        a {
+          display: block;
+          position: relative;
+          align-self: center;
+          width: 5rem;
+          height: 5rem;
+          margin: 0 0.5rem;
+          transition: all 0.35s ease;
+          color: ${props => props.theme.teal};
+          font-family: ${props => props.theme.fontAwesome};
+
+          &:hover {
+            color: ${props => props.theme.deepYellow};
+          }
+
+          &::before {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0 auto;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+          }
+        }
+      }
+
+      &--fb a {
+        &::before {
+          content: "\f09a";
+        }
+      }
+
+      &--ig a {
+        &::before {
+          content: "\f16d";
+        }
+      }
+
+      &--tw a {
+        &::before {
+          content: "\f099";
+        }
+      }
+
+      &--yt a {
+        &::before {
+          content: "\f167";
+        }
+      }
+    }
+  }
 `;
 
 const ShareJoyTitle = styled.div`
@@ -83,6 +154,8 @@ const ShareJoyHashTag = styled.div`
   top: 25rem;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+  z-index: 10000;
 
   h3 {
     margin: 0;
@@ -104,6 +177,7 @@ const ShareJoySubscribe = styled.div`
 
 class Sharejoy extends Component {
   render() {
+    console.log(this.props.socialMedia);
     return (
       <ShareJoyStyled>
         <ShareJoyTitle>
@@ -111,6 +185,40 @@ class Sharejoy extends Component {
         </ShareJoyTitle>
         <ShareJoyHashTag>
           <h3>&#35;sharejoy</h3>
+          <div className="intro-social">
+            <ul className="intro-social__list">
+              <li className="intro-social__list--item intro-social__list--fb">
+                <a
+                  rel="noopener noreferrer"
+                  title="Follow us on Facebook"
+                  target="_blank"
+                  href={this.props.socialMedia.aap_facebook}
+                >
+                  Facebook
+                </a>
+              </li>
+              <li className="intro-social__list--item intro-social__list--ig">
+                <a
+                  rel="noopener noreferrer"
+                  title="Follow us on Instagram"
+                  target="_blank"
+                  href={this.props.socialMedia.aap_instagram}
+                >
+                  Instagram
+                </a>
+              </li>
+              <li className="intro-social__list--item intro-social__list--tw">
+                <a
+                  rel="noopener noreferrer"
+                  title="Follow us on Twitter"
+                  target="_blank"
+                  href={this.props.socialMedia.aap_twitter}
+                >
+                  Twitter
+                </a>
+              </li>
+            </ul>
+          </div>
         </ShareJoyHashTag>
         <ShareJoySubscribe>
           <p>Subscribe to our YouTube Channel or Like Us on Facebook</p>

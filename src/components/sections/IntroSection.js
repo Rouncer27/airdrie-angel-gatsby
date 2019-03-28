@@ -214,7 +214,6 @@ const IntroSec = styled.div`
 
 class IntroSection extends Component {
   render() {
-    console.log(this.props.socialMedia);
     return (
       <StyledIntroSection>
         <StandardWrapperChanged>
@@ -276,16 +275,6 @@ class IntroSection extends Component {
                           href={this.props.socialMedia.aap_twitter}
                         >
                           Twitter
-                        </a>
-                      </li>
-                      <li className="intro-social__list--item intro-social__list--yt">
-                        <a
-                          rel="noopener noreferrer"
-                          title="Follow us on Youtube"
-                          target="_blank"
-                          href={this.props.socialMedia.aap_youtube}
-                        >
-                          Youtube
                         </a>
                       </li>
                     </ul>

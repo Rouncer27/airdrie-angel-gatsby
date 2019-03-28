@@ -14,6 +14,9 @@ import GiftLift from "../components/sections/GiftLift";
 
 class Index extends Component {
   render() {
+    const socialMedia = this.props.data.allWordpressAcfOptions.edges[0].node
+      .options;
+
     const acf = this.props.data.wordpressPage.acf;
 
     const introTitle = acf._aap_intro_main_title;
@@ -40,7 +43,10 @@ class Index extends Component {
           keywords={[`gatsby`, `application`, `react`]}
         />
         <OpeningScene />
-        <IntroSection data={{ introTitle, introSubTitle, introInfoSections }} />
+        <IntroSection
+          data={{ introTitle, introSubTitle, introInfoSections }}
+          socialMedia={socialMedia}
+        />
         <Family
           data={{
             famHelpedTotal,
@@ -125,6 +131,19 @@ export const homeQuery = graphql`
                 ...GatsbyImageSharpFluid
               }
             }
+          }
+        }
+      }
+    }
+
+    allWordpressAcfOptions {
+      edges {
+        node {
+          options {
+            aap_facebook
+            aap_instagram
+            aap_twitter
+            aap_youtube
           }
         }
       }

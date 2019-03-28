@@ -18,8 +18,8 @@ const CloudNineLogoStyled = styled.a`
   }
 
   @media (min-width: ${props => props.theme.bpDesksm}) {
-    width: calc(33% - 6rem);
-    margin: 3rem;
+    width: calc(25% - 4rem);
+    margin: 2rem;
   }
 
   &:hover {

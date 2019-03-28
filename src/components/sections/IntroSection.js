@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
 import Img from "gatsby-image";
 
 import { StandardWrapper } from "../styles/Commons/Wrappers";
 import { BigTealButton, BigTealLink } from "../styles/Commons/Buttons";
+
+const StandardWrapperChanged = styled(StandardWrapper)`
+  @media (min-width: ${props => props.theme.bpDesksm}) {
+    max-width: 100%;
+  }
+
+  @media (min-width: ${props => props.theme.bpDeskmd}) {
+    max-width: 125rem;
+  }
+`;
 
 const StyledIntroSection = styled.section`
   padding: 5rem 0;
@@ -45,6 +54,9 @@ const IntroTitle = styled.div`
 `;
 
 const IntroSections = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
 
   div:nth-child(2) {
@@ -63,8 +75,9 @@ const IntroSec = styled.div`
 
   @media (min-width: ${props => props.theme.bpTablet}) {
     position: relative;
+    width: calc(50% - 4rem);
     max-width: 70rem;
-    margin: 5rem auto;
+    margin: 2rem;
   }
 
   .intro-title {
@@ -128,15 +141,83 @@ const IntroSec = styled.div`
     .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .intro-social {
+    &__list {
+      &--item {
+        display: inline-block;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        overflow: hidden;
+        font-size: 0;
+
+        a {
+          display: block;
+          position: relative;
+          align-self: center;
+          width: 5rem;
+          height: 5rem;
+          margin: 0 0.5rem;
+          transition: all 0.35s ease;
+          color: ${props => props.theme.navyBlue};
+          font-family: ${props => props.theme.fontAwesome};
+
+          &:hover {
+            color: ${props => props.theme.deepYellow};
+          }
+
+          &::before {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0 auto;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+          }
+        }
+      }
+
+      &--fb a {
+        &::before {
+          content: "\f09a";
+        }
+      }
+
+      &--ig a {
+        &::before {
+          content: "\f16d";
+        }
+      }
+
+      &--tw a {
+        &::before {
+          content: "\f099";
+        }
+      }
+
+      &--yt a {
+        &::before {
+          content: "\f167";
+        }
+      }
     }
   }
 `;
 
 class IntroSection extends Component {
   render() {
+    console.log(this.props.socialMedia);
     return (
       <StyledIntroSection>
-        <StandardWrapper>
+        <StandardWrapperChanged>
           <IntroTitle>
             <h2>{this.props.data.introTitle}</h2>
             <p>{this.props.data.introSubTitle}</p>
@@ -145,18 +226,71 @@ class IntroSection extends Component {
             {this.props.data.introInfoSections.map((section, index) => {
               const linkRequ = section.link_required;
               let link = false;
-
               if (linkRequ !== "none") {
-                link =
-                  linkRequ === "internal" ? (
+                if (linkRequ === "internal") {
+                  link = (
                     <BigTealLink to={section.inter_slug}>
                       {section.link_text}
                     </BigTealLink>
-                  ) : (
-                    <BigTealButton target="_blank" href="https://youtube.com">
+                  );
+                } else if (linkRequ === "external") {
+                  link = (
+                    <BigTealButton
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={section.external}
+                    >
                       {section.link_text}
                     </BigTealButton>
                   );
+                }
+              } else {
+                link = (
+                  <div className="intro-social">
+                    <ul className="intro-social__list">
+                      <li className="intro-social__list--item intro-social__list--fb">
+                        <a
+                          rel="noopener noreferrer"
+                          title="Follow us on Facebook"
+                          target="_blank"
+                          href={this.props.socialMedia.aap_facebook}
+                        >
+                          Facebook
+                        </a>
+                      </li>
+                      <li className="intro-social__list--item intro-social__list--ig">
+                        <a
+                          rel="noopener noreferrer"
+                          title="Follow us on Instagram"
+                          target="_blank"
+                          href={this.props.socialMedia.aap_instagram}
+                        >
+                          Instagram
+                        </a>
+                      </li>
+                      <li className="intro-social__list--item intro-social__list--tw">
+                        <a
+                          rel="noopener noreferrer"
+                          title="Follow us on Twitter"
+                          target="_blank"
+                          href={this.props.socialMedia.aap_twitter}
+                        >
+                          Twitter
+                        </a>
+                      </li>
+                      <li className="intro-social__list--item intro-social__list--yt">
+                        <a
+                          rel="noopener noreferrer"
+                          title="Follow us on Youtube"
+                          target="_blank"
+                          href={this.props.socialMedia.aap_youtube}
+                        >
+                          Youtube
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                );
               }
 
               return (
@@ -165,7 +299,6 @@ class IntroSection extends Component {
                     <h3>{section.title}</h3>
                     <p>{section.content}</p>
                     {link}
-                    <div className="intro-title__overlay" />
                   </div>
                   <div className="intro-image">
                     <Img
@@ -173,11 +306,12 @@ class IntroSection extends Component {
                       alt={section.image.alt_text}
                     />
                   </div>
+                  <div className="intro-title__overlay" />
                 </IntroSec>
               );
             })}
           </IntroSections>
-        </StandardWrapper>
+        </StandardWrapperChanged>
       </StyledIntroSection>
     );
   }

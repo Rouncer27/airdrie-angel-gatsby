@@ -46,35 +46,88 @@ const NavWrapper = styled.div`
     width: 100%;
     margin-top: 2.5rem;
   }
-`;
 
-const MenuBtn = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0.25rem;
-  left: 0.25rem;
-  width: 7rem;
-  height: 7rem;
-  margin: 0 auto;
-  padding: 0;
-  background: ${props => props.theme.navyBlue};
-  border: 0.1rem solid ${props => props.theme.white};
-  box-shadow: 0.25rem 0.25rem 0.25rem ${props => props.theme.black};
-  color: ${props => props.theme.white};
-  text-align: center;
-  z-index: 99999;
+  .mobile-toggle-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: 0 auto;
+    padding: 0;
+    background: ${props => props.theme.navyBlue};
+    border: 0.1rem solid ${props => props.theme.white};
+    box-shadow: 0.25rem 0.25rem 0.25rem ${props => props.theme.black};
+    color: ${props => props.theme.white};
+    text-align: center;
+    z-index: 99999999;
 
-  &:focus {
-    outline: none;
+    &::before,
+    &::after {
+      display: block;
+      position: absolute;
+      right: 0;
+      left: 0;
+      width: 80%;
+      height: 0.2rem;
+      margin: 0 auto;
+      transform: rotate(0);
+      transform-origin: center center;
+      transition: all 0.2s ease;
+      background-color: ${props => props.theme.white};
+      content: "";
+    }
+
+    &::before {
+      top: 1rem;
+    }
+
+    &::after {
+      bottom: 1rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      &::before {
+        top: 0.5rem;
+      }
+
+      &::after {
+        bottom: 0.5rem;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      display: none;
+    }
   }
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
-    display: none;
+  &.mobile-acive-open {
+    .mobile-toggle-button {
+      background: ${props => props.theme.teal};
+      color: ${props => props.theme.teal};
+      &::before {
+        top: 50%;
+        transform: translateY(-50%) rotate(135deg);
+      }
+
+      &::after {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-135deg);
+      }
+    }
   }
 `;
+
+const MenuBtn = styled.button``;
 
 class Header extends Component {
   constructor(props) {
@@ -105,7 +158,12 @@ class Header extends Component {
               this.state.navOpen ? "mobile-acive-open" : "mobile-acive-closed"
             }
           >
-            <MenuBtn onClick={this.toggleMobileNav}>Menu</MenuBtn>
+            <MenuBtn
+              className="mobile-toggle-button"
+              onClick={this.toggleMobileNav}
+            >
+              Menu
+            </MenuBtn>
             {/* <NavSocial /> */}
             <Navigation isOpen={this.state.navOpen} />
           </NavWrapper>

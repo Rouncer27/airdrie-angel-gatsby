@@ -15,7 +15,7 @@ const StyledNav = styled.div`
   transform: ${props =>
     props.isOpen ? "translateX(0)" : "translateX(calc(-100% - 2rem))"};
   overflow-y: scroll;
-  z-index: 500;
+  z-index: 9999999;
 
   @media (min-width: ${props => props.theme.bpTablet}) {
     position: relative;

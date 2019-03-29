@@ -15,8 +15,8 @@ const AngelsAmongUsLogo = styled.div`
   @media (min-width: ${props => props.theme.bpDesksm}) {
     display: flex;
     align-items: center;
-    width: calc(20% - 4rem);
-    margin: 2rem;
+    width: calc(15% - 1rem);
+    margin: 0.5rem;
     padding: 1rem;
   }
 

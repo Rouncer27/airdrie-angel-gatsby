@@ -62,7 +62,7 @@ class CloudNine extends Component {
             <CloudNineSection>
               <StandardWrapper>
                 <h2 className="cloud-nine-headline">
-                  Our Amazing Cloud Nine Sponsors
+                  Our Amazing Current Cloud Nine Sponsors
                 </h2>
               </StandardWrapper>
               <StandardWrapper className="cloud-nine-wrapper">

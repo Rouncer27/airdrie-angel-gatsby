@@ -15,9 +15,9 @@ const EarnYourWingsLogo = styled.a`
   @media (min-width: ${props => props.theme.bpDesksm}) {
     display: flex;
     align-items: center;
-    width: calc(25% - 4rem);
-    margin: 2rem;
-    padding: 2rem;
+    width: calc(20% - 1rem);
+    margin: 0.5rem;
+    padding: 1rem;
   }
 
   .gatsby-image-wrapper {

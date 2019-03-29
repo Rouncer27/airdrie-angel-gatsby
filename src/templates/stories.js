@@ -214,7 +214,7 @@ class Stories extends Component {
                   to={`/stories/${story.node.slug}`}
                 >
                   <CardDate>
-                    <p>{moment(story.node.date).format("MMM.D.YY")}</p>
+                    <p>{moment(story.node.date).format("MMM.D/YY")}</p>
                   </CardDate>
                   <CardTitle>
                     <h3

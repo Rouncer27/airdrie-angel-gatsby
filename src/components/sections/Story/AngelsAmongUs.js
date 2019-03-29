@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Img from "gatsby-image";
+import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 
 const AngelsAmongUsLogo = styled.div`
@@ -12,19 +13,81 @@ const AngelsAmongUsLogo = styled.div`
   }
 
   @media (min-width: ${props => props.theme.bpDesksm}) {
+    display: flex;
+    align-items: center;
     width: calc(20% - 4rem);
     margin: 2rem;
     padding: 1rem;
+  }
+
+  .gatsby-image-wrapper {
+    width: 100% !important;
+  }
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
   }
 `;
 
 class AngelsAmongUs extends Component {
   render() {
-    const logo = this.props.data.logo.source_url;
+    const CloudNineId = this.props.id.wordpress_id;
     return (
-      <AngelsAmongUsLogo>
-        <img src={logo} alt="Earn Your Wings" />
-      </AngelsAmongUsLogo>
+      <StaticQuery
+        query={graphql`
+          {
+            allWordpressWpStorySponsor {
+              edges {
+                node {
+                  wordpress_id
+                  title
+                  acf {
+                    _aap_logo {
+                      alt_text
+                      localFile {
+                        childImageSharp {
+                          fluid(maxWidth: 500) {
+                            ...GatsbyImageSharpFluid
+                          }
+                        }
+                      }
+                    }
+                    _aap_link
+                  }
+                }
+              }
+            }
+          }
+        `}
+        render={data => {
+          return (
+            <>
+              {data.allWordpressWpStorySponsor.edges.map(logo => {
+                if (logo.node.wordpress_id === CloudNineId) {
+                  console.log(logo.node.acf._aap_logo.localFile);
+                  return (
+                    <AngelsAmongUsLogo
+                      key={logo.node.wordpress_id}
+                      href={logo.node.acf._aap_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Img
+                        fluid={
+                          logo.node.acf._aap_logo.localFile.childImageSharp
+                            .fluid
+                        }
+                        alt={logo.node.title}
+                      />
+                    </AngelsAmongUsLogo>
+                  );
+                }
+              })}
+            </>
+          );
+        }}
+      />
     );
   }
 }

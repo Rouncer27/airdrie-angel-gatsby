@@ -23,6 +23,8 @@ class Index extends Component {
     const introSubTitle = acf._aap_intro_sub_title;
     const introInfoSections = acf._aap_intro_info_secs;
 
+    const cloudNine = acf._att_cloud_nine_sponsors;
+
     const famHelpedTotal = acf._aap_fam_helped;
     const famHelpedContent = acf._aap_fam_helped_content;
     const famHelpedMoney = acf._aap_fam_helped_money;
@@ -55,7 +57,7 @@ class Index extends Component {
             famHelpedMoneyContent
           }}
         />
-        <CloudNine />
+        <CloudNine cloudNine={cloudNine} />
         <Succulent
           data={{
             succulentTitle,
@@ -99,6 +101,12 @@ export const homeQuery = graphql`
         _aap_fam_helped_content
         _aap_fam_helped_money
         _aap_fam_helped_money_content
+
+        _att_cloud_nine_sponsors {
+          current {
+            wordpress_id
+          }
+        }
 
         _aap_why_succulent_title
         _app_why_succulent_content

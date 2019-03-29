@@ -22,11 +22,10 @@ class CloudNine extends Component {
       <StaticQuery
         query={graphql`
           {
-            allWordpressWpCloudNineSponsor {
+            allWordpressWpStorySponsor {
               edges {
                 node {
-                  id
-                  title
+                  wordpress_id
                   acf {
                     _aap_link
                     _aap_logo {
@@ -46,6 +45,19 @@ class CloudNine extends Component {
           }
         `}
         render={data => {
+          const currentCloudNine = this.props.cloudNine;
+          const currentCloudNineIDs = currentCloudNine.map(cn => {
+            return cn.current.wordpress_id;
+          });
+          const allStorySponsors = data.allWordpressWpStorySponsor.edges;
+          const currentDisplay = currentCloudNineIDs.map(id => {
+            const filterSponsors = allStorySponsors.filter(spon => {
+              if (spon.node.wordpress_id === id) {
+                return spon;
+              }
+            });
+            return filterSponsors[0];
+          });
           return (
             <CloudNineSection>
               <StandardWrapper>
@@ -54,13 +66,12 @@ class CloudNine extends Component {
                 </h2>
               </StandardWrapper>
               <StandardWrapper className="cloud-nine-wrapper">
-                {data.allWordpressWpCloudNineSponsor.edges.map(sponsor => {
-                  const id = sponsor.node.id;
+                {currentDisplay.map(sponsor => {
+                  const id = sponsor.node.wordpress_id;
                   const link = sponsor.node.acf._aap_link;
                   const imgUrl =
                     sponsor.node.acf._aap_logo.localFile.childImageSharp.fluid;
                   const imgAlt = sponsor.node.acf._aap_logo.alt_text;
-
                   return (
                     <CloudNineLogo
                       key={id}

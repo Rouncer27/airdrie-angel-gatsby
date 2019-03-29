@@ -249,7 +249,7 @@ export const query = graphql`
     wordpressPage(wordpress_id: { eq: $id }) {
       title
     }
-    allWordpressWpStory {
+    allWordpressWpStory(sort: { fields: [date], order: [DESC] }) {
       edges {
         node {
           slug

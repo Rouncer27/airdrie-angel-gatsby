@@ -10,16 +10,32 @@ const StyledCloudNineLogo = styled.a`
   margin: auto;
   padding: 3rem;
   box-shadow: 0rem 0rem 3rem ${props => props.theme.deepYellow};
+
+  @media (min-width: ${props => props.theme.bpDesksm}) {
+    display: flex;
+    align-items: center;
+    width: calc(50% - 4rem);
+    margin: 2rem;
+  }
+
+  .gatsby-image-wrapper {
+    width: 100% !important;
+  }
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
 `;
 
 class CloudNineStory extends Component {
   render() {
-    const CloudNineId = this.props.id.sponsor.wordpress_id;
+    const CloudNineId = this.props.id.wordpress_id;
     return (
       <StaticQuery
         query={graphql`
           {
-            allWordpressWpCloudNineSponsor {
+            allWordpressWpStorySponsor {
               edges {
                 node {
                   wordpress_id
@@ -44,8 +60,8 @@ class CloudNineStory extends Component {
         `}
         render={data => {
           return (
-            <div>
-              {data.allWordpressWpCloudNineSponsor.edges.map(logo => {
+            <>
+              {data.allWordpressWpStorySponsor.edges.map(logo => {
                 if (logo.node.wordpress_id === CloudNineId) {
                   return (
                     <StyledCloudNineLogo
@@ -65,7 +81,7 @@ class CloudNineStory extends Component {
                   );
                 }
               })}
-            </div>
+            </>
           );
         }}
       />

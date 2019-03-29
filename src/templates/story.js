@@ -116,15 +116,30 @@ const CloudNineSponsorStyled = styled.div`
 
   @media (min-width: ${props => props.theme.bpTablet}) {
     width: calc(100% - 50%);
-    margin: 4rem 25%;
+    margin: 4rem auto;
   }
 
   @media (min-width: ${props => props.theme.bpDesksm}) {
-    width: calc(100% - 50%);
-    margin: 4rem 25%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: calc(100%);
+    margin: 4rem auto;
+  }
+
+  .cloud-nine-logos,
+  .cloud-nine-title {
+    width: 100%;
+  }
+
+  .cloud-nine-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   h2 {
+    width: 100%;
     margin-bottom: 5rem;
     text-align: center;
     color: ${props => props.theme.teal};
@@ -200,7 +215,7 @@ const LogosWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  margin: 2rem auto;
+  margin: 2rem 0;
 `;
 
 class Story extends Component {
@@ -236,6 +251,39 @@ class Story extends Component {
     const angelsAmong = this.props.data.wordpressWpStory.acf
       ._aap_angels_among_us;
 
+    const storySponsors = this.props.data.wordpressWpStory.acf
+      ._app_story_sponsors;
+
+    let couldNineSponsorsIDs = [];
+    let soaringSponsorsIDs = [];
+    let wingsSponsorsIDs = [];
+    let amongSponsorsIDs = [];
+
+    if (storySponsors && storySponsors.length > 0) {
+      couldNineSponsorsIDs = storySponsors.filter(spon => {
+        if (spon.type === "cloud-nine") {
+          return spon;
+        }
+      });
+
+      soaringSponsorsIDs = storySponsors.filter(spon => {
+        if (spon.type === "soaring-spirits") {
+          return spon;
+        }
+      });
+
+      wingsSponsorsIDs = storySponsors.filter(spon => {
+        if (spon.type === "earn-your-wings") {
+          return spon;
+        }
+      });
+
+      amongSponsorsIDs = storySponsors.filter(spon => {
+        if (spon.type === "angels-among-us") {
+          return spon;
+        }
+      });
+    }
     return (
       <Layout>
         <SEO />
@@ -261,59 +309,79 @@ class Story extends Component {
               </p>
               <p>Without you, this would not be possible.</p>
             </StoryThankYou>
-            <CloudNineSponsorStyled>
-              <div>
-                <h2>Cloud Nine Sponsor</h2>
-              </div>
-              <div>
-                {cloudNineSponsorIds &&
-                  cloudNineSponsorIds.map(cloudNine => {
+
+            {couldNineSponsorsIDs.length > 0 && (
+              <CloudNineSponsorStyled>
+                <div className="cloud-nine-title">
+                  <h2>Cloud Nine Sponsor</h2>
+                </div>
+                <div className="cloud-nine-logos">
+                  {couldNineSponsorsIDs.map(cloudNine => {
                     return (
                       <CloudNineStory
-                        key={cloudNine}
-                        id={cloudNine}
-                        className="logo-item"
+                        key={cloudNine.sponsor.wordpress_id}
+                        id={cloudNine.sponsor}
                       />
                     );
                   })}
-              </div>
-            </CloudNineSponsorStyled>
+                </div>
+              </CloudNineSponsorStyled>
+            )}
 
-            <LogosSections>
-              <LogosTitle>
-                <h3 className="soaring-title">Soaring Spirits Sponsors</h3>
-              </LogosTitle>
-              <LogosWrapper>
-                {soaringSpirits &&
-                  soaringSpirits.map((soaring, index) => {
-                    return <SoaringSpirit data={soaring} key={index} />;
+            {soaringSponsorsIDs.length > 0 && (
+              <LogosSections>
+                <LogosTitle>
+                  <h3 className="soaring-title">Soaring Spirits Sponsors</h3>
+                </LogosTitle>
+                <LogosWrapper>
+                  {soaringSponsorsIDs.map(cloudNine => {
+                    return (
+                      <SoaringSpirit
+                        key={cloudNine.sponsor.wordpress_id}
+                        id={cloudNine.sponsor}
+                      />
+                    );
                   })}
-              </LogosWrapper>
-            </LogosSections>
+                </LogosWrapper>
+              </LogosSections>
+            )}
 
-            <LogosSections>
-              <LogosTitle>
-                <h3 className="earn-title">Earn Your Wings Sponsors</h3>
-              </LogosTitle>
-              <LogosWrapper>
-                {earnYourWings &&
-                  earnYourWings.map((wing, index) => {
-                    return <EarnYourWings data={wing} key={index} />;
+            {wingsSponsorsIDs.length > 0 && (
+              <LogosSections>
+                <LogosTitle>
+                  <h3 className="earn-title">Earn Your Wings Sponsors</h3>
+                </LogosTitle>
+                <LogosWrapper>
+                  {wingsSponsorsIDs.map(cloudNine => {
+                    return (
+                      <EarnYourWings
+                        key={cloudNine.sponsor.wordpress_id}
+                        id={cloudNine.sponsor}
+                      />
+                    );
                   })}
-              </LogosWrapper>
-            </LogosSections>
+                </LogosWrapper>
+              </LogosSections>
+            )}
 
-            <LogosSections>
-              <LogosTitle>
-                <h3 className="angels-title">Angels Among Us Sponsors</h3>
-              </LogosTitle>
-              <LogosWrapper>
-                {angelsAmong &&
-                  angelsAmong.map((angel, index) => {
-                    return <AngelsAmongUs data={angel} key={index} />;
+            {amongSponsorsIDs.length > 0 && (
+              <LogosSections>
+                <LogosTitle>
+                  <h3 className="angels-title">Angels Among Us Sponsors</h3>
+                </LogosTitle>
+                <LogosWrapper>
+                  {amongSponsorsIDs.map(cloudNine => {
+                    return (
+                      <AngelsAmongUs
+                        key={cloudNine.sponsor.wordpress_id}
+                        id={cloudNine.sponsor}
+                      />
+                    );
                   })}
-              </LogosWrapper>
-            </LogosSections>
+                </LogosWrapper>
+              </LogosSections>
+            )}
+
             <div>
               {nextPostSlug && (
                 <BigTealLink to={`/stories/${nextPostSlug}`}>
@@ -342,28 +410,10 @@ export const query = graphql`
       acf {
         _aap_story
         _app_video_link
-        _aap_cloud_9_sponsor {
+        _app_story_sponsors {
+          type
           sponsor {
             wordpress_id
-          }
-        }
-        _aap_soaring_spirits {
-          logo {
-            source_url
-          }
-          link
-        }
-
-        _aap_earn_your_wings {
-          logo {
-            source_url
-          }
-          link
-        }
-
-        _aap_angels_among_us {
-          logo {
-            source_url
           }
         }
       }

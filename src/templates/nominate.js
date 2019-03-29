@@ -27,7 +27,7 @@ class Nominate extends Component {
       ._aap_criteria_bg_img;
     return (
       <Layout>
-        <SEO />
+        <SEO title="Nominate someone today - Airdrie Angel Program" />
         <Question
           data={{ questionTitleTop, questionTitleBot, questionTitleContent }}
         />

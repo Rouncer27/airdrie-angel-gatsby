@@ -5,7 +5,6 @@ import { Tween, Timeline } from "react-gsap";
 import { Controller, Scene } from "react-scrollmagic";
 
 import { StandardWrapper } from "../styles/Commons/Wrappers";
-import Coin from "../styles/Commons/Coin";
 import Pig from "../styles/Commons/Pig";
 import House from "../styles/Commons/House";
 
@@ -43,23 +42,13 @@ const FamilySection = styled.div`
   }
 `;
 
-const fallingMoney = keyframes`
-   0%{
-     transform: translateY(0%);
-   }
-
-   100% {
-    transform: translateY(1400%);
-   }
-`;
-
 const piggyFill = keyframes`
   0%{
-    transform: scale(0.75);
+    transform: rotateX(0deg);
   }
 
   100% {
-  transform: scale(1.25);
+    transform: rotateX(2880deg);
   }
 `;
 
@@ -77,118 +66,24 @@ const FamilySectionPig = styled.div`
     overflow: hidden;
   }
 
-  .money-coin {
-    position: absolute;
-    top: -6rem;
-    left: 1.5rem;
-    width: 3rem;
-  }
-
-  .coin-copy-0 {
-    top: -9rem;
-    left: 0rem;
-  }
-
-  .coin-copy-1 {
-    top: -12rem;
-    left: 1.5rem;
-  }
-
-  .coin-copy-2 {
-    top: -15rem;
-    left: 0rem;
-  }
-
-  .coin-copy-3 {
-    top: -18rem;
-    left: 1.5rem;
-  }
-
-  .coin-copy-4 {
-    top: -21rem;
-    left: 0rem;
-  }
-
-  .coin-copy-5 {
-    top: -24rem;
-    left: 1.5rem;
-  }
-
-  .coin-copy-6 {
-    top: -27rem;
-    left: 0rem;
-  }
-  .coin-copy-7 {
-    top: -30rem;
-    left: 1.5rem;
-  }
-
-  .coin-copy-8 {
-    top: -33rem;
-    left: 0rem;
-  }
-
   .money-pig {
     position: relative;
     display: block;
-    width: 15rem;
+    width: 12rem;
     margin: 0 auto 2rem;
     z-index: 50000;
     transition: all 2s ease;
-    transform: scale(0.75);
 
-    &.active {
-      transform: scale(1.25);
-    }
-  }
-
-  .piggy-mask {
-    display: block;
-    position: absolute;
-    top: 1.25rem;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 12rem;
-    margin: auto;
-    background: ${props => props.theme.white};
-    z-index: 5000;
-  }
-
-  &.active {
-    .money-coin {
-      animation-name: ${fallingMoney};
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      animation-iteration-count: 2;
-    }
-
-    .money-coin:first-of-type,
-    .coin-copy-1,
-    .coin-copy-3,
-    .coin-copy-5,
-    .coin-copy-7 {
-      animation-delay: 0.25s;
-    }
-
-    .coin-copy-0,
-    .coin-copy-2,
-    .coin-copy-4,
-    .coin-copy-6,
-    .coin-copy-8 {
-      animation-delay: 0.25s;
-    }
-
-    .money-pig {
-      transform: scale(0.75);
+    #pigtail {
+      transform-origin: 5% 50%;
+      transform: rotateX(0deg);
       animation-name: ${piggyFill};
       animation-duration: 1.75s;
-      animation-timing-function: ease-in-out;
-
-      animation-delay: 0.7s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
       animation-direction: alternate;
       animation-fill-mode: forwards;
-      animation-iteration-count: 1;
+      animation-iteration-count: infinite;
     }
   }
 `;
@@ -215,21 +110,6 @@ class Family extends Component {
       famNumber: 0,
       monNumber: 0
     };
-  }
-
-  componentDidMount() {
-    this.makeLotsOfCoins();
-  }
-
-  makeLotsOfCoins() {
-    const coinContainer = document.querySelector(".coin-container");
-
-    const coinSVG = document.querySelector(".money-coin");
-    for (let i = 0; i < 9; i++) {
-      const newCoin = coinSVG.cloneNode(true);
-      newCoin.classList.add(`coin-copy-${i}`);
-      coinContainer.appendChild(newCoin);
-    }
   }
 
   animateTheFamiles(endNumber) {
@@ -299,11 +179,7 @@ class Family extends Component {
           <FamilySection>
             <div>
               <FamilySectionPig className="piggy-animation">
-                <div className="coin-container">
-                  <Coin />
-                </div>
                 <Pig />
-                <div className="piggy-mask" />
               </FamilySectionPig>
               <Controller>
                 <Scene

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SEO from "../components/Header/seo";
 import Layout from "../components/layout";
+import { graphql } from "gatsby";
 
 import What from "../components/sections/OurMission/What";
 import Carre from "../components/sections/OurMission/Carre";

@@ -12,6 +12,9 @@ import GiftLift from "../components/sections/GiftLift";
 
 class Index extends Component {
   render() {
+    const metaTitle = this.props.data.wordpressPage.yoast.title;
+    const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
+
     const socialMedia = this.props.data.allWordpressAcfOptions.edges[0].node
       .options;
 
@@ -37,11 +40,7 @@ class Index extends Component {
 
     return (
       <Layout>
-        <SEO
-          title="Airdrie Angel - The Airdrie Angel Program."
-          description="A gift from the heart, a lift to the spirit. Airdrie Angel is a grassroots organization that is completely community based."
-          keywords={[`gatsby`, `application`, `react`]}
-        />
+        <SEO title={metaTitle} description={metaDescription} />
         <OpeningScene />
         <IntroSection
           data={{ introTitle, introSubTitle, introInfoSections }}
@@ -73,6 +72,11 @@ class Index extends Component {
 export const homeQuery = graphql`
   {
     wordpressPage(slug: { eq: "home" }) {
+      yoast {
+        title
+        metadesc
+      }
+
       acf {
         _aap_intro_main_title
         _aap_intro_sub_title

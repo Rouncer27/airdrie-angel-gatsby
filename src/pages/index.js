@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import Image from "../components/image";
 import SEO from "../components/Header/seo";
-
 import OpeningScene from "../components/sections/OpeningScene";
 import IntroSection from "../components/sections/IntroSection";
 import Family from "../components/sections/Family";

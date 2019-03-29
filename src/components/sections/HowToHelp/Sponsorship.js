@@ -81,7 +81,6 @@ const SponsorshipButtons = styled.div`
 
 class Sponsorship extends Component {
   render() {
-    console.log(this.props);
     return (
       <SponsorshipSection>
         <SponsorshipContent>

@@ -66,9 +66,6 @@ class OpeningScene extends Component {
   componentDidMount() {
     const date = new Date();
     const currentHour = date.getHours();
-
-    console.log("The Current Angel Time is: ", currentHour);
-
     if (currentHour <= 6) {
       this.setState(prevState => {
         return {

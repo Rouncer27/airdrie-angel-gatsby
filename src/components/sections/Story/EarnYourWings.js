@@ -65,7 +65,6 @@ class EarnYourWings extends Component {
             <>
               {data.allWordpressWpStorySponsor.edges.map(logo => {
                 if (logo.node.wordpress_id === CloudNineId) {
-                  console.log(logo.node.acf._aap_logo.localFile);
                   return (
                     <EarnYourWingsLogo
                       key={logo.node.wordpress_id}

@@ -98,7 +98,6 @@ const TeamItemContentParagraph = styled(StandardParagraph)`
 
 class Team extends Component {
   render() {
-    console.log(this.props);
     return (
       <StyledTeam>
         <SupportTeamTitle>

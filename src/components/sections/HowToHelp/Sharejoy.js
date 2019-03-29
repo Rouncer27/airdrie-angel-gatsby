@@ -177,7 +177,6 @@ const ShareJoySubscribe = styled.div`
 
 class Sharejoy extends Component {
   render() {
-    console.log(this.props.socialMedia);
     return (
       <ShareJoyStyled>
         <ShareJoyTitle>

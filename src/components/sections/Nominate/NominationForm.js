@@ -127,16 +127,16 @@ class NominationForm extends Component {
       nomlastname: "",
       nomphone: "",
       nomemail: "",
-      nomaddress: "",
+      nomaddress: "no",
       nomaddressfeilds: "",
       nomfam: "",
-      nomsafe: "",
+      nomsafe: "no",
       nomstory: "",
       nombenefit: "",
-      nomhelped: "",
+      nomhelped: "no",
       nomhelpedhow: "",
-      nomanonymous: "",
-      consent: ""
+      nomanonymous: "no",
+      consent: "no"
     };
   }
 
@@ -284,7 +284,7 @@ class NominationForm extends Component {
         nomhelped: "no",
         nomhelpedhow: "",
         nomanonymous: "no",
-        consent: ""
+        consent: "no"
       };
     });
   }
@@ -329,7 +329,8 @@ class NominationForm extends Component {
       this.state.nomhelped !== "" &&
       this.state.nomsafe !== "" &&
       this.state.nomaddress !== "" &&
-      this.state.hear !== "default"
+      this.state.hear !== "default" &&
+      this.state.submitting === false
         ? false
         : true;
 
@@ -519,6 +520,7 @@ class NominationForm extends Component {
                 name="nomaddress"
                 value="yes"
                 onChange={this.onChange}
+                checked={this.state.nomaddress === "yes" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomaddress-1">
                 <span className="radio">Yes</span>
@@ -530,6 +532,7 @@ class NominationForm extends Component {
                 name="nomaddress"
                 value="no"
                 onChange={this.onChange}
+                checked={this.state.nomaddress === "no" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomaddress-2">
                 <span className="radio">No</span>
@@ -573,6 +576,7 @@ class NominationForm extends Component {
                 name="nomsafe"
                 value="yes"
                 onChange={this.onChange}
+                checked={this.state.nomsafe === "yes" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomsafe-1">
                 <span className="radio">Yes</span>
@@ -584,6 +588,7 @@ class NominationForm extends Component {
                 name="nomsafe"
                 value="no"
                 onChange={this.onChange}
+                checked={this.state.nomsafe === "no" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomsafe-2">
                 <span className="radio">No</span>
@@ -624,6 +629,7 @@ class NominationForm extends Component {
                 name="nomhelped"
                 value="yes"
                 onChange={this.onChange}
+                checked={this.state.nomhelped === "yes" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomhelped-1">
                 <span className="radio">Yes</span>
@@ -635,6 +641,7 @@ class NominationForm extends Component {
                 name="nomhelped"
                 value="no"
                 onChange={this.onChange}
+                checked={this.state.nomhelped === "no" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomhelped-2">
                 <span className="radio">No</span>
@@ -669,6 +676,7 @@ class NominationForm extends Component {
                 name="nomanonymous"
                 value="yes"
                 onChange={this.onChange}
+                checked={this.state.nomanonymous === "yes" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomanonymous-1">
                 <span className="radio">Yes</span>
@@ -680,6 +688,7 @@ class NominationForm extends Component {
                 name="nomanonymous"
                 value="no"
                 onChange={this.onChange}
+                checked={this.state.nomanonymous === "no" ? true : false}
               />{" "}
               <label className="radio-label" htmlFor="nomanonymous-2">
                 <span className="radio">No</span>
@@ -698,6 +707,7 @@ class NominationForm extends Component {
                   name="consent"
                   value="yes"
                   onChange={this.onChangeConsent}
+                  checked={this.state.consent === "yes" ? true : false}
                 />
                 <label htmlFor="consent-1">
                   <span className="checkbox">Yes</span>

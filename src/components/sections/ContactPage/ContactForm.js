@@ -321,6 +321,7 @@ class ContactForm extends Component {
                 placeholder="First Name"
                 value={this.state.firstname}
                 onChange={this.onChange}
+                required
               />
             </InputStyled>
             <InputStyled>
@@ -333,6 +334,7 @@ class ContactForm extends Component {
                 placeholder="Last Name"
                 value={this.state.lastname}
                 onChange={this.onChange}
+                required
               />
             </InputStyled>
             <InputStyled>
@@ -345,6 +347,7 @@ class ContactForm extends Component {
                 placeholder="email"
                 value={this.state.email}
                 onChange={this.onChange}
+                required
               />
             </InputStyled>
 
@@ -384,6 +387,7 @@ class ContactForm extends Component {
                 id="message"
                 onChange={this.onChange}
                 value={this.state.message}
+                required
               />
             </StyledTextarea>
 

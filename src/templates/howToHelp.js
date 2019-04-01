@@ -32,7 +32,6 @@ class HowToHelp extends Component {
     return (
       <Layout>
         <SEO />
-        <ShareJoy socialMedia={socialMedia} />
         <Sponsorship
           data={{
             sponsorhipTitleTop,
@@ -42,6 +41,7 @@ class HowToHelp extends Component {
             sponsorhipBGImage
           }}
         />
+        <ShareJoy socialMedia={socialMedia} />
         <BeAnAngel />
         <AngelSign data={{ AngelSignPoster, AngelSignBG }} />
       </Layout>

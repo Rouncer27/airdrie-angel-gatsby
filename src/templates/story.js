@@ -74,11 +74,23 @@ const StoryVideoBackground = styled.div`
   );
 
   .bike-story-page {
-    width: 12rem;
-    right: 12%;
-    bottom: 5rem;
+    width: 15rem;
+    right: 7%;
+    bottom: 2rem;
     z-index: 6001;
     transform: rotate(-1deg);
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      right: 17%;
+    }
+  }
+
+  .trees-story-page {
+    display: none;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      display: block;
+    }
   }
 
   .story-page {

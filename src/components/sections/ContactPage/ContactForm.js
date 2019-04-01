@@ -8,6 +8,7 @@ import {
   FormInput,
   FormButton,
   FormTextarea,
+  SelectDropdown,
   FormMain
 } from "../../styles/Commons/FormFields";
 import SuccessMessage from "../FormItems/SuccessMessage";
@@ -116,6 +117,7 @@ class ContactForm extends Component {
       lastname: "",
       email: "",
       title: "",
+      topic: "default",
       message: ""
     };
   }
@@ -134,6 +136,7 @@ class ContactForm extends Component {
     bodyFormData.append("last-name", this.state.lastname);
     bodyFormData.append("email", this.state.email);
     bodyFormData.append("title", this.state.title);
+    bodyFormData.append("topic", this.state.topic);
     bodyFormData.append("message", this.state.message);
 
     //const baseURL = "http://localhost/gatsby-airdrieangel";
@@ -210,6 +213,7 @@ class ContactForm extends Component {
         lastname: "",
         email: "",
         title: "",
+        topic: "default",
         message: ""
       };
     });
@@ -343,6 +347,32 @@ class ContactForm extends Component {
                 onChange={this.onChange}
               />
             </InputStyled>
+
+            <SelectDropdown>
+              <label>Your Message Topic &#42;</label>
+              <div className="select-container">
+                <select
+                  name="topic"
+                  onChange={this.onChange}
+                  value={this.state.hear}
+                >
+                  <option value="default"> -- select an option -- </option>
+                  <option title="sponsorship" value="sponsorship">
+                    Sponsorship
+                  </option>
+                  <option title="speaking" value="speaking">
+                    Speaking
+                  </option>
+                  <option title="charity-building" value="charity-building">
+                    charity building
+                  </option>
+                  <option title="other" value="other">
+                    other
+                  </option>
+                </select>
+              </div>
+            </SelectDropdown>
+
             <StyledTextarea>
               <label htmlFor="message">Message &#42;</label>
               {messageError}

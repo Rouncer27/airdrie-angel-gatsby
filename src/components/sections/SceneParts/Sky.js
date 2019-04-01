@@ -79,6 +79,7 @@ const SceneSky = styled.div`
 `;
 
 const ChangeTheSky = styled.button`
+  display: none;
   position: relative;
   z-index: 5000;
   color: #fff;

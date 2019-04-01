@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { FormInput } from "../../styles/Commons/FormFields";
+import { FormTextarea } from "../../styles/Commons/FormFields";
 
-const InputStyled = styled(FormInput)`
+const FormTextareaFieldStyled = styled(FormTextarea)`
   position: relative;
   width: 100%;
   margin: 2rem 0;
   padding-top: 2rem;
 
   @media (min-width: ${props => props.theme.bpTablet}) {
-    width: calc(50% - 4rem);
     margin: 2rem;
   }
 
@@ -25,7 +24,7 @@ const InputStyled = styled(FormInput)`
   }
 `;
 
-class FormInputField extends Component {
+class FormTextareaField extends Component {
   render() {
     const errorMessageData = this.props.errors.find(error => {
       if (error.idref === this.props.id) {
@@ -44,23 +43,21 @@ class FormInputField extends Component {
     ) : (
       false
     );
-
     return (
-      <InputStyled>
+      <FormTextareaFieldStyled>
         <label htmlFor={this.props.id}>{this.props.label}</label>
         {errorMessage}
-        <input
-          type={this.props.type}
+        <textarea
+          cols={this.props.cols}
+          rows={this.props.rows}
           name={this.props.id}
           id={this.props.id}
-          placeholder={this.props.placeholder}
-          value={this.props.value}
           onChange={this.props.onChange}
-          required={this.props.required}
+          value={this.props.value}
         />
-      </InputStyled>
+      </FormTextareaFieldStyled>
     );
   }
 }
 
-export default FormInputField;
+export default FormTextareaField;

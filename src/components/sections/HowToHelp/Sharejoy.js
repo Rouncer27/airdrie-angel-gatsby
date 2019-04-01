@@ -206,14 +206,14 @@ class Sharejoy extends Component {
                   Instagram
                 </a>
               </li>
-              <li className="intro-social__list--item intro-social__list--tw">
+              <li className="intro-social__list--item intro-social__list--yt">
                 <a
                   rel="noopener noreferrer"
-                  title="Follow us on Twitter"
+                  title="Follow us on Youtube"
                   target="_blank"
-                  href={this.props.socialMedia.aap_twitter}
+                  href={this.props.socialMedia.aap_youtube}
                 >
-                  Twitter
+                  Youtube
                 </a>
               </li>
             </ul>

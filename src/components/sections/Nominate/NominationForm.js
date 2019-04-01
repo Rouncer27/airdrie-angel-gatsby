@@ -14,6 +14,7 @@ import {
 } from "../../styles/Commons/FormFields";
 
 import FormInputField from "../FormParts/FormInputField";
+import FormTextareaField from "../FormParts/FormTextareaField";
 
 import SuccessMessage from "../FormItems/SuccessMessage";
 import SubmitMessage from "../FormItems/SubmitMessage";
@@ -178,13 +179,12 @@ class NominationForm extends Component {
         if (res.data.status === "mail_sent") {
           setTimeout(() => {
             this.emailWasSent(res.data.message);
-            console.log(res.data.message);
           }, 1000);
         } else if (res.data.status === "validation_failed") {
           setTimeout(() => {
             console.log(res.data.message);
             console.log(res.data.invalidFields);
-            //this.formHaveErrors(res.data.message, res.data.invalidFields);
+            this.formHaveErrors(res.data.message, res.data.invalidFields);
           }, 1000);
         }
       })
@@ -195,6 +195,17 @@ class NominationForm extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  formHaveErrors(mess, errors) {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        errorsWarn: true,
+        errors: errors
+      };
+    });
   }
 
   emailWasSent(mess) {
@@ -218,6 +229,17 @@ class NominationForm extends Component {
     });
   }
 
+  formHaveErrors(mess, errors) {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        submitting: false,
+        errorsWarn: true,
+        errors: errors
+      };
+    });
+  }
+
   clearTheForm() {
     this.setState(prevState => {
       return {
@@ -225,7 +247,28 @@ class NominationForm extends Component {
         submitting: false,
         succsess: false,
         errorsWarn: false,
-        errors: []
+        errors: [],
+        firstname: "",
+        lastname: "",
+        phone: "",
+        email: "",
+        city: "",
+        hear: "default",
+        relationship: "",
+        nomfirstname: "",
+        nomlastname: "",
+        nomphone: "",
+        nomemail: "",
+        nomaddress: "",
+        nomaddressfeilds: "",
+        nomfam: "",
+        nomsafe: "",
+        nomstory: "",
+        nombenefit: "",
+        nomhelped: "",
+        nomhelpedhow: "",
+        nomanonymous: "",
+        consent: ""
       };
     });
   }
@@ -252,6 +295,8 @@ class NominationForm extends Component {
       false
     );
 
+    // Errors //
+
     return (
       <NominationFormSection>
         <StandardWrapper>
@@ -276,7 +321,7 @@ class NominationForm extends Component {
               placeholder="First Name"
               value={this.state.firstname}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="What is your Last Name &#42;"
@@ -285,7 +330,7 @@ class NominationForm extends Component {
               placeholder="Last Name"
               value={this.state.lastname}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="What is your Phone Number &#42;"
@@ -294,7 +339,7 @@ class NominationForm extends Component {
               placeholder="Phone Number"
               value={this.state.phone}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="What is your email &#42;"
@@ -303,7 +348,7 @@ class NominationForm extends Component {
               placeholder="email"
               value={this.state.email}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="What City do you live in? &#42;"
@@ -312,7 +357,7 @@ class NominationForm extends Component {
               placeholder="Name of City"
               value={this.state.city}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
 
             <SelectDropdown>
@@ -324,7 +369,6 @@ class NominationForm extends Component {
                   name="hear"
                   onChange={this.onChange}
                   value={this.state.hear}
-                  required
                 >
                   <option disabled value="default">
                     {" "}
@@ -361,20 +405,16 @@ class NominationForm extends Component {
               </div>
             </SelectDropdown>
 
-            <StyledTextarea>
-              <label htmlFor="relationship">
-                What is you relationship to Nominee? &#42;
-              </label>
-              <textarea
-                cols="40"
-                rows="8"
-                name="relationship"
-                id="relationship"
-                onChange={this.onChange}
-                value={this.state.relationship}
-                required
-              />
-            </StyledTextarea>
+            <FormTextareaField
+              label="What is you relationship to Nominee? &#42;"
+              cols="40"
+              rows="8"
+              name="relationship"
+              id="relationship"
+              onChange={this.onChange}
+              value={this.state.relationship}
+              errors={this.state.errors}
+            />
 
             <NomineeInfromation>
               <h3>Nominee Infromation</h3>
@@ -391,7 +431,7 @@ class NominationForm extends Component {
               placeholder="Nominee's First Name"
               value={this.state.nomfirstname}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="Nominee's Last Name &#42;"
@@ -400,7 +440,7 @@ class NominationForm extends Component {
               placeholder="Nominee's Last Name"
               value={this.state.nomlastname}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="Nominee's Phone Number &#42;"
@@ -409,7 +449,7 @@ class NominationForm extends Component {
               placeholder="Nominee's Phone Number"
               value={this.state.nomphone}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <FormInputField
               label="Nominee's email &#42;"
@@ -418,7 +458,7 @@ class NominationForm extends Component {
               placeholder="Nominee's email"
               value={this.state.nomemail}
               onChange={this.onChange}
-              required={true}
+              errors={this.state.errors}
             />
             <RadioInput>
               <label htmlFor="nomaddress">
@@ -449,36 +489,28 @@ class NominationForm extends Component {
             </RadioInput>
 
             {this.state.nomaddress === "yes" && (
-              <StyledTextarea>
-                <label htmlFor="nomaddressfeilds">Nominee Address &#42;</label>
-                <textarea
-                  cols="40"
-                  rows="8"
-                  name="nomaddressfeilds"
-                  id="nomaddressfeilds"
-                  onChange={this.onChange}
-                  value={this.state.nomaddressfeilds}
-                  required
-                />
-              </StyledTextarea>
-            )}
-
-            <StyledTextarea>
-              <label htmlFor="nomfam">Family Details for Nominee &#42;</label>
-              <p>
-                Family Details for Nominee (include details such as names, ages,
-                sex). Name are not required if there are privacy issues.
-              </p>
-              <textarea
+              <FormTextareaField
+                label="Nominee Address &#42;"
                 cols="40"
                 rows="8"
-                name="nomfam"
-                id="nomfam"
+                name="nomaddressfeilds"
+                id="nomaddressfeilds"
                 onChange={this.onChange}
-                value={this.state.nomfam}
-                required
+                value={this.state.nomaddressfeilds}
+                errors={this.state.errors}
               />
-            </StyledTextarea>
+            )}
+
+            <FormTextareaField
+              label="Family Details for Nominee &#42;Family Details for Nominee (include details such as names, ages, sex). Name are not required if there are privacy issues."
+              cols="40"
+              rows="8"
+              name="nomfam"
+              id="nomfam"
+              onChange={this.onChange}
+              value={this.state.nomfam}
+              errors={this.state.errors}
+            />
             <RadioInput>
               <label htmlFor="nomsafe">
                 Are there any safety or privacy concerns regarding the Nominee?
@@ -507,35 +539,28 @@ class NominationForm extends Component {
               </label>
               <br />
             </RadioInput>
-            <StyledTextarea>
-              <label htmlFor="nomstory">
-                Please share the Nominee’s story with us &#42;
-              </label>
-              <textarea
-                cols="40"
-                rows="8"
-                name="nomstory"
-                id="nomstory"
-                onChange={this.onChange}
-                value={this.state.nomstory}
-                required
-              />
-            </StyledTextarea>
-            <StyledTextarea>
-              <label htmlFor="nombenefit">
-                Why or how do you think they would benefit as a recipient of the
-                program? &#42;
-              </label>
-              <textarea
-                cols="40"
-                rows="8"
-                name="nombenefit"
-                id="nombenefit"
-                onChange={this.onChange}
-                value={this.state.nombenefit}
-                required
-              />
-            </StyledTextarea>
+
+            <FormTextareaField
+              label="Please share the Nominee’s story with us &#42;"
+              cols="40"
+              rows="8"
+              name="nomstory"
+              id="nomstory"
+              onChange={this.onChange}
+              value={this.state.nomstory}
+              errors={this.state.errors}
+            />
+
+            <FormTextareaField
+              label="Why or how do you think they would benefit as a recipient of the program? &#42;"
+              cols="40"
+              rows="8"
+              name="nombenefit"
+              id="nombenefit"
+              onChange={this.onChange}
+              value={this.state.nombenefit}
+              errors={this.state.errors}
+            />
             <RadioInput>
               <label htmlFor="nomhelped">
                 Has the Nominee helped out their community, if yes, how? &#42;
@@ -576,7 +601,6 @@ class NominationForm extends Component {
                   id="nomhelpedhow"
                   onChange={this.onChange}
                   value={this.state.nomhelpedhow}
-                  required
                 />
               </StyledTextarea>
             )}

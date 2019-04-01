@@ -10,6 +10,9 @@ import Team from "../components/sections/OurMission/Team";
 
 class OurMission extends Component {
   render() {
+    const metaTitle = this.props.data.wordpressPage.yoast.title;
+    const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
+
     const whatTitle = this.props.data.wordpressPage.acf._aap_what_is_title;
     const whatContent = this.props.data.wordpressPage.acf._aap_what_is_content;
     const whatImage = this.props.data.wordpressPage.acf._aap_what_is_image
@@ -25,7 +28,7 @@ class OurMission extends Component {
     const supportTeam = this.props.data.wordpressPage.acf._aap_support_team;
     return (
       <Layout>
-        <SEO title="Airdrie Angel - Our Mission & The Angel Support Team" />
+        <SEO title={metaTitle} description={metaDescription} />
         <What data={{ whatTitle, whatContent, whatImage }} />
         <Carre data={{ carreLogo, carreImage, carreStory, carreQuote }} />
         <Helped data={{ helpedIntro, helpedPeople }} />
@@ -38,6 +41,11 @@ class OurMission extends Component {
 export const query = graphql`
   query OurMission($id: Int!) {
     wordpressPage(wordpress_id: { eq: $id }) {
+      yoast {
+        title
+        metadesc
+      }
+
       acf {
         _aap_what_is_content
         _aap_what_is_title

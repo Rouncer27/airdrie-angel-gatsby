@@ -10,6 +10,8 @@ import NominationForm from "../components/sections/Nominate/NominationForm";
 
 class Nominate extends Component {
   render() {
+    const metaTitle = this.props.data.wordpressPage.yoast.title;
+    const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
     const questionTitleTop = this.props.data.wordpressPage.acf
       ._aap_nominate_question_title_top;
     const questionTitleBot = this.props.data.wordpressPage.acf
@@ -27,7 +29,7 @@ class Nominate extends Component {
       ._aap_criteria_bg_img;
     return (
       <Layout>
-        <SEO title="Nominate someone today - Airdrie Angel Program" />
+        <SEO title={metaTitle} description={metaDescription} />
         <Question
           data={{ questionTitleTop, questionTitleBot, questionTitleContent }}
         />
@@ -42,6 +44,10 @@ class Nominate extends Component {
 export const query = graphql`
   query Nominate($id: Int!) {
     wordpressPage(wordpress_id: { eq: $id }) {
+      yoast {
+        title
+        metadesc
+      }
       acf {
         _aap_nominate_question_title_top
         _aap_nominate_question_title_bot

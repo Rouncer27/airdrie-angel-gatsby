@@ -194,12 +194,14 @@ class Stories extends Component {
   }
 
   render() {
+    const metaTitle = this.props.data.wordpressPage.yoast.title;
+    const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
     const noMorePosts =
       this.props.data.allWordpressWpStory.edges.length <=
       this.state.currentOnPage;
     return (
       <Layout>
-        <SEO title="Recent Stories" />
+        <SEO title={metaTitle} description={metaDescription} />
         <StandardWrapper>
           <StoriesMainTitle>
             <h1>Recent Stories</h1>
@@ -248,6 +250,10 @@ export const query = graphql`
   query StoriesPage($id: Int!) {
     wordpressPage(wordpress_id: { eq: $id }) {
       title
+      yoast {
+        title
+        metadesc
+      }
     }
     allWordpressWpStory(sort: { fields: [date], order: [DESC] }) {
       edges {

@@ -10,6 +10,8 @@ import AngelSign from "../components/sections/HowToHelp/AngelSign";
 
 class HowToHelp extends Component {
   render() {
+    const metaTitle = this.props.data.wordpressPage.yoast.title;
+    const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
     const socialMedia = this.props.data.allWordpressAcfOptions.edges[0].node
       .options;
     const sponsorhipTitleTop = this.props.data.wordpressPage.acf
@@ -31,7 +33,7 @@ class HowToHelp extends Component {
 
     return (
       <Layout>
-        <SEO />
+        <SEO title={metaTitle} description={metaDescription} />
         <Sponsorship
           data={{
             sponsorhipTitleTop,
@@ -52,6 +54,10 @@ class HowToHelp extends Component {
 export const query = graphql`
   query HowToHelp($id: Int!) {
     wordpressPage(wordpress_id: { eq: $id }) {
+      yoast {
+        title
+        metadesc
+      }
       acf {
         _aap_spon_title_top
         _aap_spon_title_bot

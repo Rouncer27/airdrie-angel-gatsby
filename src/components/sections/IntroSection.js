@@ -86,8 +86,12 @@ const IntroSec = styled.div`
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       position: relative;
-      padding: 7.5rem 10rem;
+      padding: 5rem 2rem;
       z-index: 500;
+    }
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      padding: 7.5rem 10rem;
     }
 
     h3,

@@ -161,7 +161,6 @@ class Helped extends Component {
                     className="quoteItem__bot"
                     dangerouslySetInnerHTML={{ __html: people.small_quote }}
                   />
-                  {plantIcon}
                 </div>
               );
             })}

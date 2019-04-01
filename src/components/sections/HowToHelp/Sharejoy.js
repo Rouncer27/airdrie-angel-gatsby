@@ -17,21 +17,50 @@ const ShareJoyStyled = styled.div`
   );
 
   .our-sun {
+    display: none;
     top: 15rem;
     right: 30rem;
     bottom: auto;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      display: block;
+      top: 15rem;
+      right: 20rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      top: 15rem;
+      right: 30rem;
+    }
   }
 
   .our-mission-trees {
     bottom: 5rem;
-    right: 25rem;
+    right: 0;
+    transition: all 0s linear;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      right: 15rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      right: 25rem;
+    }
   }
 
   .our-tree {
     position: absolute;
     bottom: 5rem;
-    left: 25rem;
+    left: 0rem;
     width: 7.5rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      left: 10rem;
+    }
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      left: 25rem;
+    }
   }
 
   .intro-social {
@@ -114,6 +143,7 @@ const ShareJoyTitle = styled.div`
   padding-bottom: 5rem;
   margin: 0 auto;
   text-align: center;
+
   h2 {
     text-align: center;
     margin: 0;
@@ -151,11 +181,15 @@ const ShareJoyTitle = styled.div`
 
 const ShareJoyHashTag = styled.div`
   position: absolute;
-  top: 25rem;
+  top: 20rem;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 10000;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    top: 25rem;
+  }
 
   h3 {
     margin: 0;

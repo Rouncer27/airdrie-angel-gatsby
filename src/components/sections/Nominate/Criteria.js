@@ -34,6 +34,7 @@ const CriteriaContent = styled.div`
   width: 100%;
   max-width: 70rem;
   margin: 0 auto;
+  padding: 2rem;
 
   h2,
   h3,
@@ -56,6 +57,7 @@ const CriteriaContent = styled.div`
 
   p {
     font-weight: 300;
+    font-size: 2rem;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       font-size: 2.4rem;

@@ -10,9 +10,13 @@ import SignStories from "../SceneParts/SignStories";
 const StepsSection = styled.section`
   .nominate-page {
     top: -5rem;
-    left: 14rem;
+    left: 4rem;
     bottom: auto;
     transform: rotate(-12deg);
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      left: 14rem;
+    }
   }
 
   .nominate-page-stories {
@@ -25,6 +29,15 @@ const StepsSection = styled.section`
 
 const StepsTitle = styled.div`
   width: 100%;
+  margin-bottom: 5rem;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin-bottom: 5rem;
+  }
+
+  @media (min-width: ${props => props.theme.bpDesksm}) {
+    margin-bottom: 2rem;
+  }
 
   h2 {
     width: 100%;
@@ -81,7 +94,11 @@ const StyledStepTitle = styled.div`
 
 const StyledStepContent = styled(StandardParagraph)`
   width: 100%;
-  padding: 5rem;
+  padding: 3rem 1.5rem;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    padding: 5rem;
+  }
 
   &.step-1 {
     border: 0.2rem solid ${props => props.theme.navyBlue};

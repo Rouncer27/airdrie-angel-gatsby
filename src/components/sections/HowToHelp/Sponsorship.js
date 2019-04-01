@@ -37,6 +37,7 @@ const SponsorshipContent = styled.div`
   width: 100%;
   max-width: 70rem;
   margin: 0 auto;
+  padding: 2rem;
 
   h2,
   h3,
@@ -59,6 +60,7 @@ const SponsorshipContent = styled.div`
 
   p {
     font-weight: 300;
+    font-size: 1.8rem;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
       font-size: 2rem;
@@ -71,9 +73,14 @@ const SponsorshipButtons = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 10rem;
+  margin-top: 2rem;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin-top: 10rem;
+  }
 
   a {
+    margin-bottom: 2rem;
     min-width: 30rem;
     text-align: center;
   }

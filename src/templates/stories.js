@@ -20,16 +20,19 @@ const StoriesContainer = styled.div`
 const StoryCard = styled(Link)`
   position: relative;
   width: 100%;
+  margin: 3rem 0;
   padding: 2rem;
   transition: all 0.5s linear;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   text-align: center;
-  box-shadow: 0 0 1rem ${props => props.theme.greyLight};
+  box-shadow: 0 0 1rem ${props => props.theme.black};
   overflow: hidden;
 
   @media (min-width: ${props => props.theme.bpTablet}) {
     width: calc(33% - 4rem);
     margin: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem ${props => props.theme.greyLight};
   }
 
   @media (min-width: ${props => props.theme.bpDesksm}) {
@@ -142,7 +145,11 @@ const StoriesMainTitle = styled.div`
 
   .stoires-plane {
     top: auto;
+
+    right: 0;
     bottom: -9rem;
+    left: 0;
+    margin: 0 auto;
   }
 `;
 

@@ -30,7 +30,11 @@ const BeAnAngelSection = styled.section`
 
   .be-angel-tower {
     bottom: 0;
-    left: 10rem;
+    left: 0rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      left: 10rem;
+    }
   }
 `;
 

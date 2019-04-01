@@ -156,6 +156,10 @@ const CloudNineSponsorStyled = styled.div`
     text-align: center;
     color: ${props => props.theme.teal};
     font-family: ${props => props.theme.fontSec};
+    font-size: 4rem;
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 5rem;
+    }
     @media (min-width: ${props => props.theme.bpDesksm}) {
       font-size: 5rem;
     }
@@ -171,6 +175,7 @@ const StoryThankYou = styled.div`
     margin: 0;
     color: ${props => props.theme.navyBlue};
     font-family: ${props => props.theme.fontSec};
+    font-size: 2.6rem;
 
     @media (min-width: ${props => props.theme.bpDesksm}) {
       font-size: 3rem;
@@ -195,6 +200,11 @@ const LogosTitle = styled.div`
     margin: 0;
     color: ${props => props.theme.teal};
     font-family: ${props => props.theme.fontSec};
+    font-size: 3rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 4rem;
+    }
 
     @media (min-width: ${props => props.theme.bpDesksm}) {
       font-size: 4rem;
@@ -205,6 +215,11 @@ const LogosTitle = styled.div`
     margin: 0;
     color: ${props => props.theme.teal};
     font-family: ${props => props.theme.fontSec};
+    font-size: 2rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 3rem;
+    }
 
     @media (min-width: ${props => props.theme.bpDesksm}) {
       font-size: 3rem;
@@ -215,6 +230,11 @@ const LogosTitle = styled.div`
     margin: 0;
     color: ${props => props.theme.teal};
     font-family: ${props => props.theme.fontSec};
+    font-size: 2rem;
+
+    @media (min-width: ${props => props.theme.bpTablet}) {
+      font-size: 2.5rem;
+    }
 
     @media (min-width: ${props => props.theme.bpDesksm}) {
       font-size: 2.5rem;

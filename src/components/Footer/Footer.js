@@ -4,7 +4,7 @@ import { Link, StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
 const MainFooter = styled.footer`
-  padding: 5rem 2rem;
+  padding: 2rem;
   background: rgba(255, 219, 0, 0.5);
 `;
 
@@ -12,7 +12,7 @@ const FooterWrapper = styled.div`
   width: 100%;
   max-width: 75rem;
   margin: 0 auto;
-  padding: 5rem 0;
+  padding: 2rem 0 0;
   text-align: center;
 
   p {

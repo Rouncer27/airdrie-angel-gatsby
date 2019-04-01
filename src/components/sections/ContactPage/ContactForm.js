@@ -116,7 +116,6 @@ class ContactForm extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      title: "",
       topic: "default",
       message: ""
     };
@@ -135,7 +134,6 @@ class ContactForm extends Component {
     bodyFormData.append("first-name", this.state.firstname);
     bodyFormData.append("last-name", this.state.lastname);
     bodyFormData.append("email", this.state.email);
-    bodyFormData.append("title", this.state.title);
     bodyFormData.append("topic", this.state.topic);
     bodyFormData.append("message", this.state.message);
 
@@ -212,7 +210,6 @@ class ContactForm extends Component {
         firstname: "",
         lastname: "",
         email: "",
-        title: "",
         topic: "default",
         message: ""
       };
@@ -263,16 +260,6 @@ class ContactForm extends Component {
 
     const emailError = this.state.errors.map(error => {
       if (error.idref === "email") {
-        return (
-          <p className="field-error-message" key={error.idref}>
-            {error.message}
-          </p>
-        );
-      }
-    });
-
-    const titleError = this.state.errors.map(error => {
-      if (error.idref === "title") {
         return (
           <p className="field-error-message" key={error.idref}>
             {error.message}
@@ -332,18 +319,6 @@ class ContactForm extends Component {
                 id="email"
                 placeholder="email"
                 value={this.state.email}
-                onChange={this.onChange}
-              />
-            </InputStyled>
-            <InputStyled>
-              <label htmlFor="title">Title &#42;</label>
-              {titleError}
-              <input
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Title"
-                value={this.state.title}
                 onChange={this.onChange}
               />
             </InputStyled>

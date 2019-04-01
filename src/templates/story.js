@@ -232,6 +232,8 @@ const LogosWrapper = styled.div`
 
 class Story extends Component {
   render() {
+    const metaTitle = this.props.data.wordpressWpStory.yoast.title;
+    const metaDescription = this.props.data.wordpressWpStory.yoast.metadesc;
     const totalStories = this.props.data.allWordpressWpStory.edges.length - 1;
     const currentPost = this.props.data.allWordpressWpStory.edges.findIndex(
       post => {
@@ -298,7 +300,7 @@ class Story extends Component {
     }
     return (
       <Layout>
-        <SEO />
+        <SEO title={metaTitle} description={metaDescription} />
         <div>
           <StandardWrapper>
             <StoryTitle>
@@ -416,6 +418,10 @@ class Story extends Component {
 export const query = graphql`
   query Story($slug: String!) {
     wordpressWpStory(slug: { eq: $slug }) {
+      yoast {
+        title
+        metadesc
+      }
       title
       date
       slug

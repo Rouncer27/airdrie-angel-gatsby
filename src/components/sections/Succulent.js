@@ -7,7 +7,7 @@ import { StandardWrapper } from "../styles/Commons/Wrappers";
 const SucculentSection = styled.div`
   position: relative;
   width: 100%;
-  padding: 10rem 0 20rem;
+  padding: 10rem 0 15rem;
   background: linear-gradient(
     to right,
     ${props => props.theme.teal} 0%,
@@ -15,6 +15,10 @@ const SucculentSection = styled.div`
     ${props => props.theme.teal} 100%
   );
   overflow: hidden;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    padding: 10rem 0 20rem;
+  }
 `;
 
 const SucculentWrapper = styled(StandardWrapper)`
@@ -33,8 +37,12 @@ const SucculentImage = styled.div`
   bottom: -25rem;
   left: 0;
   width: 100%;
-  max-width: 50rem;
+  max-width: 40rem;
   margin: 0 auto;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    max-width: 50rem;
+  }
 `;
 
 const SucculentTitle = styled.div`
@@ -45,6 +53,7 @@ const SucculentTitle = styled.div`
     margin-bottom: 2rem;
     color: ${props => props.theme.navyBlue};
     font-family: ${props => props.theme.fontSec};
+    font-size: 2.6rem;
     font-weight: 400;
     text-align: center;
     line-height: 1.25;
@@ -57,12 +66,17 @@ const SucculentTitle = styled.div`
 
 const SucculentContent = styled.div`
   width: 100%;
-  margin: 2.5rem auto 5rem;
+  margin: 2.5rem auto 0;
+
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    margin: 2.5rem auto 5rem;
+  }
 
   p {
     margin-bottom: 2rem;
     color: ${props => props.theme.navyBlue};
     font-weight: 300;
+    font-size: 2rem;
     text-align: center;
     line-height: 1.25;
 

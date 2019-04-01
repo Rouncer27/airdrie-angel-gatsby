@@ -65,6 +65,12 @@ const StyledTextarea = styled(FormTextarea)`
 const StyledFormButton = styled(FormButton)`
   width: 100%;
   text-align: center;
+
+  button:disabled {
+    color: ${props => props.theme.white};
+    opacity: 0.25;
+    background: ${props => props.theme.grey};
+  }
 `;
 
 const NomineeInfromation = styled.div`
@@ -103,6 +109,7 @@ class NominationForm extends Component {
     this.emailWasSent = this.emailWasSent.bind(this);
     this.removeTheWarn = this.removeTheWarn.bind(this);
     this.clearTheForm = this.clearTheForm.bind(this);
+    this.onChangeConsent = this.onChangeConsent.bind(this);
 
     this.state = {
       submitting: false,
@@ -197,6 +204,15 @@ class NominationForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onChangeConsent() {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        consent: this.state.consent === "yes" ? "" : "yes"
+      };
+    });
+  }
+
   formHaveErrors(mess, errors) {
     this.setState(prevState => {
       return {
@@ -259,15 +275,15 @@ class NominationForm extends Component {
         nomlastname: "",
         nomphone: "",
         nomemail: "",
-        nomaddress: "",
+        nomaddress: "no",
         nomaddressfeilds: "",
         nomfam: "",
-        nomsafe: "",
+        nomsafe: "no",
         nomstory: "",
         nombenefit: "",
-        nomhelped: "",
+        nomhelped: "no",
         nomhelpedhow: "",
-        nomanonymous: "",
+        nomanonymous: "no",
         consent: ""
       };
     });
@@ -297,6 +313,28 @@ class NominationForm extends Component {
 
     // Errors //
 
+    const hearError = this.state.errors.find(error => {
+      if (error.idref === "hear") {
+        return (
+          <p className="field-error-message" key={error.idref}>
+            {error.message}
+          </p>
+        );
+      }
+    });
+
+    const disableTheButton =
+      this.state.consent === "yes" &&
+      this.state.nomanonymous !== "" &&
+      this.state.nomhelped !== "" &&
+      this.state.nomsafe !== "" &&
+      this.state.nomaddress !== "" &&
+      this.state.hear !== "default"
+        ? false
+        : true;
+
+    console.log(disableTheButton);
+
     return (
       <NominationFormSection>
         <StandardWrapper>
@@ -322,6 +360,7 @@ class NominationForm extends Component {
               value={this.state.firstname}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="What is your Last Name &#42;"
@@ -331,6 +370,7 @@ class NominationForm extends Component {
               value={this.state.lastname}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="What is your Phone Number &#42;"
@@ -340,6 +380,7 @@ class NominationForm extends Component {
               value={this.state.phone}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="What is your email &#42;"
@@ -349,6 +390,7 @@ class NominationForm extends Component {
               value={this.state.email}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="What City do you live in? &#42;"
@@ -358,12 +400,14 @@ class NominationForm extends Component {
               value={this.state.city}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
 
             <SelectDropdown>
               <label>
                 How did you hear about the Airdrie Angel program? &#42;
               </label>
+              {hearError}
               <div className="select-container">
                 <select
                   name="hear"
@@ -414,6 +458,7 @@ class NominationForm extends Component {
               onChange={this.onChange}
               value={this.state.relationship}
               errors={this.state.errors}
+              required
             />
 
             <NomineeInfromation>
@@ -432,6 +477,7 @@ class NominationForm extends Component {
               value={this.state.nomfirstname}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="Nominee's Last Name &#42;"
@@ -441,6 +487,7 @@ class NominationForm extends Component {
               value={this.state.nomlastname}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="Nominee's Phone Number &#42;"
@@ -450,6 +497,7 @@ class NominationForm extends Component {
               value={this.state.nomphone}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <FormInputField
               label="Nominee's email &#42;"
@@ -459,6 +507,7 @@ class NominationForm extends Component {
               value={this.state.nomemail}
               onChange={this.onChange}
               errors={this.state.errors}
+              required
             />
             <RadioInput>
               <label htmlFor="nomaddress">
@@ -498,6 +547,7 @@ class NominationForm extends Component {
                 onChange={this.onChange}
                 value={this.state.nomaddressfeilds}
                 errors={this.state.errors}
+                required
               />
             )}
 
@@ -510,6 +560,7 @@ class NominationForm extends Component {
               onChange={this.onChange}
               value={this.state.nomfam}
               errors={this.state.errors}
+              required
             />
             <RadioInput>
               <label htmlFor="nomsafe">
@@ -549,6 +600,7 @@ class NominationForm extends Component {
               onChange={this.onChange}
               value={this.state.nomstory}
               errors={this.state.errors}
+              required
             />
 
             <FormTextareaField
@@ -560,6 +612,7 @@ class NominationForm extends Component {
               onChange={this.onChange}
               value={this.state.nombenefit}
               errors={this.state.errors}
+              required
             />
             <RadioInput>
               <label htmlFor="nomhelped">
@@ -601,6 +654,7 @@ class NominationForm extends Component {
                   id="nomhelpedhow"
                   onChange={this.onChange}
                   value={this.state.nomhelpedhow}
+                  required
                 />
               </StyledTextarea>
             )}
@@ -643,7 +697,7 @@ class NominationForm extends Component {
                   type="checkbox"
                   name="consent"
                   value="yes"
-                  onChange={this.onChange}
+                  onChange={this.onChangeConsent}
                 />
                 <label htmlFor="consent-1">
                   <span className="checkbox">Yes</span>
@@ -651,7 +705,7 @@ class NominationForm extends Component {
               </div>
             </CheckboxInput>
             <StyledFormButton>
-              <button>Submit</button>
+              <button disabled={disableTheButton}>Submit</button>
             </StyledFormButton>
           </FormStyled>
         </StandardWrapper>

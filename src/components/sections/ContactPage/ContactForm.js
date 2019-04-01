@@ -49,6 +49,21 @@ const FormStyled = styled(FormMain)`
   width: 100%;
 `;
 
+const SelectDropdownStyled = styled(SelectDropdown)`
+  position: relative;
+  padding-top: 3rem;
+
+  .field-error-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: ${props => props.theme.strongred};
+    font-size: 1.4rem;
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 700;
+  }
+`;
+
 const InputStyled = styled(FormInput)`
   position: relative;
   width: 100%;
@@ -116,7 +131,7 @@ class ContactForm extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      topic: "default",
+      topic: "",
       message: ""
     };
   }
@@ -210,7 +225,7 @@ class ContactForm extends Component {
         firstname: "",
         lastname: "",
         email: "",
-        topic: "default",
+        topic: "",
         message: ""
       };
     });
@@ -260,6 +275,16 @@ class ContactForm extends Component {
 
     const emailError = this.state.errors.map(error => {
       if (error.idref === "email") {
+        return (
+          <p className="field-error-message" key={error.idref}>
+            {error.message}
+          </p>
+        );
+      }
+    });
+
+    const topicError = this.state.errors.map(error => {
+      if (error.idref === "topic") {
         return (
           <p className="field-error-message" key={error.idref}>
             {error.message}
@@ -323,15 +348,16 @@ class ContactForm extends Component {
               />
             </InputStyled>
 
-            <SelectDropdown>
+            <SelectDropdownStyled>
               <label>Your Message Topic &#42;</label>
+              {topicError}
               <div className="select-container">
                 <select
                   name="topic"
                   onChange={this.onChange}
                   value={this.state.hear}
                 >
-                  <option value="default"> -- select an option -- </option>
+                  <option value=""> -- select an option -- </option>
                   <option title="sponsorship" value="sponsorship">
                     Sponsorship
                   </option>
@@ -346,7 +372,7 @@ class ContactForm extends Component {
                   </option>
                 </select>
               </div>
-            </SelectDropdown>
+            </SelectDropdownStyled>
 
             <StyledTextarea>
               <label htmlFor="message">Message &#42;</label>

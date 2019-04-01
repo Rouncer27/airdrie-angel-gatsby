@@ -132,11 +132,23 @@ const CheckboxInput = styled.div`
 `;
 
 const RadioInput = styled.div`
+  position: relative;
   width: 100%;
   margin: 2rem 0;
+  padding-top: 3rem;
 
   @media (min-width: ${props => props.theme.bpTablet}) {
     margin: 2rem;
+  }
+
+  .field-error-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: ${props => props.theme.strongred};
+    font-size: 1.4rem;
+    font-family: ${props => props.theme.fontSec};
+    font-weight: 700;
   }
 
   label {

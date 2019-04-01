@@ -54,6 +54,7 @@ class FormTextareaField extends Component {
           id={this.props.id}
           onChange={this.props.onChange}
           value={this.props.value}
+          required={this.props.required}
         />
       </FormTextareaFieldStyled>
     );

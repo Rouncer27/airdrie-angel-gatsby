@@ -67,6 +67,7 @@ class CloudNine extends Component {
               </StandardWrapper>
               <StandardWrapper className="cloud-nine-wrapper">
                 {currentDisplay.map(sponsor => {
+                  console.log(sponsor);
                   const id = sponsor.node.wordpress_id;
                   const link = sponsor.node.acf._aap_link;
                   const imgUrl =

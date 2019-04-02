@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
-import { StandardParagraph } from "../../styles/Commons/Paragraphs";
 import Trees from "../SceneParts/Trees";
 import PlantOne from "../SceneParts/PlantOne";
 import PlantTwo from "../SceneParts/PlantTwo";

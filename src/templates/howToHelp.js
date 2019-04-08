@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import ShareJoy from "../components/sections/HowToHelp/Sharejoy";
 import Sponsorship from "../components/sections/HowToHelp/Sponsorship";
 import BeAnAngel from "../components/sections/HowToHelp/BeAnAngel";
-import AngelSign from "../components/sections/HowToHelp/AngelSign";
+import Initiative from "../components/sections/HowToHelp/Initiative";
 
 class HowToHelp extends Component {
   render() {
@@ -31,6 +31,7 @@ class HowToHelp extends Component {
     const AngelSignBG = this.props.data.wordpressPage.acf._aap_angel_sign_bg
       .localFile.childImageSharp.fluid;
 
+    const initiatives = this.props.data.allWordpressWpInitiatives.edges;
     return (
       <Layout>
         <SEO title={metaTitle} description={metaDescription} />
@@ -43,9 +44,9 @@ class HowToHelp extends Component {
             sponsorhipBGImage
           }}
         />
-        <ShareJoy socialMedia={socialMedia} />
         <BeAnAngel />
-        <AngelSign data={{ AngelSignPoster, AngelSignBG }} />
+        <Initiative data={initiatives} />
+        <ShareJoy socialMedia={socialMedia} />
       </Layout>
     );
   }
@@ -90,6 +91,31 @@ export const query = graphql`
             childImageSharp {
               fluid(maxWidth: 2000) {
                 ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+
+    allWordpressWpInitiatives {
+      edges {
+        node {
+          wordpress_id
+          slug
+          acf {
+            _app_init_title
+            _app_init_date
+            _app_init_location
+            _app_init_excerpt
+            _app_init_featured_image {
+              alt_text
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 2000) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
           }

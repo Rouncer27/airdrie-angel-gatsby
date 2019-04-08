@@ -5,9 +5,13 @@ import Trees from "../SceneParts/Trees";
 import Tree from "../SceneParts/Tree";
 import Sun from "../SceneParts/Sun";
 
+import { StandardWrapper } from "../../styles/Commons/Wrappers";
+import { BigTealLink } from "../../styles/Commons/Buttons";
+
 const ShareJoyStyled = styled.div`
   position: relative;
-  padding: 0 2rem 35rem;
+  margin-top: 5rem;
+  padding: 0 2rem 30rem;
   background: linear-gradient(
     to top,
     ${props => props.theme.green} 0%,
@@ -15,6 +19,15 @@ const ShareJoyStyled = styled.div`
     ${props => props.theme.white} 15rem,
     ${props => props.theme.white} 100%
   );
+
+  .sharejoy__wrapper {
+    align-items: center;
+
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      justify-content: space-between;
+      max-width: 70rem;
+    }
+  }
 
   .our-sun {
     display: none;
@@ -136,65 +149,36 @@ const ShareJoyStyled = styled.div`
 `;
 
 const ShareJoyTitle = styled.div`
-  position: relative;
   width: 100%;
-  max-width: 75rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  margin: 0 auto;
+  margin-bottom: 3rem;
   text-align: center;
 
+  @media (min-width: ${props => props.theme.bpTablet}) {
+    width: 45%;
+    margin-bottom: 0;
+  }
+
   h2 {
-    text-align: center;
-    margin: 0;
     color: ${props => props.theme.navyBlue};
-  }
-
-  &::before {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 6.9rem;
-    height: 5rem;
-    margin: auto;
-    background-image: url(${HandWings});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    z-index: 500;
-    content: "";
-  }
-
-  &::after {
-    position: absolute;
-    bottom: 1rem;
-    right: 0;
-    left: 0;
-    width: 70rem;
-    height: 0.25rem;
-    margin: auto;
-    background: ${props => props.theme.teal};
-    content: "";
   }
 `;
 
 const ShareJoyHashTag = styled.div`
-  position: absolute;
-  top: 20rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 10000;
+  width: 100%;
 
   @media (min-width: ${props => props.theme.bpTablet}) {
-    top: 25rem;
+    width: 40%;
   }
 
   h3 {
     margin: 0;
     color: ${props => props.theme.teal};
+    text-align: center;
     line-height: 1;
+  }
+
+  ul {
+    text-align: center;
   }
 `;
 
@@ -213,46 +197,50 @@ class Sharejoy extends Component {
   render() {
     return (
       <ShareJoyStyled>
-        <ShareJoyTitle>
-          <h2>How To Help</h2>
-        </ShareJoyTitle>
-        <ShareJoyHashTag>
-          <h3>&#35;sharejoy</h3>
-          <div className="intro-social">
-            <ul className="intro-social__list">
-              <li className="intro-social__list--item intro-social__list--fb">
-                <a
-                  rel="noopener noreferrer"
-                  title="Follow us on Facebook"
-                  target="_blank"
-                  href={this.props.socialMedia.aap_facebook}
-                >
-                  Facebook
-                </a>
-              </li>
-              <li className="intro-social__list--item intro-social__list--ig">
-                <a
-                  rel="noopener noreferrer"
-                  title="Follow us on Instagram"
-                  target="_blank"
-                  href={this.props.socialMedia.aap_instagram}
-                >
-                  Instagram
-                </a>
-              </li>
-              <li className="intro-social__list--item intro-social__list--yt">
-                <a
-                  rel="noopener noreferrer"
-                  title="Follow us on Youtube"
-                  target="_blank"
-                  href={this.props.socialMedia.aap_youtube}
-                >
-                  Youtube
-                </a>
-              </li>
-            </ul>
-          </div>
-        </ShareJoyHashTag>
+        <StandardWrapper className="sharejoy__wrapper">
+          <ShareJoyTitle>
+            <h2>News &amp; Events</h2>
+            <BigTealLink to="/how-to-help">Read the Latest</BigTealLink>
+          </ShareJoyTitle>
+          <ShareJoyHashTag>
+            <h3>&#35;sharejoy</h3>
+            <div className="intro-social">
+              <ul className="intro-social__list">
+                <li className="intro-social__list--item intro-social__list--fb">
+                  <a
+                    rel="noopener noreferrer"
+                    title="Follow us on Facebook"
+                    target="_blank"
+                    href={this.props.socialMedia.aap_facebook}
+                  >
+                    Facebook
+                  </a>
+                </li>
+                <li className="intro-social__list--item intro-social__list--ig">
+                  <a
+                    rel="noopener noreferrer"
+                    title="Follow us on Instagram"
+                    target="_blank"
+                    href={this.props.socialMedia.aap_instagram}
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li className="intro-social__list--item intro-social__list--yt">
+                  <a
+                    rel="noopener noreferrer"
+                    title="Follow us on Youtube"
+                    target="_blank"
+                    href={this.props.socialMedia.aap_youtube}
+                  >
+                    Youtube
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ShareJoyHashTag>
+        </StandardWrapper>
+
         <ShareJoySubscribe>
           <p>Subscribe to our YouTube Channel or Like Us on Facebook</p>
         </ShareJoySubscribe>

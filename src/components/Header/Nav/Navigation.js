@@ -101,14 +101,13 @@ class Navigation extends Component {
                   return (
                     <Link
                       key={item.wordpress_id}
+                      dangerouslySetInnerHTML={{ __html: item.title }}
                       to={
                         item.object_slug === "home"
                           ? "/"
                           : `/${item.object_slug}`
                       }
-                    >
-                      {item.title}
-                    </Link>
+                    />
                   );
                 })}
               </NavWrapper>

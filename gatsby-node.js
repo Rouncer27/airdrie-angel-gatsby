@@ -25,6 +25,14 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+
+          allWordpressPost {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
       `
     ).then(result => {
@@ -62,6 +70,14 @@ exports.createPages = ({ graphql, actions }) => {
               id: edge.node.wordpress_id
             }
           });
+        } else if (edge.node.template === "tpl-page-news-events.php") {
+          createPage({
+            path: `/${edge.node.slug}`,
+            component: path.resolve(`./src/templates/news.js`),
+            context: {
+              id: edge.node.wordpress_id
+            }
+          });
         } else if (edge.node.template === "tpl-page-our-mission.php") {
           createPage({
             path: `/${edge.node.slug}`,
@@ -93,6 +109,16 @@ exports.createPages = ({ graphql, actions }) => {
         createPage({
           path: `/stories/${edge.node.slug}`,
           component: path.resolve(`./src/templates/story.js`),
+          context: {
+            slug: edge.node.slug
+          }
+        });
+      });
+
+      result.data.allWordpressPost.edges.forEach(edge => {
+        createPage({
+          path: `/news-events/${edge.node.slug}`,
+          component: path.resolve(`./src/templates/post.js`),
           context: {
             slug: edge.node.slug
           }

@@ -200,7 +200,7 @@ class Sharejoy extends Component {
         <StandardWrapper className="sharejoy__wrapper">
           <ShareJoyTitle>
             <h2>News &amp; Events</h2>
-            <BigTealLink to="/how-to-help">Read the Latest</BigTealLink>
+            <BigTealLink to="/news-events/">Read the Latest</BigTealLink>
           </ShareJoyTitle>
           <ShareJoyHashTag>
             <h3>&#35;sharejoy</h3>

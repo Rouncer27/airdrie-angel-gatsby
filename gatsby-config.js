@@ -50,7 +50,14 @@ module.exports = {
       }
     },
     `gatsby-plugin-sitemap`,
-
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://airdrieangel.ca",
+        sitemap: "https://airdrieangel.ca/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }]
+      }
+    },
     {
       resolve: `gatsby-source-wordpress`,
       options: {

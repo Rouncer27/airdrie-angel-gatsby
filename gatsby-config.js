@@ -13,7 +13,8 @@ module.exports = {
   siteMetadata: {
     title: `Airdrie Angel`,
     description: `A gift from the heart, a lift to the spirit. Airdrie Angel is a grassroots organization that is completely community based.`,
-    author: `Trevor Rounce`
+    author: `Trevor Rounce`,
+    siteUrl: `https://airdrieangel.ca`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -48,6 +49,7 @@ module.exports = {
         head: false
       }
     },
+    `gatsby-plugin-sitemap`,
 
     {
       resolve: `gatsby-source-wordpress`,

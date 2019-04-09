@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import { StaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 import styled from "styled-components";
 
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
 import Trees from "../SceneParts/Trees";
-import PlantOne from "../SceneParts/PlantOne";
-import PlantTwo from "../SceneParts/PlantTwo";
-import PlantThree from "../SceneParts/PlantThree";
 
 const StyledHelped = styled.div`
   position: relative;
@@ -51,81 +50,92 @@ const QouteSection = styled.div`
   margin: 0 auto;
   padding: 5rem 2rem;
 
-  .helped-plant-one {
-    top: -5rem;
-    bottom: auto;
-    right: 0;
-    left: 0;
-    margin: auto;
-
-    @media (min-width: ${props => props.theme.bpTablet}) {
-      top: auto;
-      bottom: 3rem;
-      left: auto;
-      right: 2rem;
-    }
-  }
-
-  .helped-plant-two {
-    top: -5rem;
-    bottom: auto;
-    right: 0;
-    left: 0;
-    margin: auto;
-
-    @media (min-width: ${props => props.theme.bpTablet}) {
-      top: auto;
-      bottom: 3rem;
-      right: auto;
-      left: 3rem;
-    }
-  }
-
-  .helped-plant-three {
-    top: -5rem;
-    bottom: auto;
-    right: 0;
-    left: 0;
-    margin: auto;
-
-    @media (min-width: ${props => props.theme.bpTablet}) {
-      top: auto;
-      bottom: 3rem;
-      right: auto;
-      left: 3rem;
-    }
-  }
-
-  .quoteItem {
-    position: relative;
-    margin-bottom: 2rem;
-    padding: 8rem 0;
+  .quotesec__title {
     text-align: center;
+    color: ${props => props.theme.navyBlue};
+  }
+
+  .quotesec__bubbles {
+    position: relative;
+    width: 100%;
+    max-width: 75rem;
+    min-height: 75rem;
+    margin: 5rem auto;
 
     @media (min-width: ${props => props.theme.bpTablet}) {
-      padding: 4rem 12rem;
+      height: 70rem;
+      min-height: 70rem;
     }
 
-    &__top {
-      p {
-        margin: 0;
-        font-size: 2.8rem;
-        font-family: ${props => props.theme.fontSec};
+    @media (min-width: ${props => props.theme.bpDesksm}) {
+      max-width: 85rem;
+    }
 
-        @media (min-width: ${props => props.theme.bpTablet}) {
-          font-size: 3rem;
-        }
+    &--item {
+      position: relative;
+      width: 22rem;
+      margin: 0 auto;
+
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        position: absolute;
+        width: 22rem;
+      }
+
+      @media (min-width: ${props => props.theme.bpDesksm}) {
+        width: 25rem;
       }
     }
 
-    &__bot {
-      p {
-        margin: 0;
-        font-size: 1.8rem;
+    .quote-one {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 0;
+        left: 10rem;
+      }
+    }
 
-        @media (min-width: ${props => props.theme.bpTablet}) {
-          font-size: 2rem;
-        }
+    .quote-two {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 0;
+        right: 10rem;
+      }
+    }
+
+    .quote-three {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 25rem;
+        left: 0;
+      }
+    }
+
+    .quote-four {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 25rem;
+        right: 0;
+      }
+    }
+
+    .quote-five {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 50rem;
+        left: 10rem;
+      }
+    }
+
+    .quote-six {
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        top: 50rem;
+        right: 10rem;
+      }
+    }
+
+    .quote-seven {
+      display: none;
+
+      @media (min-width: ${props => props.theme.bpTablet}) {
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
@@ -134,38 +144,137 @@ const QouteSection = styled.div`
 class Helped extends Component {
   render() {
     return (
-      <StyledHelped>
-        <HelpedIntro
-          dangerouslySetInnerHTML={{ __html: this.props.data.helpedIntro }}
-        />
-        <Trees location="helped-trees" />
-        <StandardWrapper>
-          <QouteSection>
-            {this.props.data.helpedPeople.map((people, index) => {
-              let plantIcon = false;
-              if ((index + 1) % 2 === 0) {
-                plantIcon = <PlantOne location="helped-plant-one" />;
-              } else if ((index + 1) % 3 === 0) {
-                plantIcon = <PlantTwo location="helped-plant-two" />;
-              } else {
-                plantIcon = <PlantThree location="helped-plant-three" />;
+      <StaticQuery
+        query={graphql`
+          query {
+            bubbleOne: file(relativePath: { eq: "Speech-bubbles-01.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
               }
-              return (
-                <div key={index} className="quoteItem">
-                  <div
-                    className="quoteItem__top"
-                    dangerouslySetInnerHTML={{ __html: people.big_quote }}
-                  />
-                  <div
-                    className="quoteItem__bot"
-                    dangerouslySetInnerHTML={{ __html: people.small_quote }}
-                  />
-                </div>
-              );
-            })}
-          </QouteSection>
-        </StandardWrapper>
-      </StyledHelped>
+            }
+
+            bubbleTwo: file(relativePath: { eq: "Speech-bubbles-02.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+
+            bubbleThree: file(relativePath: { eq: "Speech-bubbles-03.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+
+            bubbleFour: file(relativePath: { eq: "Speech-bubbles-04.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+
+            bubbleFive: file(relativePath: { eq: "Speech-bubbles-05.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+
+            bubbleSix: file(relativePath: { eq: "Speech-bubbles-06.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+
+            middleImage: file(
+              relativePath: { eq: "Speech-bubbles-centre-08.png" }
+            ) {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        `}
+        render={data => {
+          console.log(data);
+          return (
+            <StyledHelped>
+              <HelpedIntro
+                dangerouslySetInnerHTML={{
+                  __html: this.props.data.helpedIntro
+                }}
+              />
+              <Trees location="helped-trees" />
+              <StandardWrapper>
+                <QouteSection>
+                  <div className="quotesec__title">
+                    <h2>
+                      Here are just a few of the situations that people in the
+                      Airdrie Angel Program have faced...
+                    </h2>
+                  </div>
+                  <div className="quotesec__bubbles">
+                    <div className="quotesec__bubbles--item quote-one">
+                      <Img
+                        fluid={data.bubbleOne.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. A Father of two starting over after an abusive relationship."
+                      />
+                    </div>
+                    <div className="quotesec__bubbles--item quote-two">
+                      <Img
+                        fluid={data.bubbleTwo.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. A girl's best friend whose father had a heart attack and could't work.."
+                      />
+                    </div>
+                    <div className="quotesec__bubbles--item quote-three">
+                      <Img
+                        fluid={data.bubbleThree.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. An unborn baby with a major heart defect."
+                      />
+                    </div>
+                    <div className="quotesec__bubbles--item quote-four">
+                      <Img
+                        fluid={data.bubbleFour.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. A Mother of siz in hiding from her ausive husband."
+                      />
+                    </div>
+                    <div className="quotesec__bubbles--item quote-five">
+                      <Img
+                        fluid={data.bubbleFive.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. Stories are shared on Facebook and published on Thursdays!."
+                      />
+                    </div>
+                    <div className="quotesec__bubbles--item quote-six">
+                      <Img
+                        fluid={data.bubbleSix.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. A Woman that went in for laser eye surgery and they found a brain tumor."
+                      />
+                    </div>
+
+                    <div className="quotesec__bubbles--item quote-seven">
+                      <Img
+                        fluid={data.middleImage.childImageSharp.fluid}
+                        alt="The Airdrie Angel Program. Man never made any material as resilient as the human spirit."
+                      />
+                    </div>
+                  </div>
+                </QouteSection>
+              </StandardWrapper>
+            </StyledHelped>
+          );
+        }}
+      />
     );
   }
 }

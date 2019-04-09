@@ -25,12 +25,6 @@ class HowToHelp extends Component {
     const sponsorhipBGImage = this.props.data.wordpressPage.acf._aap_spon_bg
       .localFile.childImageSharp.fluid;
 
-    const AngelSignPoster = this.props.data.wordpressPage.acf._aap_angel_sign
-      .localFile.childImageSharp.fluid;
-
-    const AngelSignBG = this.props.data.wordpressPage.acf._aap_angel_sign_bg
-      .localFile.childImageSharp.fluid;
-
     const initiatives = this.props.data.allWordpressWpInitiatives.edges;
     return (
       <Layout>
@@ -67,26 +61,6 @@ export const query = graphql`
           source_url
         }
         _aap_spon_bg {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-
-        _aap_angel_sign {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 600) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-
-        _aap_angel_sign_bg {
           localFile {
             childImageSharp {
               fluid(maxWidth: 2000) {

@@ -33,6 +33,14 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+
+          allWordpressWpInitiatives {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
       `
     ).then(result => {
@@ -119,6 +127,16 @@ exports.createPages = ({ graphql, actions }) => {
         createPage({
           path: `/news-events/${edge.node.slug}`,
           component: path.resolve(`./src/templates/post.js`),
+          context: {
+            slug: edge.node.slug
+          }
+        });
+      });
+
+      result.data.allWordpressWpInitiatives.edges.forEach(edge => {
+        createPage({
+          path: `/initiatives/${edge.node.slug}`,
+          component: path.resolve(`./src/templates/Initiative.js`),
           context: {
             slug: edge.node.slug
           }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
+import { Link } from "gatsby";
 
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
 
@@ -83,6 +84,21 @@ const InitiativeStyled = styled.section`
           color: ${props => props.theme.white};
         }
       }
+
+      &--button {
+        a {
+          display: inline-block;
+          padding: 1rem 5rem;
+          background: ${props => props.theme.white};
+          transition: all 0.3s ease;
+          color: ${props => props.theme.navyBlue};
+
+          &:hover {
+            background: ${props => props.theme.deepYellow};
+            color: ${props => props.theme.white};
+          }
+        }
+      }
     }
   }
 `;
@@ -122,6 +138,11 @@ class Initiative extends Component {
                     }}
                     className="initiative__item--content--excerpt"
                   />
+                  <div className="initiative__item--content--button">
+                    <Link to={`/initiatives/${init.node.slug}`}>
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
               </div>
             );

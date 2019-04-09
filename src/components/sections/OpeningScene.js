@@ -136,7 +136,10 @@ class OpeningScene extends Component {
           return (
             <Stage>
               <StageStyledSign>
-                <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+                <Img
+                  fluid={data.placeholderImage.childImageSharp.fluid}
+                  alt="The Airdrie Angel Program. Girt From The Heart, Lift To The Spirit."
+                />
               </StageStyledSign>
               <div>
                 <Sun time={this.state.currentPosition} />

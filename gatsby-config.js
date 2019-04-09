@@ -39,6 +39,16 @@ module.exports = {
         icon: `src/images/aa-favicon.png` // This path is relative to the root of the site.
       }
     },
+
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-138055574-1",
+        // Puts tracking script in the head instead of the body
+        head: false
+      }
+    },
+
     {
       resolve: `gatsby-source-wordpress`,
       options: {

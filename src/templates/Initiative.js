@@ -7,6 +7,7 @@ import Img from "gatsby-image";
 import moment from "moment";
 
 import { StandardWrapper } from "../components/styles/Commons/Wrappers";
+import { BigTealLink } from "../components/styles/Commons/Buttons";
 
 const InitiativeStyled = styled.article`
   .aapost__title {
@@ -69,6 +70,28 @@ class Initiative extends Component {
     const metaTitle = this.props.data.wordpressWpInitiatives.yoast.title;
     const metaDescription = this.props.data.wordpressWpInitiatives.yoast
       .metadesc;
+
+    const totalPosts =
+      this.props.data.allWordpressWpInitiatives.edges.length - 1;
+
+    const currentPost = this.props.data.allWordpressWpInitiatives.edges.findIndex(
+      post => {
+        return post.node.slug === this.props.data.wordpressWpInitiatives.slug;
+      }
+    );
+
+    const nextPost = currentPost > 0 ? currentPost - 1 : false;
+    const prevPost = currentPost < totalPosts ? currentPost + 1 : false;
+
+    const nextPostSlug =
+      nextPost || nextPost === 0
+        ? this.props.data.allWordpressWpInitiatives.edges[nextPost].node.slug
+        : false;
+
+    const prevPostSlug = prevPost
+      ? this.props.data.allWordpressWpInitiatives.edges[prevPost].node.slug
+      : false;
+
     return (
       <Layout>
         <SEO title={metaTitle} description={metaDescription} />
@@ -117,6 +140,18 @@ class Initiative extends Component {
                 />
               </div>
             </InitiativeStyled>
+            <div>
+              {nextPostSlug && (
+                <BigTealLink to={`/initiatives/${nextPostSlug}`}>
+                  Next Story
+                </BigTealLink>
+              )}
+              {prevPostSlug && (
+                <BigTealLink to={`/initiatives/${prevPostSlug}`}>
+                  Previous Story
+                </BigTealLink>
+              )}
+            </div>
           </StandardWrapper>
         </div>
       </Layout>
@@ -148,6 +183,14 @@ export const query = graphql`
               }
             }
           }
+        }
+      }
+    }
+
+    allWordpressWpInitiatives {
+      edges {
+        node {
+          slug
         }
       }
     }

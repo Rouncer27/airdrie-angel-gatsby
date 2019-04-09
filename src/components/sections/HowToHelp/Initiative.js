@@ -105,7 +105,6 @@ const InitiativeStyled = styled.section`
 
 class Initiative extends Component {
   render() {
-    console.log(this.props.data);
     return (
       <InitiativeStyled className="initiative">
         <div className="initiative__title">

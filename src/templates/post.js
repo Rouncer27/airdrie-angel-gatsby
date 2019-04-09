@@ -7,6 +7,7 @@ import Img from "gatsby-image";
 import moment from "moment";
 
 import { StandardWrapper } from "../components/styles/Commons/Wrappers";
+import { BigTealLink } from "../components/styles/Commons/Buttons";
 
 const PostStyled = styled.article`
   .aapost__title {
@@ -64,6 +65,24 @@ class Post extends Component {
   render() {
     const metaTitle = this.props.data.wordpressPost.yoast.title;
     const metaDescription = this.props.data.wordpressPost.yoast.metadesc;
+
+    const totalPosts = this.props.data.allWordpressPost.edges.length - 1;
+
+    const currentPost = this.props.data.allWordpressPost.edges.findIndex(
+      post => {
+        return post.node.slug === this.props.data.wordpressPost.slug;
+      }
+    );
+    const nextPost = currentPost > 0 ? currentPost - 1 : false;
+    const prevPost = currentPost < totalPosts ? currentPost + 1 : false;
+    const nextPostSlug =
+      nextPost || nextPost === 0
+        ? this.props.data.allWordpressPost.edges[nextPost].node.slug
+        : false;
+    const prevPostSlug = prevPost
+      ? this.props.data.allWordpressPost.edges[prevPost].node.slug
+      : false;
+
     return (
       <Layout>
         <SEO title={metaTitle} description={metaDescription} />
@@ -104,6 +123,19 @@ class Post extends Component {
                 />
               </div>
             </PostStyled>
+            <div>
+              {nextPostSlug && (
+                <BigTealLink to={`/news-events/${nextPostSlug}`}>
+                  Next Story
+                </BigTealLink>
+              )}
+              <BigTealLink to={`/news-events/`}>News & Events</BigTealLink>
+              {prevPostSlug && (
+                <BigTealLink to={`/news-events/${prevPostSlug}`}>
+                  Previous Story
+                </BigTealLink>
+              )}
+            </div>
           </StandardWrapper>
         </div>
       </Layout>

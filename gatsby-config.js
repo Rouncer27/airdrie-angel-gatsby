@@ -59,6 +59,12 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://airdrieangel.ca`
+      }
+    },
+    {
       resolve: `gatsby-source-wordpress`,
       options: {
         // your wordpress source

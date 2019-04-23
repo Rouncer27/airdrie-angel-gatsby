@@ -35,6 +35,18 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: `website`
               },
               {
+                property: `og:locale`,
+                content: `en_US`
+              },
+              {
+                property: `og:url`,
+                content: `https://airdrieangel.ca/`
+              },
+              {
+                property: `og:site_name`,
+                content: `The Airdrie Angel Program`
+              },
+              {
                 name: `twitter:card`,
                 content: `summary`
               },
@@ -49,6 +61,10 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 name: `twitter:description`,
                 content: metaDescription
+              },
+              {
+                name: `twitter:site`,
+                content: `@AirdrieAngel`
               },
               {
                 name: "google-site-verification",

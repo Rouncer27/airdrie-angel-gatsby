@@ -102,7 +102,6 @@ class Succulent extends Component {
           <SucculentTitle
             dangerouslySetInnerHTML={{ __html: this.props.data.succulentTitle }}
           />
-          <p>Hello world</p>
           <SucculentContent
             dangerouslySetInnerHTML={{
               __html: this.props.data.succulentContent

@@ -2,8 +2,8 @@ let BASE_URL = "";
 let PORTOCOL = "";
 
 if (process.env.NODE_ENV === "development") {
-  BASE_URL = "localhost/gatsby-airdrieangel";
-  PORTOCOL = "http";
+  BASE_URL = "database.airdrieangel.ca";
+  PORTOCOL = "https";
 } else {
   BASE_URL = "database.airdrieangel.ca";
   PORTOCOL = "https";

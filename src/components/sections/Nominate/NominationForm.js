@@ -10,7 +10,7 @@ import {
   CheckboxInput,
   FormButton,
   FormTextarea,
-  FormMain
+  FormMain,
 } from "../../styles/Commons/FormFields";
 
 import FormInputField from "../FormParts/FormInputField";
@@ -32,17 +32,17 @@ const NominationFormTitle = styled.div`
 
   h2 {
     margin: 0;
-    color: ${props => props.theme.teal};
+    color: ${(props) => props.theme.teal};
   }
 
   p {
     font-size: 1.8rem;
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       font-size: 1.8rem;
     }
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       font-size: 2rem;
     }
   }
@@ -57,7 +57,7 @@ const StyledTextarea = styled(FormTextarea)`
   width: 100%;
   margin: 2rem 0;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     margin: 2rem;
   }
 `;
@@ -67,9 +67,9 @@ const StyledFormButton = styled(FormButton)`
   text-align: center;
 
   button:disabled {
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     opacity: 0.25;
-    background: ${props => props.theme.grey};
+    background: ${(props) => props.theme.grey};
   }
 `;
 
@@ -78,23 +78,23 @@ const NomineeInfromation = styled.div`
   margin: 2rem 0;
   text-align: center;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     margin: 2rem;
   }
 
   h3 {
-    color: ${props => props.theme.navyBlue};
-    font-family: ${props => props.theme.fontSec};
+    color: ${(props) => props.theme.navyBlue};
+    font-family: ${(props) => props.theme.fontSec};
     font-weight: 700;
   }
 
   p {
     margin: 0;
-    color: ${props => props.theme.navyBlue};
-    font-family: ${props => props.theme.fontSec};
+    color: ${(props) => props.theme.navyBlue};
+    font-family: ${(props) => props.theme.fontSec};
     font-weight: 700;
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       font-size: 2rem;
     }
   }
@@ -136,16 +136,16 @@ class NominationForm extends Component {
       nomhelped: "no",
       nomhelpedhow: "",
       nomanonymous: "no",
-      consent: "no"
+      consent: "no",
     };
   }
 
   submitTheForm(e) {
     e.preventDefault();
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
-        submitting: !prevState.submitting
+        submitting: !prevState.submitting,
       };
     });
 
@@ -182,7 +182,7 @@ class NominationForm extends Component {
         bodyFormData,
         config
       )
-      .then(res => {
+      .then((res) => {
         if (res.data.status === "mail_sent") {
           setTimeout(() => {
             this.emailWasSent(res.data.message);
@@ -195,7 +195,7 @@ class NominationForm extends Component {
           }, 1000);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -205,59 +205,59 @@ class NominationForm extends Component {
   }
 
   onChangeConsent() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
-        consent: this.state.consent === "yes" ? "" : "yes"
+        consent: this.state.consent === "yes" ? "" : "yes",
       };
     });
   }
 
   formHaveErrors(mess, errors) {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
         submitting: false,
         errorsWarn: true,
-        errors: errors
+        errors: errors,
       };
     });
   }
 
   emailWasSent(mess) {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
         submitting: false,
-        succsess: true
+        succsess: true,
       };
     });
   }
 
   removeTheWarn() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
         submitting: false,
         succsess: false,
-        errorsWarn: false
+        errorsWarn: false,
       };
     });
   }
 
   formHaveErrors(mess, errors) {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
         submitting: false,
         errorsWarn: true,
-        errors: errors
+        errors: errors,
       };
     });
   }
 
   clearTheForm() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...prevState,
         submitting: false,
@@ -284,7 +284,7 @@ class NominationForm extends Component {
         nomhelped: "no",
         nomhelpedhow: "",
         nomanonymous: "no",
-        consent: "no"
+        consent: "no",
       };
     });
   }
@@ -313,7 +313,7 @@ class NominationForm extends Component {
 
     // Errors //
 
-    const hearError = this.state.errors.find(error => {
+    const hearError = this?.state?.errors?.find((error) => {
       if (error.idref === "hear") {
         return (
           <p className="field-error-message" key={error.idref}>

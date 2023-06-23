@@ -9,7 +9,7 @@ const InputStyled = styled(FormInput)`
   margin: 2rem 0;
   padding-top: 2rem;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     width: calc(50% - 4rem);
     margin: 2rem;
   }
@@ -18,16 +18,16 @@ const InputStyled = styled(FormInput)`
     position: absolute;
     top: 0;
     left: 0;
-    color: ${props => props.theme.strongred};
+    color: ${(props) => props.theme.strongred};
     font-size: 1.4rem;
-    font-family: ${props => props.theme.fontSec};
+    font-family: ${(props) => props.theme.fontSec};
     font-weight: 700;
   }
 `;
 
 class FormInputField extends Component {
   render() {
-    const errorMessageData = this.props.errors.find(error => {
+    const errorMessageData = this?.props?.errors?.find((error) => {
       if (error.idref === this.props.id) {
         return (
           <p className="field-error-message" key={error.idref}>

@@ -337,7 +337,7 @@ class NominationForm extends Component {
     console.log(disableTheButton);
 
     return (
-      <NominationFormSection>
+      <NominationFormSection id="nomination-form">
         <StandardWrapper>
           <NominationFormTitle>
             <h2>Nomination Form</h2>

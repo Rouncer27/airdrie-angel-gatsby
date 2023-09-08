@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import styled from "styled-components";
+import scrollTo from "gatsby-plugin-smoothscroll";
 import { StandardWrapper } from "../../styles/Commons/Wrappers";
 import { StandardParagraph } from "../../styles/Commons/Paragraphs";
 
@@ -14,7 +15,7 @@ const StepsSection = styled.section`
     bottom: auto;
     transform: rotate(-12deg);
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       left: 14rem;
     }
   }
@@ -31,18 +32,18 @@ const StepsTitle = styled.div`
   width: 100%;
   margin-bottom: 5rem;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     margin-bottom: 5rem;
   }
 
-  @media (min-width: ${props => props.theme.bpDesksm}) {
+  @media (min-width: ${(props) => props.theme.bpDesksm}) {
     margin-bottom: 2rem;
   }
 
   h2 {
     width: 100%;
     margin: 0 auto;
-    color: ${props => props.theme.teal};
+    color: ${(props) => props.theme.teal};
     font-weight: 300;
     text-align: center;
   }
@@ -65,12 +66,12 @@ const StyledStepTitle = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
-  background: ${props => props.theme.navyBlue};
+  background: ${(props) => props.theme.navyBlue};
   text-align: center;
 
   h3 {
     margin: 0;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
 
     span {
       display: block;
@@ -80,15 +81,15 @@ const StyledStepTitle = styled.div`
   }
 
   &.step-1 {
-    background: ${props => props.theme.navyBlue};
+    background: ${(props) => props.theme.navyBlue};
   }
 
   &.step-2 {
-    background: ${props => props.theme.teal};
+    background: ${(props) => props.theme.teal};
   }
 
   &.step-3 {
-    background: ${props => props.theme.deepYellow};
+    background: ${(props) => props.theme.deepYellow};
   }
 `;
 
@@ -96,24 +97,46 @@ const StyledStepContent = styled(StandardParagraph)`
   width: 100%;
   padding: 3rem 1.5rem;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     padding: 5rem;
   }
 
   &.step-1 {
-    border: 0.2rem solid ${props => props.theme.navyBlue};
+    border: 0.2rem solid ${(props) => props.theme.navyBlue};
   }
 
   &.step-2 {
-    border: 0.2rem solid ${props => props.theme.teal};
+    border: 0.2rem solid ${(props) => props.theme.teal};
   }
 
   &.step-3 {
-    border: 0.2rem solid ${props => props.theme.deepYellow};
+    border: 0.2rem solid ${(props) => props.theme.deepYellow};
   }
 
   p:last-of-type {
     margin: 0;
+  }
+
+  .nom-btn {
+    width: 100%;
+    margin-top: 2rem;
+    text-align: center;
+
+    a,
+    button {
+      padding: 2rem 4rem;
+      display: inline-block;
+      border: 0.1rem solid ${(props) => props.theme.white};
+      border-radius: 0.15rem;
+      background: ${(props) => props.theme.teal};
+      color: ${(props) => props.theme.white};
+      cursor: pointer;
+
+      &:hover {
+        background: ${(props) => props.theme.deepYellow};
+        color: ${(props) => props.theme.grey};
+      }
+    }
   }
 `;
 
@@ -137,10 +160,16 @@ class Steps extends Component {
                       {step.title}
                     </h3>
                   </StyledStepTitle>
-                  <StyledStepContent
-                    className={`step-${index + 1}`}
-                    dangerouslySetInnerHTML={{ __html: step.content }}
-                  />
+                  <StyledStepContent className={`step-${index + 1}`}>
+                    <div dangerouslySetInnerHTML={{ __html: step.content }} />
+                    {index === 0 ? (
+                      <div className="nom-btn">
+                        <button onClick={() => scrollTo(`#nomination-form`)}>
+                          Nominate Now
+                        </button>
+                      </div>
+                    ) : null}
+                  </StyledStepContent>
                 </StyledStep>
               );
             })}

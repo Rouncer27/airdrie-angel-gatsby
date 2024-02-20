@@ -9,14 +9,15 @@ import Family from "../components/sections/Family";
 import CloudNine from "../components/sections/CloudNine";
 import Succulent from "../components/sections/Succulent";
 import GiftLift from "../components/sections/GiftLift";
+import MediaSponsor from "../components/sections/MediaSponsor";
 
 class Index extends Component {
   render() {
     const metaTitle = this.props.data.wordpressPage.yoast.title;
     const metaDescription = this.props.data.wordpressPage.yoast.metadesc;
 
-    const socialMedia = this.props.data.allWordpressAcfOptions.edges[0].node
-      .options;
+    const socialMedia =
+      this.props.data.allWordpressAcfOptions.edges[0].node.options;
 
     const acf = this.props.data.wordpressPage.acf;
 
@@ -51,16 +52,17 @@ class Index extends Component {
             famHelpedTotal,
             famHelpedContent,
             famHelpedMoney,
-            famHelpedMoneyContent
+            famHelpedMoneyContent,
           }}
         />
         <CloudNine cloudNine={cloudNine} />
+        <MediaSponsor />
         <Succulent
           data={{
             succulentTitle,
             succulentContent,
             succulentLogo,
-            succulentImage
+            succulentImage,
           }}
         />
         <GiftLift data={giftLiftImage} />

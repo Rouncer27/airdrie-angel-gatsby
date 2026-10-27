@@ -20,10 +20,10 @@ const FamilySection = styled.div`
   align-items: center;
   margin-bottom: 5rem;
   padding: 7.5rem 4rem;
-  background: ${props => props.theme.white};
+  background: ${(props) => props.theme.white};
   border-radius: 0.5rem;
 
-  @media (min-width: ${props => props.theme.bpTablet}) {
+  @media (min-width: ${(props) => props.theme.bpTablet}) {
     width: calc(50% - 4rem);
     margin: 0 2rem;
     padding: 7.5rem 5rem;
@@ -36,7 +36,7 @@ const FamilySection = styled.div`
     font-weight: 300;
     text-align: center;
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       font-size: 4rem;
     }
   }
@@ -95,7 +95,7 @@ const FamilyContent = styled.div`
     font-size: 2rem;
     font-weight: 300;
 
-    @media (min-width: ${props => props.theme.bpTablet}) {
+    @media (min-width: ${(props) => props.theme.bpTablet}) {
       font-size: 2.2rem;
       font-weight: 300;
     }
@@ -108,15 +108,15 @@ class Family extends Component {
 
     this.state = {
       famNumber: 0,
-      monNumber: 0
+      monNumber: 0,
     };
   }
 
   animateTheFamiles(endNumber) {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         ...this.state,
-        famNumber: endNumber
+        famNumber: endNumber,
       };
     });
   }
@@ -127,21 +127,23 @@ class Family extends Component {
     const activePig = document.querySelector(".money-pig ");
     activePig.classList.add("active");
 
-    this.setState(() => {
+    this.setState((prevState) => {
       return {
         ...this.state,
-        monNumber: monNumber
+        monNumber: monNumber,
       };
     });
   }
 
   render() {
+    console.log("endNumber:", this.state);
     return (
       <FamilyStyles>
         <StandardWrapper>
           <FamilySection>
             <div>
               <House />
+
               <Controller>
                 <Scene
                   indicators={false}
@@ -155,7 +157,9 @@ class Family extends Component {
                     <Tween
                       staggerFrom={{ ease: "Expo.easeOut" }}
                       onStartAll={() => {
+                        console.log("RUN");
                         const endNum = parseInt(this.props.data.famHelpedTotal);
+
                         this.animateTheFamiles(endNum);
                       }}
                     >
@@ -172,7 +176,7 @@ class Family extends Component {
             </div>
             <FamilyContent
               dangerouslySetInnerHTML={{
-                __html: this.props.data.famHelpedContent
+                __html: this.props.data.famHelpedContent,
               }}
             />
           </FamilySection>
@@ -217,7 +221,7 @@ class Family extends Component {
             </div>
             <FamilyContent
               dangerouslySetInnerHTML={{
-                __html: this.props.data.famHelpedMoneyContent
+                __html: this.props.data.famHelpedMoneyContent,
               }}
             />
           </FamilySection>

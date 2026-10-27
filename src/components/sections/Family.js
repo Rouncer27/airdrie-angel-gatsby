@@ -167,7 +167,8 @@ class Family extends Component {
                         className="family-counter"
                         duration={4}
                         start={0}
-                        end={this.state.famNumber}
+                        end={155}
+                        //end={this.state.famNumber}
                       />
                     </Tween>
                   </Timeline>
